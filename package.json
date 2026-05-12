@@ -1,0 +1,33 @@
+{
+  "name": "daedaluscoaching-website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "test": "vitest",
+    "typecheck": "nuxt typecheck"
+  },
+  "dependencies": {
+    "@nuxt/content": "^3.5.0",
+    "better-sqlite3": "^12.5.0",
+    "nuxt": "^3.17.0",
+    "vue": "^3.5.0"
+  },
+  "devDependencies": {
+    "@nuxt/test-utils": "^3.17.0",
+    "@playwright/test": "^1.52.0",
+    "@types/better-sqlite3": "^7.6.0",
+    "dependency-cruiser": "^16.9.0",
+    "playwright": "^1.52.0",
+    "vitest": "^3.2.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "esbuild",
+      "better-sqlite3"
+    ]
+  }
+}

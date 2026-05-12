@@ -1,0 +1,96 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  semgrep:
+    name: SAST (Semgrep)
+    runs-on: ubuntu-latest
+    # Semgrep OSS — free, no account required, community rules only.
+    # Runs in parallel with the main CI job to avoid blocking on security scan.
+    steps:
+      - uses: actions/checkout@v4
+      - uses: semgrep/semgrep-action@v1
+        with:
+          config: >-
+            p/typescript
+            p/vue
+            p/owasp-top-ten
+            p/secrets
+        env:
+          # No SEMGREP_APP_TOKEN = OSS mode (community rules, no cloud dashboard)
+          SEMGREP_TIMEOUT: "300"
+
+  ci:
+    name: Quality Gates
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: latest
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # ── Gate 0: Dependency vulnerability audit ──────────────────────────────
+      - name: Audit dependencies
+        run: pnpm audit --audit-level=high
+
+      # ── Gate 1: TypeScript ──────────────────────────────────────────────────
+      - name: Type check
+        run: pnpm typecheck
+
+      # ── Gate 2: Lint + design token enforcement ─────────────────────────────
+      - name: ESLint (security + Vue rules)
+        run: pnpm lint
+
+      - name: Stylelint (token enforcement)
+        run: pnpm dlx stylelint "**/*.css" "**/*.vue" --config .stylelintrc.cjs
+
+      # ── Gate 3: Dependency boundary (core/ import purity) ──────────────────
+      - name: Dependency boundary check
+        run: pnpm dependency-cruiser core composables pages server --config .dependency-cruiser.cjs --ts-config .nuxt/tsconfig.json
+
+      # ── Gate 4: Unit + component tests ─────────────────────────────────────
+      - name: Unit tests
+        run: pnpm test --run
+
+      # ── Gate 5: Build (SSG) ────────────────────────────────────────────────
+      - name: Build
+        run: pnpm run generate
+
+      # ── Gate 6: Netlify Forms adapter probe ────────────────────────────────
+      # Verifies the contact form has data-netlify="true" in the generated HTML.
+      # Netlify Forms detection is build-time HTML scanning — without this attribute
+      # the form silently stops working after deploy.
+      - name: Netlify Forms attribute check
+        run: |
+          if ! grep -r 'data-netlify="true"' .output/public/; then
+            echo "ERROR: data-netlify=\"true\" not found in generated HTML. Netlify Forms adapter is not wired."
+            exit 1
+          fi
+
+      # ── Gate 7: E2e tests (Playwright against built output) ────────────────
+      - name: Install Playwright browsers
+        run: pnpm playwright install --with-deps chromium
+
+      - name: E2e tests
+        run: pnpm playwright test
+        env:
+          CI: 'true'
+          # Playwright webServer in CI uses pnpm dev (see playwright.config.ts).
+          # For SSG validation, override the baseURL to the static preview server
+          # once a serve script is added. Current config restarts dev server in CI
+          # which exercises the full Nuxt build pipeline including server routes.

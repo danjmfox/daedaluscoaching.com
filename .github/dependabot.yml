@@ -1,0 +1,41 @@
+version: 2
+
+updates:
+  # npm / pnpm dependencies
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    groups:
+      # Batch minor + patch updates to reduce PR noise
+      nuxt-ecosystem:
+        patterns:
+          - "nuxt"
+          - "@nuxt/*"
+          - "vue"
+          - "@vue/*"
+          - "vite"
+          - "@vitejs/*"
+      testing:
+        patterns:
+          - "vitest"
+          - "@vitest/*"
+          - "playwright"
+          - "@playwright/*"
+          - "@nuxt/test-utils"
+    ignore:
+      # Major version bumps require deliberate upgrade — don't auto-PR
+      - dependency-name: "nuxt"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@nuxt/content"
+        update-types: ["version-update:semver-major"]
+
+  # GitHub Actions
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 3

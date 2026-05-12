@@ -1,0 +1,71 @@
+id: journey-warm-referral
+name: Warm Referral — First Site Visit to Enquiry
+persona: persona-prospective-client
+feature_id: daedalus-coaching-website-redesign
+created: 2026-05-12
+
+description: >
+  A leader has been told about Daedalus Coaching by a trusted colleague.
+  They have the URL and 60-90 seconds before a meeting. This journey maps
+  their path from first load to enquiry submission.
+
+steps:
+  - step: 1
+    name: Arrive
+    trigger: Referral shares URL (Slack, email, WhatsApp)
+    user_action: Opens URL on mobile or desktop
+    site_responsibility: Loads in <2s; homepage is immediately legible
+    current_state: Unknown load performance; visual incoherence on first view
+    desired_state: Fast load; trust signals visible without scroll
+    opportunity: OPP-01, OPP-02
+
+  - step: 2
+    name: Scan
+    trigger: Homepage has loaded
+    user_action: Scans for credibility signals — who is this, are they legitimate?
+    site_responsibility: B-Corp, 1% for the Planet, accreditations visible above fold
+    current_state: Trust signals present but visually buried / inconsistently styled
+    desired_state: Credentials visible within 5 seconds without scroll
+    opportunity: OPP-01, OPP-02
+
+  - step: 3
+    name: Assess approach
+    trigger: Credibility scan passed (or enough doubt resolved to continue)
+    user_action: Reads about the coach's philosophy and working style
+    site_responsibility: About page communicates distinct voice and approach, not generic bio
+    current_state: Unclear (no current site to evaluate; prior iterations had no stable about page)
+    desired_state: 1-2 paragraphs that a referral partner could read and say "yes, that's right for you"
+    opportunity: OPP-01
+
+  - step: 4
+    name: Decide
+    trigger: Approach feels like a fit (or close enough to warrant a call)
+    user_action: Looks for how to make contact
+    site_responsibility: Single CTA visible from any page — no decision fatigue
+    current_state: Unknown — no current site
+    desired_state: Contact CTA reachable in ≤2 clicks from any page; low-friction form
+    opportunity: OPP-04
+
+  - step: 5
+    name: Enquire
+    trigger: Decides to reach out
+    user_action: Submits contact form or sends email
+    site_responsibility: Confirm submission; set expectation for response time
+    current_state: Unknown
+    desired_state: Confirmation message with expected response time; Netlify form submission captured
+    opportunity: OPP-04
+
+exit_conditions:
+  success: Enquiry submitted
+  abandon_reasons:
+    - Visual incoherence creates doubt before step 2 completes
+    - No distinct approach visible — looks like every other coach
+    - CTA unclear or contact path requires too many steps
+    - Mobile layout broken or slow
+
+measurement:
+  proxy_metric: Contact form submissions (Netlify analytics)
+  baseline: To be established in first 30 days post-launch
+  target: Establish baseline; improve in subsequent iterations
+
+evidence_source: persona-prospective-client, OPP-01, OPP-02, OPP-04, coaching sector norms

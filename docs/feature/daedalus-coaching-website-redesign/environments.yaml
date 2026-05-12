@@ -1,0 +1,38 @@
+feature_id: daedalus-coaching-website-redesign
+wave: DEVOPS
+date: 2026-05-12
+
+environments:
+  - name: local
+    type: development
+    runtime: "Node 22 / pnpm dev (Nuxt HMR)"
+    url: "http://localhost:3000"
+    deployment_trigger: manual (pnpm dev)
+    notes: "Pre-commit hooks run via lefthook. Playwright e2e not executed locally by default."
+
+  - name: preview
+    type: ci-preview
+    runtime: "Netlify CDN (SSG)"
+    url: "https://deploy-preview-{pr}.netlify.app"
+    deployment_trigger: "Pull request opened or updated"
+    notes: "Netlify deploys a preview per PR. GitHub Actions CI gates must pass before merging."
+
+  - name: production
+    type: production
+    runtime: "Netlify CDN (SSG, edge)"
+    url: "https://daedaluscoaching.com"
+    deployment_trigger: "Push to main (after CI gates pass)"
+    notes: >
+      Netlify performs atomic deployment: new static files replace previous set in a single
+      operation. Rollback = redeploy previous Netlify deploy from dashboard (instant).
+      Swoopy at /swoopy/* proxied to https://swoopy.netlify.app via netlify.toml redirect.
+
+rollback:
+  strategy: "Netlify instant redeploy of previous deploy"
+  procedure: |
+    1. Open Netlify dashboard > Deploys
+    2. Select the last known-good deploy
+    3. Click 'Publish deploy'
+    Netlify atomically replaces live files. No DNS change, no downtime.
+  automated_triggers: none (SSG — no runtime error rate to monitor for auto-rollback)
+  rto_estimate: "< 2 minutes (Netlify CDN propagation)"

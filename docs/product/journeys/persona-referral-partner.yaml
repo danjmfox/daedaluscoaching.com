@@ -1,0 +1,39 @@
+id: persona-referral-partner
+name: The Referring Colleague
+type: secondary
+feature_id: daedalus-coaching-website-redesign
+created: 2026-05-12
+
+jtbd: >
+  When I am considering recommending an Agile or leadership coach to a client
+  or colleague, I hire the coach's website to verify they are credible enough
+  that my own reputation is not at risk by making the referral.
+
+arrival_mode: direct (they know the coach); may share the URL directly with a client
+
+context:
+  - May be another coach, an HR lead, an L&D professional, or a trusted peer
+  - Higher trust baseline than a cold visitor — they know the coach personally
+  - Will read more carefully than a prospective client; not time-pressured
+  - Wants to be able to say "look at their site" as a shorthand for credibility
+  - Will notice visual incoherence even if they cannot articulate why
+
+what_they_need_to_confirm:
+  - The site looks professional enough to share
+  - Credentials and certifications are visible and linked
+  - The coach's differentiated approach is clear (not generic)
+  - Contact pathway is obvious (they may send clients directly to it)
+
+what_they_do_not_need:
+  - Same as prospective client — blog and bookshelf are low-priority
+
+desired_outcome: >
+  Be able to share the URL with confidence, knowing the site will do
+  part of the trust-building work on their behalf.
+
+signals_of_failure:
+  - Visual incoherence makes them hesitant to share
+  - No visible credentials or certifications
+  - Copy is too generic to differentiate the coach from any other practitioner
+
+evidence_source: DISCOVER-SEED (S3), OPP-04 analysis, coaching sector referral norms

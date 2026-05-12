@@ -1,0 +1,43 @@
+id: persona-prospective-client
+name: The Evaluating Leader
+type: primary
+feature_id: daedalus-coaching-website-redesign
+created: 2026-05-12
+
+jtbd: >
+  When I am evaluating whether to engage a leadership or Agile coach,
+  I hire a coaching website to help me assess fit, credibility, and approach
+  quickly enough that I decide to have the first conversation.
+
+arrival_mode: warm-referral (dominant); organic search (secondary)
+
+context:
+  - Has been referred by a colleague, peer, or trusted intermediary
+  - Arrives with some prior context — not a cold visitor
+  - Time-pressured; will form a view in under 60 seconds
+  - Is evaluating multiple options; the site is one of several signals
+  - May be individual leader or procurement contact at an organisation
+
+what_they_need_to_confirm:
+  - Is this person credible (accreditations, certifications, memberships)?
+  - Do they have a coherent philosophy — or are they generic?
+  - Is this someone I could work with — does their tone fit?
+  - How do I get in touch, and does that feel low-risk?
+
+what_they_do_not_need:
+  - A blog (they will not read it before the first call)
+  - A bookshelf (same)
+  - Multiple CTAs competing for attention
+
+desired_outcome: >
+  Leave the site with enough confidence to send an enquiry or agree to a
+  discovery call — and not feel they have to justify that decision to themselves
+  or their organisation.
+
+signals_of_failure:
+  - Cannot identify credentials above the fold
+  - Visual incoherence creates doubt about professionalism
+  - No clear single action to take next
+  - Generic coaching copy that could apply to any practitioner
+
+evidence_source: DISCOVER-SEED (S3, S7), Phase 1 JTBD analysis, coaching sector norms

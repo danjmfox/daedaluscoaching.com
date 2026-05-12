@@ -1,0 +1,43 @@
+id: persona-owner-editor
+name: The Owner-as-Editor
+type: tertiary
+feature_id: daedalus-coaching-website-redesign
+created: 2026-05-12
+
+jtbd: >
+  When I want to update my positioning, services copy, or pricing,
+  I hire my website's content workflow to let me make the change quickly,
+  without a code deployment, without breaking anything, and without
+  needing to remember how the system works between edits.
+
+arrival_mode: editor interface (VS Code, GitHub web UI, or CMS overlay)
+
+context:
+  - Solo practitioner who is also the developer
+  - Edits copy approximately monthly — infrequent enough to forget details
+  - Using this project as a Vue/Nuxt learning harness — developer friction
+    has a secondary learning benefit, but this does not justify workflow pain
+  - Previously chose Contentful explicitly to avoid coupling content edits
+    to code deploys (DISCOVER-SEED S4)
+  - Now using @nuxt/content (markdown in repo) — workflow acceptability unvalidated
+
+what_they_need:
+  - Edit a paragraph of copy in under 10 minutes without documentation lookup
+  - Swap a profile image without a build error
+  - Not accidentally break layout by editing markdown frontmatter
+  - See the change reflected quickly (Netlify deploy preview acceptable)
+
+what_would_cause_failure:
+  - Editing markdown requires remembering frontmatter schema each time
+  - Image swap requires knowing the exact asset path convention
+  - A typo in frontmatter breaks the page silently
+  - Workflow requires git commands they have to look up
+
+hypothesis_to_resolve: H3 (markdown-in-repo walkthrough)
+action_required: >
+  Owner performs one real content-edit scenario (paragraph change + image swap)
+  on a staging branch before DESIGN commits content architecture.
+  If friction exceeds 10 minutes or requires documentation lookup,
+  evaluate Nuxt Studio or Decap CMS overlay.
+
+evidence_source: DISCOVER-SEED (S4), Phase 1 JTBD analysis, H3 hypothesis

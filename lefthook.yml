@@ -4,12 +4,14 @@ pre-commit:
     unit-tests:
       name: Unit tests
       run: pnpm test --run
+
     eslint:
       name: ESLint (security + Vue rules)
       run: pnpm lint
-    stylelint:
-      name: Design token enforcement
-      run: pnpm dlx stylelint "**/*.css" "**/*.vue" --config .stylelintrc.cjs
+
     dep-cruiser:
       name: Dependency boundary check
-      run: pnpm dependency-cruiser core composables pages server --config .dependency-cruiser.cjs --ts-config .nuxt/tsconfig.json
+      # server/ not yet created — added when first server route is written
+      run: pnpm dependency-cruiser core composables pages --config .dependency-cruiser.cjs --ts-config .nuxt/tsconfig.json
+
+    # stylelint: enabled in Sprint 1 once .stylelintrc.cjs and tokens.css exist

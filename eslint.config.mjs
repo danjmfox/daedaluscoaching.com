@@ -1,16 +1,15 @@
 // @ts-check
-import withNuxt from './.nuxt/eslint.config.mjs'
 import noUnsanitized from 'eslint-plugin-no-unsanitized'
 
-export default withNuxt(
-  // Catch v-html with unescaped variables — XSS vector in Vue templates.
-  // @nuxt/content renders markdown to HTML; misuse of v-html elsewhere is the risk.
+// @nuxt/eslint integration (adds Nuxt-aware auto-import rules and Vue plugin)
+// requires @nuxt/eslint registered in nuxt.config.ts — add in Sprint 1 with CSS work.
+// For now: security plugin only, which is the critical gate.
+export default [
   noUnsanitized.configs.recommended,
   {
     rules: {
-      // Enforce v-html is never used with a non-literal (catch dynamic HTML injection)
       'no-unsanitized/method': 'error',
       'no-unsanitized/property': 'error',
     },
-  }
-)
+  },
+]

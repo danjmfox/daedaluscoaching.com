@@ -1,10 +1,15 @@
 import type { ContentPage } from '~/core/content/content-port'
 
-export async function usePageContent(path: string): Promise<ContentPage | null> {
-  const page = await queryCollection('content').path(path).first()
-  if (!page) return null
-  return {
-    title: page.title as string,
-    body: page.body as string,
-  }
+export function usePageContent(path: string) {
+  const { data: rawDoc } = useAsyncData(path, () =>
+    queryCollection('content').path(path).first()
+  )
+
+  const page = computed<ContentPage | null>(() =>
+    rawDoc.value
+      ? { title: rawDoc.value.title as string, description: rawDoc.value.description as string | undefined }
+      : null
+  )
+
+  return { page, rawDoc }
 }

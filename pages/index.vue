@@ -1,21 +1,13 @@
 <template>
   <main>
-    <template v-if="page">
+    <template v-if="page && rawDoc">
       <h1>{{ page.title }}</h1>
-      <ContentRenderer :value="rawPage" />
+      <ContentRenderer :value="rawDoc" />
     </template>
     <p v-else>Content not found</p>
   </main>
 </template>
 
 <script setup lang="ts">
-const { data: rawPage } = await useAsyncData('home', () =>
-  queryCollection('content').path('/home').first()
-)
-
-const page = computed(() =>
-  rawPage.value
-    ? { title: rawPage.value.title as string, body: rawPage.value.body as string }
-    : null
-)
+const { page, rawDoc } = await usePageContent('/home')
 </script>

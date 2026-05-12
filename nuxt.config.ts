@@ -1,5 +1,5 @@
 export default defineNuxtConfig({
-  modules: ['@nuxt/content'],
+  modules: ["@nuxt/content"],
   content: {},
-  compatibilityDate: '2025-01-01',
-})
+  compatibilityDate: "2025-01-01",
+});

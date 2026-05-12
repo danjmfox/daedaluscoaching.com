@@ -16,16 +16,17 @@ Can a solo developer/practitioner complete a cold-start-to-change-visible conten
 
 ## Measured timings
 
-| Phase | Measured |
-|-------|----------|
-| `pnpm install` (cold, ~580 packages) | 8.7s |
-| `pnpm install` (warm pnpm cache) | 2.5s |
-| `pnpm dev` cold start to first HTTP 200 | 3.6s |
-| Edit `.md` file → content visible in browser | 122ms |
-| Paragraph change detected by watcher | confirmed |
-| Image `src` swap detected by watcher | confirmed |
+| Phase                                        | Measured  |
+| -------------------------------------------- | --------- |
+| `pnpm install` (cold, ~580 packages)         | 8.7s      |
+| `pnpm install` (warm pnpm cache)             | 2.5s      |
+| `pnpm dev` cold start to first HTTP 200      | 3.6s      |
+| Edit `.md` file → content visible in browser | 122ms     |
+| Paragraph change detected by watcher         | confirmed |
+| Image `src` swap detected by watcher         | confirmed |
 
 **Realistic owner cycle:**
+
 - With deps installed, server cold: ~1–2 minutes
 - Full cold start including install: ~3–5 minutes
 - Fresh clone + owner new to markdown: ~6–8 minutes (marginal but within budget)
@@ -68,12 +69,12 @@ Pure markdown in a text editor. No WYSIWYG, no image picker. Appropriate for thi
 
 ## Performance budget
 
-| Scenario | Estimated time | Within 10-min budget? |
-|----------|---------------|----------------------|
-| Deps installed, server running | <30s | Yes |
-| Deps installed, cold start | ~1 min | Yes |
-| Fresh clone, full install + start | ~3–5 min | Yes |
-| Fresh clone + owner new to markdown | ~6–8 min | Yes (marginal) |
+| Scenario                            | Estimated time | Within 10-min budget? |
+| ----------------------------------- | -------------- | --------------------- |
+| Deps installed, server running      | <30s           | Yes                   |
+| Deps installed, cold start          | ~1 min         | Yes                   |
+| Fresh clone, full install + start   | ~3–5 min       | Yes                   |
+| Fresh clone + owner new to markdown | ~6–8 min       | Yes (marginal)        |
 
 ---
 

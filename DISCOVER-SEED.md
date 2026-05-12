@@ -39,8 +39,8 @@ happening. The redesign starts with a clean TDD commitment via nWave.
 
 **Sub-directory mounting**: The owner wants to mount other repos at sub-paths
 (e.g. `/tools/`, `/resources/`). Nuxt Layers is the candidate mechanism. This needs a spike
-before the DESIGN wave commits to an approach. DISCOVER should surface *what* would be mounted
-and *why* before DESIGN decides *how*.
+before the DESIGN wave commits to an approach. DISCOVER should surface _what_ would be mounted
+and _why_ before DESIGN decides _how_.
 
 ## What DISCOVER should pressure-test
 

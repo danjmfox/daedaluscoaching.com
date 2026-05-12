@@ -14,7 +14,8 @@ No paid external APIs, no costly subprocesses. Real adapter throughout — the
 acceptance test exercises the full content pipeline against the real dev server.
 
 Rationale for Strategy C over Strategy A/B/D:
-- The only "external" resource is the local filesystem (content/*.md files)
+
+- The only "external" resource is the local filesystem (content/\*.md files)
 - No InMemory double is needed or meaningful here — the adapter IS the filesystem
 - CI cost: zero (pnpm dev + playwright, no containers, no paid APIs)
 

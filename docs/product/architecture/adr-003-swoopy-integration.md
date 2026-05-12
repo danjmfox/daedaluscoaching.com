@@ -32,6 +32,7 @@ This makes Swoopy appear same-origin to the browser — enabling deep-link ifram
 `X-Frame-Options` or CSP `frame-ancestors` issues.
 
 **Inline embed**: a Nuxt Vue component (`SwoopyEmbed.vue`) wraps an `<iframe>` with:
+
 - `src` computed from the Swoopy base URL + `?m=<modelId>` or `?g=<encoded>`
 - Explicit `width`, `height`, and `title` props (accessibility)
 - No JavaScript communication between the Nuxt shell and the iframe at v1
@@ -50,23 +51,28 @@ independently.
 ## Alternatives Considered
 
 ### Option A: Netlify proxy (chosen)
+
 See Decision. Independent deployments, same-origin appearance, no build coupling.
 
 ### Option B: Co-deploy (public/swoopy/ copy)
+
 Single Netlify site, simpler DNS. Rejected: couples build pipelines, Swoopy cannot be
 updated independently of the main site, increases main site build time.
 
 ### Option C: Web Component (`<swoopy-diagram>`)
+
 Wraps React app as Custom Element via `@r2wc/react-to-web-component`. Full interactive
 embed with no iframe boundary. No iframe sizing/scroll issues. Rejected for v1 because:
 requires Swoopy to publish `@swoopy/renderer` and `@swoopy/engine` as packages and add a
 second build target. SPIKE-01 trigger: when iframe hits a concrete limit.
 
 ### Option D: Vue shell rewrite
+
 Port React toolbar/interaction layer to Vue. Deep integration, shared design tokens.
 Rejected: disproportionate effort for v1, loses Swoopy's existing test coverage.
 
 ### Option E: Vite Module Federation
+
 Build-time composition. Equivalent UX to web component at higher build complexity.
 Rejected by DISCOVER wave explicitly, and independently here on the same grounds: Module
 Federation adds webpack/rspack build orchestration across two repos for a result identical
@@ -75,6 +81,7 @@ to the web component approach. No new evidence to reopen this evaluation.
 ## Consequences
 
 Positive:
+
 - Swoopy and the main site deploy independently — a Swoopy update does not require a
   main site build
 - iframe is same-origin via proxy — no CORS/CSP complications
@@ -82,6 +89,7 @@ Positive:
 - SPIKE-01 upgrade path is clean — SwoopyEmbed.vue is the swap point
 
 Negative:
+
 - Two Netlify sites to manage (though both on free tier)
 - iframe sizing remains a manual concern (no automatic height adaptation in v1)
 - No design token sharing between Nuxt and Swoopy at v1

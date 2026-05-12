@@ -43,31 +43,31 @@ status: PEER REVIEWED — APPROVED FOR HANDOFF
 
 ## Scope Boundary Summary
 
-| Item | Status | Owner action required? |
-|------|--------|----------------------|
-| Trust signals above fold | IN SCOPE | No |
-| GDPR / iubenda banner | IN SCOPE | No |
-| Contact form (single CTA) | IN SCOPE | No |
-| Narrative about page | IN SCOPE | No |
-| @nuxt/content workflow | CONDITIONAL | Yes — H3 walkthrough |
-| Blog | OUT OF SCOPE (v1) | No — decision made |
-| Bookshelf | OUT OF SCOPE (v1) | No — decision made |
-| Swoopy at `/swoopy/` | IN SCOPE | No — resolved (see OPP-06 note) |
-| Swoopy iframe embed component | IN SCOPE | No |
-| /resources/ sub-directory | OUT OF SCOPE | No evidence; revisit later |
-| Nuxt Layers architecture | OUT OF SCOPE | Wrong tool (Swoopy is React, not Nuxt) |
+| Item                          | Status            | Owner action required?                 |
+| ----------------------------- | ----------------- | -------------------------------------- |
+| Trust signals above fold      | IN SCOPE          | No                                     |
+| GDPR / iubenda banner         | IN SCOPE          | No                                     |
+| Contact form (single CTA)     | IN SCOPE          | No                                     |
+| Narrative about page          | IN SCOPE          | No                                     |
+| @nuxt/content workflow        | CONDITIONAL       | Yes — H3 walkthrough                   |
+| Blog                          | OUT OF SCOPE (v1) | No — decision made                     |
+| Bookshelf                     | OUT OF SCOPE (v1) | No — decision made                     |
+| Swoopy at `/swoopy/`          | IN SCOPE          | No — resolved (see OPP-06 note)        |
+| Swoopy iframe embed component | IN SCOPE          | No                                     |
+| /resources/ sub-directory     | OUT OF SCOPE      | No evidence; revisit later             |
+| Nuxt Layers architecture      | OUT OF SCOPE      | Wrong tool (Swoopy is React, not Nuxt) |
 
 ---
 
 ## Wave Decisions
 
-| Decision | Rationale | Reversible? |
-|---------|-----------|------------|
-| Blog/bookshelf deferred | Scope inflation pattern confirmed; no client demand evidence | Yes — revisit at 6-month review |
-| Sub-directory mounting (Swoopy) | Specific tool named, Netlify proxy chosen, iframe for v1 | Yes — spike to web component when iframe limits hit |
-| Trust signals above fold | Strong past-behaviour signal; coaching sector norm | Low — would need counter-evidence |
-| Single CTA per page | Warm-referral visitor model; no competing CTAs needed | Yes — revisit if acquisition traffic grows |
-| Design tokens enforced at build time | Addresses root cause of visual experiment churn | No — this is a process commitment |
+| Decision                             | Rationale                                                    | Reversible?                                         |
+| ------------------------------------ | ------------------------------------------------------------ | --------------------------------------------------- |
+| Blog/bookshelf deferred              | Scope inflation pattern confirmed; no client demand evidence | Yes — revisit at 6-month review                     |
+| Sub-directory mounting (Swoopy)      | Specific tool named, Netlify proxy chosen, iframe for v1     | Yes — spike to web component when iframe limits hit |
+| Trust signals above fold             | Strong past-behaviour signal; coaching sector norm           | Low — would need counter-evidence                   |
+| Single CTA per page                  | Warm-referral visitor model; no competing CTAs needed        | Yes — revisit if acquisition traffic grows          |
+| Design tokens enforced at build time | Addresses root cause of visual experiment churn              | No — this is a process commitment                   |
 
 ---
 
@@ -85,16 +85,16 @@ These must be answered before DESIGN begins component work:
 
 ## Artifacts
 
-| Artifact | Path | Status |
-|---------|------|--------|
-| Problem Validation | `docs/feature/daedalus-coaching-website-redesign/discover/problem-validation.md` | Complete |
-| Opportunity Tree | `docs/feature/daedalus-coaching-website-redesign/discover/opportunity-tree.md` | Complete |
-| Solution Testing | `docs/feature/daedalus-coaching-website-redesign/discover/solution-testing.md` | Complete |
-| Lean Canvas | `docs/feature/daedalus-coaching-website-redesign/discover/lean-canvas.md` | Complete |
-| Persona: Prospective Client | `docs/product/journeys/persona-prospective-client.yaml` | Complete |
-| Persona: Referral Partner | `docs/product/journeys/persona-referral-partner.yaml` | Complete |
-| Persona: Owner-as-Editor | `docs/product/journeys/persona-owner-editor.yaml` | Complete |
-| Journey: Warm Referral | `docs/product/journeys/journey-warm-referral.yaml` | Complete |
+| Artifact                    | Path                                                                             | Status   |
+| --------------------------- | -------------------------------------------------------------------------------- | -------- |
+| Problem Validation          | `docs/feature/daedalus-coaching-website-redesign/discover/problem-validation.md` | Complete |
+| Opportunity Tree            | `docs/feature/daedalus-coaching-website-redesign/discover/opportunity-tree.md`   | Complete |
+| Solution Testing            | `docs/feature/daedalus-coaching-website-redesign/discover/solution-testing.md`   | Complete |
+| Lean Canvas                 | `docs/feature/daedalus-coaching-website-redesign/discover/lean-canvas.md`        | Complete |
+| Persona: Prospective Client | `docs/product/journeys/persona-prospective-client.yaml`                          | Complete |
+| Persona: Referral Partner   | `docs/product/journeys/persona-referral-partner.yaml`                            | Complete |
+| Persona: Owner-as-Editor    | `docs/product/journeys/persona-owner-editor.yaml`                                | Complete |
+| Journey: Warm Referral      | `docs/product/journeys/journey-warm-referral.yaml`                               | Complete |
 
 ---
 
@@ -106,11 +106,11 @@ These must be answered before DESIGN begins component work:
 
 **Context**: Swoopy's renderer (`@swoopy/renderer`) takes an `HTMLCanvasElement` with no React dependency. The engine (`@swoopy/engine`) is pure logic. Three validated paths exist:
 
-| Option | Capability | Swoopy work required |
-|--------|-----------|----------------------|
-| Direct canvas embed | Read-only display inline in Vue component | Export `RendererStore` factory; publish packages |
-| Web Component (`<swoopy-diagram>`) | Full interactive, optional read-only | Wrap React app as Custom Element via `@r2wc/react-to-web-component`; second build target |
-| Vue shell rewrite | Deep integration, shared design tokens | Port React toolbar/interaction layer to Vue |
+| Option                             | Capability                                | Swoopy work required                                                                     |
+| ---------------------------------- | ----------------------------------------- | ---------------------------------------------------------------------------------------- |
+| Direct canvas embed                | Read-only display inline in Vue component | Export `RendererStore` factory; publish packages                                         |
+| Web Component (`<swoopy-diagram>`) | Full interactive, optional read-only      | Wrap React app as Custom Element via `@r2wc/react-to-web-component`; second build target |
+| Vue shell rewrite                  | Deep integration, shared design tokens    | Port React toolbar/interaction layer to Vue                                              |
 
 **Recommended path**: Web Component. Canvas embed if only read-only display is needed.
 

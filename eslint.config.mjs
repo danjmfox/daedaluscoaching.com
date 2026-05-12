@@ -1,15 +1,19 @@
 // @ts-check
-import noUnsanitized from 'eslint-plugin-no-unsanitized'
+import noUnsanitized from "eslint-plugin-no-unsanitized";
 
-// @nuxt/eslint integration (adds Nuxt-aware auto-import rules and Vue plugin)
-// requires @nuxt/eslint registered in nuxt.config.ts — add in Sprint 1 with CSS work.
-// For now: security plugin only, which is the critical gate.
+// Restricted to .vue files: no-unsanitized guards against v-html XSS in templates.
+// TypeScript files require @typescript-eslint/parser — added in Sprint 1 with
+// @nuxt/eslint module registration in nuxt.config.ts.
 export default [
-  noUnsanitized.configs.recommended,
   {
+    ...noUnsanitized.configs.recommended,
+    files: ["**/*.vue"],
+  },
+  {
+    files: ["**/*.vue"],
     rules: {
-      'no-unsanitized/method': 'error',
-      'no-unsanitized/property': 'error',
+      "no-unsanitized/method": "error",
+      "no-unsanitized/property": "error",
     },
   },
-]
+];

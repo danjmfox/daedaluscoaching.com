@@ -15,11 +15,13 @@ channel for warm-referral visitors assessing the coach's credibility before agre
 discovery call. It is not an acquisition channel — it is a trust gate.
 
 **Primary actors**:
+
 - Prospective Client: arrives via referral, assesses credibility, decides whether to make contact
 - Referral Partner: vets the coach's legitimacy before sending clients
 - Owner-as-Editor: updates copy and positioning without engineering friction
 
 **External systems**:
+
 - Netlify: static site hosting, form submission handling, proxy routing to Swoopy
 - Swoopy: React/Vite causal loop diagram app at `~/projects/swoopy`, deployed separately
 - iubenda: GDPR consent banner (third-party script)
@@ -107,7 +109,7 @@ C4Container
 
 ### Directory Structure (enforced by dependency-cruiser)
 
-```
+```text
 /
 ├── core/                        # Pure functions only — NO framework imports
 │   ├── contact/
@@ -148,11 +150,11 @@ C4Container
 
 ### Dependency Rules (dependency-cruiser, enforced in CI)
 
-| Rule | Description |
-|------|-------------|
-| core-is-pure | `core/` may not import from `composables/`, `server/`, `components/`, `pages/`, or any Nuxt/Vue module |
-| shell-imports-core | `composables/` and `server/` may import from `core/` |
-| components-no-core | `components/` and `pages/` import from `composables/`, not directly from `core/` |
+| Rule               | Description                                                                                            |
+| ------------------ | ------------------------------------------------------------------------------------------------------ |
+| core-is-pure       | `core/` may not import from `composables/`, `server/`, `components/`, `pages/`, or any Nuxt/Vue module |
+| shell-imports-core | `composables/` and `server/` may import from `core/`                                                   |
+| components-no-core | `components/` and `pages/` import from `composables/`, not directly from `core/`                       |
 
 Violation = build failure. Architecture is load-bearing, not conventional.
 
@@ -162,41 +164,41 @@ Violation = build failure. Architecture is load-bearing, not conventional.
 
 ### Driving Ports (inbound — Shell initiates, Core defines interface)
 
-| Port | Location | Description |
-|------|----------|-------------|
+| Port                    | Location                         | Description                                                                      |
+| ----------------------- | -------------------------------- | -------------------------------------------------------------------------------- |
 | Contact form submission | `core/contact/contact-schema.ts` | Zod schema is the contract; composable and server route both validate against it |
-| Page content retrieval | `core/content/content-port.ts` | Typed function signature returning plain TS object (no Vue Ref) |
+| Page content retrieval  | `core/content/content-port.ts`   | Typed function signature returning plain TS object (no Vue Ref)                  |
 
 ### Driven Ports + Adapters (outbound — Core defines port, Shell implements adapter)
 
-| Port | Adapter (v1) | Fallback (SPIKE / H3 fail) |
-|------|-------------|--------------------------|
-| `SubmissionPort` | `server/api/contact.post.ts` → Netlify Forms | Resend or custom SMTP adapter |
-| `ContentPort` | `composables/usePageContent.ts` → @nuxt/content | Decap CMS or Nuxt Studio adapter |
-| `SwoopyEmbedPort` | `SwoopyEmbed.vue` → `<iframe>` proxy URL | Web Component (`<swoopy-diagram>`) — SPIKE-01 |
+| Port              | Adapter (v1)                                    | Fallback (SPIKE / H3 fail)                    |
+| ----------------- | ----------------------------------------------- | --------------------------------------------- |
+| `SubmissionPort`  | `server/api/contact.post.ts` → Netlify Forms    | Resend or custom SMTP adapter                 |
+| `ContentPort`     | `composables/usePageContent.ts` → @nuxt/content | Decap CMS or Nuxt Studio adapter              |
+| `SwoopyEmbedPort` | `SwoopyEmbed.vue` → `<iframe>` proxy URL        | Web Component (`<swoopy-diagram>`) — SPIKE-01 |
 
 ---
 
 ## Technology Stack
 
-| Component | Technology | Version | Licence | Rationale |
-|-----------|-----------|---------|---------|-----------|
-| Framework | Nuxt 3 | ^3.x | MIT | Pre-decided; Vue learning harness; SSG for static hosting |
-| Runtime language | TypeScript (type-stripped) | ^5.x | Apache 2.0 | Owner preference; ESM; no build overhead |
-| Validation | Zod | ^3.x | MIT | Pre-decided; central to contact schema in core/ |
-| Content | @nuxt/content v2 | ^2.x | MIT | Pre-decided; markdown-in-repo; H3 condition open |
-| Testing (unit) | Vitest | ^2.x | MIT | Native Vite integration; fast; no config overhead |
-| Testing (e2e) | Playwright | ^1.x | Apache 2.0 | Multi-browser; outer TDD loop |
-| Mutation testing | Stryker (stryker-vitest) | ^8.x | Apache 2.0 | Core/ purity makes it viable without mocks |
-| Component testing | Vue Test Utils | ^2.x | MIT | Official Vue testing library |
-| CSS tokens | CSS Custom Properties + Stylelint | — / ^16.x | MIT | Zero-dependency token system; lint-enforced |
-| Token lint plugin | stylelint-declaration-strict-value | ^1.x | MIT | Enforces var(--token-*) requirement |
-| Dependency enforcement | dependency-cruiser | ^16.x | MIT | CI enforcement of core/shell boundary |
-| Pre-commit | lefthook | ^1.x | MIT | Hooks: pnpm test --run + stylelint |
-| Deployment | Netlify | Free tier | Proprietary (hosting) | Pre-decided; Netlify Forms included |
-| Swoopy proxy | Netlify redirect rules | — | — | Same-origin iframe via netlify.toml |
-| GDPR consent | iubenda | — | Proprietary (SaaS) | Pre-existing; legal requirement |
-| Analytics | Plausible | Cloud / self-host | AGPL (self-host) / SaaS | Privacy-first; GDPR-compatible |
+| Component              | Technology                         | Version           | Licence                 | Rationale                                                 |
+| ---------------------- | ---------------------------------- | ----------------- | ----------------------- | --------------------------------------------------------- |
+| Framework              | Nuxt 3                             | ^3.x              | MIT                     | Pre-decided; Vue learning harness; SSG for static hosting |
+| Runtime language       | TypeScript (type-stripped)         | ^5.x              | Apache 2.0              | Owner preference; ESM; no build overhead                  |
+| Validation             | Zod                                | ^3.x              | MIT                     | Pre-decided; central to contact schema in core/           |
+| Content                | @nuxt/content v2                   | ^2.x              | MIT                     | Pre-decided; markdown-in-repo; H3 condition open          |
+| Testing (unit)         | Vitest                             | ^2.x              | MIT                     | Native Vite integration; fast; no config overhead         |
+| Testing (e2e)          | Playwright                         | ^1.x              | Apache 2.0              | Multi-browser; outer TDD loop                             |
+| Mutation testing       | Stryker (stryker-vitest)           | ^8.x              | Apache 2.0              | Core/ purity makes it viable without mocks                |
+| Component testing      | Vue Test Utils                     | ^2.x              | MIT                     | Official Vue testing library                              |
+| CSS tokens             | CSS Custom Properties + Stylelint  | — / ^16.x         | MIT                     | Zero-dependency token system; lint-enforced               |
+| Token lint plugin      | stylelint-declaration-strict-value | ^1.x              | MIT                     | Enforces var(--token-\*) requirement                      |
+| Dependency enforcement | dependency-cruiser                 | ^16.x             | MIT                     | CI enforcement of core/shell boundary                     |
+| Pre-commit             | lefthook                           | ^1.x              | MIT                     | Hooks: pnpm test --run + stylelint                        |
+| Deployment             | Netlify                            | Free tier         | Proprietary (hosting)   | Pre-decided; Netlify Forms included                       |
+| Swoopy proxy           | Netlify redirect rules             | —                 | —                       | Same-origin iframe via netlify.toml                       |
+| GDPR consent           | iubenda                            | —                 | Proprietary (SaaS)      | Pre-existing; legal requirement                           |
+| Analytics              | Plausible                          | Cloud / self-host | AGPL (self-host) / SaaS | Privacy-first; GDPR-compatible                            |
 
 No unjustified proprietary dependencies. Netlify and iubenda are pre-existing decisions
 with legal/operational rationale. Plausible's AGPL licence applies only to self-hosted
@@ -207,27 +209,32 @@ deployment; cloud usage is SaaS subscription (owner's choice).
 ## Quality Attribute Strategies
 
 ### Maintainability
+
 - Pure Core / Imperative Shell: core logic is isolated, replaceable
 - Dependency-cruiser enforcement: boundary cannot erode silently
 - Design token enforcement (Stylelint): visual system cannot drift
 - Walking Skeleton first: architecture risk resolved before feature build-out
 
 ### Testability
+
 - `core/` is pure functions — Vitest with no mocks, Stryker mutation testing
 - Outside-In TDD: Playwright acceptance test defines behaviour before implementation
 - Pre-commit hook blocks failing unit tests
 
 ### Operational Simplicity
+
 - SSG (static site generation): no server to maintain, no runtime dependencies
 - Netlify free tier: zero infrastructure management
 - Swoopy deployed separately: independent deployments, no build coupling
 
 ### Performance
+
 - SSG: all pages pre-rendered, served from CDN edge
 - No client-side data fetching on initial load (content is build-time)
 - iubenda and Plausible load asynchronously (non-blocking)
 
 ### Security
+
 - No user authentication — not in scope for v1
 - Contact form: server-side Zod validation prevents malformed submissions reaching Netlify Forms
 - iubenda GDPR banner: consent before analytics load (existing implementation)
@@ -240,6 +247,7 @@ deployment; cloud usage is SaaS subscription (owner's choice).
   - Violation of CSP baseline = build review gate in Sprint 1
 
 ### Reliability
+
 - SSG + CDN: no single point of failure for read traffic
 - Netlify Forms: managed service, not self-hosted — submission reliability is Netlify's SLA
 - Swoopy: independently deployed; if Swoopy is unavailable, main site is unaffected
@@ -249,7 +257,7 @@ deployment; cloud usage is SaaS subscription (owner's choice).
 
 ## Deployment Architecture
 
-```
+```text
 Build Pipeline (Netlify CI):
   git push main
     → pnpm install
@@ -268,6 +276,7 @@ Proxy routing (netlify.toml):
 ```
 
 Two Netlify sites:
+
 - `daedaluscoaching.com` — main Nuxt SSG site
 - `swoopy.netlify.app` (or custom subdomain) — Swoopy React/Vite app
 
@@ -279,11 +288,11 @@ Both on Netlify free tier. Independent deploy pipelines.
 
 ### Environments
 
-| Environment | Runtime | URL | Deploy trigger |
-|-------------|---------|-----|----------------|
-| Local | Node 22 / `pnpm dev` | `http://localhost:3000` | Manual |
-| PR Preview | Netlify CDN (SSG) | `deploy-preview-{n}.netlify.app` | PR opened/updated |
-| Production | Netlify CDN (SSG, edge) | `daedaluscoaching.com` | Push to `main` |
+| Environment | Runtime                 | URL                              | Deploy trigger    |
+| ----------- | ----------------------- | -------------------------------- | ----------------- |
+| Local       | Node 22 / `pnpm dev`    | `http://localhost:3000`          | Manual            |
+| PR Preview  | Netlify CDN (SSG)       | `deploy-preview-{n}.netlify.app` | PR opened/updated |
+| Production  | Netlify CDN (SSG, edge) | `daedaluscoaching.com`           | Push to `main`    |
 
 ### Deployment Strategy: Recreate (Netlify atomic)
 
@@ -314,38 +323,38 @@ because there is no server process to manage.
 
 ## Open Items
 
-| ID | Item | Owner | Trigger |
-|----|------|-------|---------|
-| H3 | Markdown content-edit walkthrough not completed | Owner | Before first content editing session |
-| SPIKE-01 | Swoopy non-iframe embed (web component path) | Developer | When iframe hits concrete limit (scroll, resize, token sharing) |
-| Plausible | Analytics provider confirmed? Cloud vs self-host? | Owner | Before launch |
-| CSP | Content-Security-Policy header configuration | Developer | Sprint 1 |
+| ID        | Item                                              | Owner     | Trigger                                                         |
+| --------- | ------------------------------------------------- | --------- | --------------------------------------------------------------- |
+| H3        | Markdown content-edit walkthrough not completed   | Owner     | Before first content editing session                            |
+| SPIKE-01  | Swoopy non-iframe embed (web component path)      | Developer | When iframe hits concrete limit (scroll, resize, token sharing) |
+| Plausible | Analytics provider confirmed? Cloud vs self-host? | Owner     | Before launch                                                   |
+| CSP       | Content-Security-Policy header configuration      | Developer | Sprint 1                                                        |
 
 ---
 
 ## ADR Index
 
-| ADR | Decision | Status |
-|-----|----------|--------|
-| ADR-001 | Architectural style: Pure Core / Imperative Shell | Accepted |
-| ADR-002 | Content architecture: @nuxt/content + adapter isolation | Accepted (conditional on H3) |
-| ADR-003 | Swoopy integration: Netlify proxy + iframe component | Accepted |
-| ADR-004 | Contact form: Zod in core, Netlify Forms adapter | Accepted |
-| ADR-005 | Design token enforcement: CSS Custom Properties + Stylelint | Accepted |
-| ADR-006 | Testing strategy: Outside-In TDD + Stryker on core | Accepted |
+| ADR     | Decision                                                    | Status                       |
+| ------- | ----------------------------------------------------------- | ---------------------------- |
+| ADR-001 | Architectural style: Pure Core / Imperative Shell           | Accepted                     |
+| ADR-002 | Content architecture: @nuxt/content + adapter isolation     | Accepted (conditional on H3) |
+| ADR-003 | Swoopy integration: Netlify proxy + iframe component        | Accepted                     |
+| ADR-004 | Contact form: Zod in core, Netlify Forms adapter            | Accepted                     |
+| ADR-005 | Design token enforcement: CSS Custom Properties + Stylelint | Accepted                     |
+| ADR-006 | Testing strategy: Outside-In TDD + Stryker on core          | Accepted                     |
 
 ---
 
 ## Architectural Enforcement Tooling
 
-| Boundary | Tool | Trigger | Failure Mode |
-|----------|------|---------|--------------|
-| core/ import purity | dependency-cruiser | CI build + pre-commit | Build failure |
-| Design token usage | stylelint + strict-value plugin | pre-commit + CI | Build failure |
-| TypeScript type safety | tsc --noEmit | CI | Build failure |
-| Unit test coverage | Vitest | pre-commit (--run) | Commit blocked |
-| Mutation test quality | Stryker | On-demand (/nw-mutation-test) | Report only |
-| E2E behaviour | Playwright | CI on push | Build failure |
+| Boundary               | Tool                            | Trigger                       | Failure Mode   |
+| ---------------------- | ------------------------------- | ----------------------------- | -------------- |
+| core/ import purity    | dependency-cruiser              | CI build + pre-commit         | Build failure  |
+| Design token usage     | stylelint + strict-value plugin | pre-commit + CI               | Build failure  |
+| TypeScript type safety | tsc --noEmit                    | CI                            | Build failure  |
+| Unit test coverage     | Vitest                          | pre-commit (--run)            | Commit blocked |
+| Mutation test quality  | Stryker                         | On-demand (/nw-mutation-test) | Report only    |
+| E2E behaviour          | Playwright                      | CI on push                    | Build failure  |
 
 ---
 
@@ -356,6 +365,7 @@ Ports are TypeScript function type signatures. Adapters are functions implementi
 signatures. Dependency injection via parameter passing.
 
 **External integrations requiring attention**:
+
 - Netlify Forms: form submission storage. Not a third-party API contract — behaviour validated
   by CI check for `data-netlify` attribute presence in generated HTML.
 - iubenda: GDPR consent banner loaded as third-party script. CSP configuration must whitelist
@@ -367,6 +377,7 @@ signatures. Dependency injection via parameter passing.
   If SPIKE-01 elevates to npm package publication, revisit.
 
 **Architecture rules for CI pipeline**:
+
 1. dependency-cruiser: enforce `core/` import purity — zero violations = pass
 2. stylelint: enforce CSS custom property usage — zero violations = pass
 3. `tsc --noEmit`: TypeScript type check — zero errors = pass

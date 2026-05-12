@@ -36,16 +36,19 @@ gate. The owner cannot accidentally circumvent it (the pre-commit hook blocks th
 ## Alternatives Considered
 
 ### Option A: Design tokens as a Figma source of truth (Figma Tokens plugin)
+
 Token sync from Figma to CSS. Appropriate for multi-designer teams. Rejected: solo
 developer, no dedicated design tooling workflow, adds Figma dependency for what is a
 code-level enforcement problem.
 
 ### Option B (chosen): CSS Custom Properties + Stylelint enforcement
+
 Zero external tooling dependency beyond the linter. Tokens are code — they live in version
 control, they are searchable, they are diffable. Stylelint is already a standard in the
 Vue/Vite ecosystem (MIT licence, active maintenance).
 
 ### Option C: Tailwind CSS design tokens
+
 Tailwind's config is the token source; utility classes enforce usage. Appealing for
 consistency. Rejected because: Tailwind's utility-class model conflicts with the
 Vue SFC `<style scoped>` pattern the owner is learning; adds a cognitive load tax
@@ -54,11 +57,13 @@ during the learning phase. Revisit if the owner moves to a utility-first workflo
 ## Consequences
 
 Positive:
+
 - Pre-commit hook enforces the token contract before any override reaches the repo
 - Token file is the single source of truth — no scatter across components
 - Addresses root cause of visual experiment churn (OPP-02) mechanically
 
 Negative:
+
 - Requires Stylelint configuration to be maintained as the token set evolves
 - Learning overhead: owner must understand why the linter rejects hard-coded values
   and know the token variable names — mitigated by IDE autocompletion for custom properties

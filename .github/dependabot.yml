@@ -12,25 +12,25 @@ updates:
       # Batch minor + patch updates to reduce PR noise
       nuxt-ecosystem:
         patterns:
-          - "nuxt"
+          - nuxt
           - "@nuxt/*"
-          - "vue"
+          - vue
           - "@vue/*"
-          - "vite"
+          - vite
           - "@vitejs/*"
       testing:
         patterns:
-          - "vitest"
+          - vitest
           - "@vitest/*"
-          - "playwright"
+          - playwright
           - "@playwright/*"
           - "@nuxt/test-utils"
     ignore:
       # Major version bumps require deliberate upgrade — don't auto-PR
-      - dependency-name: "nuxt"
-        update-types: ["version-update:semver-major"]
+      - dependency-name: nuxt
+        update-types: [version-update:semver-major]
       - dependency-name: "@nuxt/content"
-        update-types: ["version-update:semver-major"]
+        update-types: [version-update:semver-major]
 
   # GitHub Actions
   - package-ecosystem: github-actions

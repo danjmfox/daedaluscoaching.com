@@ -43,16 +43,19 @@ without architectural rework. The adapter boundary makes this substitution safe.
 ## Alternatives Considered
 
 ### Option A: Direct @nuxt/content calls in page components
+
 `useContent()` / `queryContent()` called in `<script setup>` directly. Standard Nuxt
 tutorial approach. Rejected because: couples component logic to content source, makes
 H3 fallback a full component rewrite, and pulls content-fetching logic out of the
 testable shell layer.
 
 ### Option B (chosen): @nuxt/content behind a typed adapter
+
 See Decision above. Selected because: adapter boundary makes H3 fallback safe, content
 shape is testable through the port definition, components remain focused on presentation.
 
 ### Option C: Headless CMS (Contentful, Sanity, or Decap CMS)
+
 Provides visual editing. Was the prior approach (Contentful). Rejected as default because:
 adds CMS subscription cost or operational complexity for ~monthly edits from a
 developer-practitioner. Re-evaluated only if H3 walkthrough fails.
@@ -60,11 +63,13 @@ developer-practitioner. Re-evaluated only if H3 walkthrough fails.
 ## Consequences
 
 Positive:
+
 - H3 walkthrough outcome does not block DESIGN wave
 - Content source is swappable without touching components
 - Content shape (TypeScript interface in core) is documented and testable
 
 Negative:
+
 - Adds one adapter layer that standard Nuxt tutorials skip — learner must understand why
 - H3 condition remains open; if walkthrough fails late, Option C adoption requires
   adapter implementation work (estimated small — interface is already defined)

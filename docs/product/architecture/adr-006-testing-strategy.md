@@ -30,6 +30,7 @@ tested at the component level. Composables that cross the port boundary use the 
 interface (typed function signature) to inject test doubles — no framework-level mocking.
 
 **End-to-end testing (Playwright)**: Critical user journeys tested:
+
 - Warm referral visitor reads homepage, finds CTA, submits contact form
 - Owner navigates to Swoopy embed, sees diagram load
 
@@ -50,16 +51,19 @@ Playwright e2e not in pre-commit (too slow) — runs in CI on push.
 ## Alternatives Considered
 
 ### Option A: Test-after (write code, then write tests to cover it)
+
 Faster to initial commit. Rejected: reproduces the S5 anti-pattern (stale scaffolding).
 Tests written after implementation describe what the code does, not what it should do.
 
 ### Option B (chosen): Outside-In TDD (double loop)
+
 Playwright acceptance test defines the behaviour. Vitest unit tests drive the implementation.
 Stryker validates that unit tests would catch real bugs. Selected because it matches
 owner's committed methodology and makes the `core/` purity architectural constraint
 empirically verifiable.
 
 ### Option C: Property-based testing only (fast-check)
+
 Replaces unit tests with property specifications. Aspirational for a learner. Rejected as
 default: property-based thinking requires fluency the owner is building. fast-check is
 available as an addition to the strategy for validation rules (e.g., contact schema
@@ -68,11 +72,13 @@ round-trip properties), not a replacement.
 ## Consequences
 
 Positive:
+
 - Playwright acceptance tests prevent Tested-But-Unwired (TBU) failures
 - Stryker on `core/` verifies that test suite catches real bugs, not just executes lines
 - Pre-commit gate blocks commits with failing unit tests — no stale scaffolding
 
 Negative:
+
 - Playwright setup (browser install, CI integration) has upfront cost
 - Stryker first run on a new codebase requires configuration tuning (timeout, file
   inclusion patterns) — treat as a one-time setup cost

@@ -18,7 +18,7 @@ Both outcomes must be served. The site fails if it converts clients but costs th
 
 ## Opportunity Solution Tree
 
-```
+````text
 Desired Outcome: Site earns trust and enables contact decisions — without owner maintenance friction
   |
   +-- OPP-01: Prospective clients cannot quickly assess coach credibility (score: 16)
@@ -48,7 +48,7 @@ Desired Outcome: Site earns trust and enables contact decisions — without owne
   |
   +-- OPP-06: Sub-directory mounting (/tools/, /resources/) is assumed, not validated (score: UNRESOLVED)
         +-- Idea: [BLOCKED — see flag below]
-```
+```text
 
 ---
 
@@ -57,14 +57,14 @@ Desired Outcome: Site earns trust and enables contact decisions — without owne
 Scoring formula: Score = Importance + Max(0, Importance - Satisfaction)
 Scale: 1-10 each. Max score: 20.
 
-| ID | Opportunity | Importance | Satisfaction (current) | Score | Priority |
-|----|------------|-----------|----------------------|-------|----------|
-| OPP-01 | Prospective clients cannot assess credibility quickly | 9 | 2 | 9 + (9-2) = **16** | Pursue |
-| OPP-02 | Visual incoherence undermines existing trust signals | 9 | 3 | 9 + (9-3) = **15** | Pursue |
-| OPP-03 | Content maintenance workflow unvalidated | 8 | 3 | 8 + (8-3) = **13** | Pursue |
-| OPP-04 | No clear contact pathway for warm referrals | 7 | 4 | 7 + (7-4) = **10** | Evaluate |
-| OPP-05 | Blog/bookshelf scope unresolved | 6 | 5 | 6 + (6-5) = **7** | Evaluate |
-| OPP-06 | Sub-directory mounting need unvalidated | UNRESOLVED | — | — | FLAG |
+| ID     | Opportunity                                           | Importance | Satisfaction (current) | Score              | Priority |
+| ------ | ----------------------------------------------------- | ---------- | ---------------------- | ------------------ | -------- |
+| OPP-01 | Prospective clients cannot assess credibility quickly | 9          | 2                      | 9 + (9-2) = **16** | Pursue   |
+| OPP-02 | Visual incoherence undermines existing trust signals  | 9          | 3                      | 9 + (9-3) = **15** | Pursue   |
+| OPP-03 | Content maintenance workflow unvalidated              | 8          | 3                      | 8 + (8-3) = **13** | Pursue   |
+| OPP-04 | No clear contact pathway for warm referrals           | 7          | 4                      | 7 + (7-4) = **10** | Evaluate |
+| OPP-05 | Blog/bookshelf scope unresolved                       | 6          | 5                      | 6 + (6-5) = **7**  | Evaluate |
+| OPP-06 | Sub-directory mounting need unvalidated               | UNRESOLVED | —                      | —                  | FLAG     |
 
 Top 3 (score >8): OPP-01 (16), OPP-02 (15), OPP-03 (13). All exceed threshold.
 **G2 score threshold: PASSED.**
@@ -75,13 +75,13 @@ Top 3 (score >8): OPP-01 (16), OPP-02 (15), OPP-03 (13). All exceed threshold.
 
 Steps mapped against primary JTBD (prospective client evaluating a coach):
 
-| Step | Job Map Outcome | Opportunity Addressed | Coverage |
-|------|----------------|----------------------|---------|
-| Locate | Find site via referral / search | OPP-04 (referral path) | Partial |
-| Confirm | Scan for credibility signals | OPP-01, OPP-02 | Full |
-| Execute | Read approach and services | OPP-01, OPP-02 | Full |
-| Monitor | (not applicable — single visit decision) | — | N/A |
-| Conclude | Decide to make contact | OPP-04 | Partial |
+| Step     | Job Map Outcome                          | Opportunity Addressed  | Coverage |
+| -------- | ---------------------------------------- | ---------------------- | -------- |
+| Locate   | Find site via referral / search          | OPP-04 (referral path) | Partial  |
+| Confirm  | Scan for credibility signals             | OPP-01, OPP-02         | Full     |
+| Execute  | Read approach and services               | OPP-01, OPP-02         | Full     |
+| Monitor  | (not applicable — single visit decision) | —                      | N/A      |
+| Conclude | Decide to make contact                   | OPP-04                 | Partial  |
 
 Steps with gaps: Locate (referral-aware entry), Conclude (CTA clarity). Both addressed in OPP-04.
 Job map coverage: 5/5 applicable steps touched = **100%**. G2 threshold: 80%. **PASSED.**
@@ -99,6 +99,7 @@ This opportunity **cannot be scored** because the evidence does not exist to det
 Evidence from seed: owner-stated intent only (S6). No past-behaviour signal. No identified users. No named tools or resources.
 
 **Risk assessment (assumption A5):**
+
 - Impact if wrong: 2 (significant rework if Nuxt Layers is adopted for architecture that serves no real users)
 - Uncertainty: 3 (pure speculation)
 - Ease of test: 1 (days — owner can answer this directly)
@@ -114,12 +115,13 @@ Evidence from seed: owner-stated intent only (S6). No past-behaviour signal. No 
 
 ## G2 Gate Assessment
 
-| Criterion | Target | Actual | Status |
-|-----------|--------|--------|--------|
-| Distinct opportunities | 5+ | 6 identified | PASS |
-| Top scores | >8 | Top 3: 16, 15, 13 | PASS |
-| Job step coverage | 80%+ | 100% | PASS |
-| Team/owner alignment | Confirmed | Pending owner review | PENDING |
-| OPP-06 unresolved assumption | Flagged explicitly | Flagged above | PASS |
+| Criterion                    | Target             | Actual               | Status  |
+| ---------------------------- | ------------------ | -------------------- | ------- |
+| Distinct opportunities       | 5+                 | 6 identified         | PASS    |
+| Top scores                   | >8                 | Top 3: 16, 15, 13    | PASS    |
+| Job step coverage            | 80%+               | 100%                 | PASS    |
+| Team/owner alignment         | Confirmed          | Pending owner review | PENDING |
+| OPP-06 unresolved assumption | Flagged explicitly | Flagged above        | PASS    |
 
 **G2: PASSED with one caveat — owner alignment on OPP-06 resolution required before DESIGN gate.**
+````

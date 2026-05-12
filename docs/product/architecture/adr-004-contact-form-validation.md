@@ -10,6 +10,7 @@ wave: DESIGN
 ## Context
 
 The contact form is the single primary CTA across the site (H4 validated). It must:
+
 - Validate input on the client (progressive enhancement) and on the server boundary
 - Not expose a custom backend endpoint to the open internet unnecessarily
 - Remain testable — validation logic must be exercisable without a browser or network
@@ -48,15 +49,18 @@ attribute in the rendered HTML at deploy time (CI check), not at runtime.
 ## Alternatives Considered
 
 ### Option A: Netlify Forms only (no server route)
+
 Form submits directly from browser to Netlify. Simplest. Rejected because: client-side
 Zod validation can be bypassed by a direct POST; no structured error response for
 JavaScript-enhanced UX; validation logic cannot be tested without a browser.
 
 ### Option B (chosen): Zod in core + Netlify Forms adapter via server route
+
 See Decision. Adds one Nuxt server route but validation is testable, bypassable only
 with deliberate effort, and the submission mechanism is replaceable.
 
 ### Option C: Custom email API (Resend, SendGrid)
+
 Full control over email templating. Adds external service dependency, API key management,
 GDPR data handling complexity. No evidence the templating capability is needed for a
 solo practice contact form. Deferred; available as adapter swap if needed.
@@ -64,12 +68,14 @@ solo practice contact form. Deferred; available as adapter swap if needed.
 ## Consequences
 
 Positive:
+
 - Zod schema is the canonical contract — no duplicate validation logic
 - Server-side validation prevents client bypass
 - Submission mechanism is swappable via adapter
 - `core/contact/` is pure — Stryker mutation testing applies
 
 Negative:
+
 - One Nuxt server route to maintain (minor)
 - Netlify Forms has submission limits on free tier (100 submissions/month) — not a
   concern for a low-traffic coaching site but documented

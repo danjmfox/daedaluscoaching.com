@@ -1,15 +1,15 @@
 [build]
-  command   = "pnpm run generate"
-  publish   = ".output/public"
+command = "pnpm run generate"
+publish = ".output/public"
 
 [build.environment]
-  NODE_VERSION = "22"
+NODE_VERSION = "22"
 
 # Proxy Swoopy (separate Netlify site) as same-origin.
 # status 200 = proxy (not a redirect) — browser sees /swoopy/* as same-origin,
 # which means the SwoopyEmbed.vue <iframe> needs no frame-src CSP exception.
 [[redirects]]
-  from   = "/swoopy/*"
-  to     = "https://swoopy.netlify.app/:splat"
-  status = 200
-  force  = true
+from = "/swoopy/*"
+to = "https://swoopy.netlify.app/:splat"
+status = 200
+force = true

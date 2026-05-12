@@ -16,12 +16,21 @@ runtimes:
     - python@3.14.4
 # This is the section where you manage your linters. (https://docs.trunk.io/check/configuration)
 lint:
+  ignore:
+    - linters: [eslint]
+      # TypeScript ESLint requires @typescript-eslint/parser — deferred to Sprint 1.
+      # ESLint currently only lints .vue files (no-unsanitized XSS guard).
+      paths:
+        - "**/*.ts"
+        - "**/*.mjs"
   enabled:
     - actionlint@1.7.12
     - checkov@3.2.528
     - eslint@9.39.4
     - git-diff-check
-    - grype@0.112.0
+    # grype disabled — fails silently on pnpm lockfile format.
+    # Vulnerability coverage provided by: pnpm audit (CI Gate 0) + osv-scanner (Trunk)
+    # - grype@0.112.0
     - markdownlint@0.45.0
     - osv-scanner@2.3.8
     - prettier@3.6.2

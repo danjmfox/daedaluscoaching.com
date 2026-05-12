@@ -7,24 +7,6 @@ on:
     branches: [main]
 
 jobs:
-  semgrep:
-    name: SAST (Semgrep)
-    runs-on: ubuntu-latest
-    # Semgrep OSS — free, no account required, community rules only.
-    # Runs in parallel with the main CI job to avoid blocking on security scan.
-    steps:
-      - uses: actions/checkout@v4
-      - uses: semgrep/semgrep-action@v1
-        with:
-          config: >-
-            p/typescript
-            p/vue
-            p/owasp-top-ten
-            p/secrets
-        env:
-          # No SEMGREP_APP_TOKEN = OSS mode (community rules, no cloud dashboard)
-          SEMGREP_TIMEOUT: "300"
-
   ci:
     name: Quality Gates
     runs-on: ubuntu-latest
@@ -38,8 +20,8 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '22'
-          cache: 'pnpm'
+          node-version: "22"
+          cache: "pnpm"
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -52,12 +34,14 @@ jobs:
       - name: Type check
         run: pnpm typecheck
 
-      # ── Gate 2: Lint + design token enforcement ─────────────────────────────
-      - name: ESLint (security + Vue rules)
-        run: pnpm lint
+      # ── Gate 2: Trunk (lint + format + security scan) ──────────────────────
+      # Runs: eslint, prettier, markdownlint, actionlint, yamllint, taplo,
+      #       grype (vuln scan), osv-scanner, trufflehog (secrets), checkov
+      # --ci flag: non-interactive, exits 1 on violations, no fix applied
+      - name: Trunk check
+        run: trunk check --ci
 
-      - name: Stylelint (token enforcement)
-        run: pnpm dlx stylelint "**/*.css" "**/*.vue" --config .stylelintrc.cjs
+      # stylelint: re-enabled in Sprint 1 once .stylelintrc.cjs and tokens.css exist
 
       # ── Gate 3: Dependency boundary (core/ import purity) ──────────────────
       - name: Dependency boundary check
@@ -89,7 +73,7 @@ jobs:
       - name: E2e tests
         run: pnpm playwright test
         env:
-          CI: 'true'
+          CI: "true"
           # Playwright webServer in CI uses pnpm dev (see playwright.config.ts).
           # For SSG validation, override the baseURL to the static preview server
           # once a serve script is added. Current config restarts dev server in CI

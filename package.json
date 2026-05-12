@@ -8,8 +8,8 @@
     "generate": "nuxt generate",
     "test": "vitest",
     "typecheck": "nuxt typecheck",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint": "trunk check",
+    "lint:fix": "trunk check --fix"
   },
   "dependencies": {
     "@nuxt/content": "^3.5.0",

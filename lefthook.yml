@@ -5,13 +5,12 @@ pre-commit:
       name: Unit tests
       run: pnpm test --run
 
-    eslint:
-      name: ESLint (security + Vue rules)
-      run: pnpm lint
+    trunk:
+      name: Trunk check (lint + format + security)
+      # --fix auto-corrects what it can; exits 1 if unfixable violations remain
+      run: trunk check --fix
 
     dep-cruiser:
       name: Dependency boundary check
-      # server/ not yet created — added when first server route is written
+      # server/ not yet created — add once first server route is written
       run: pnpm dependency-cruiser core composables pages --config .dependency-cruiser.cjs --ts-config .nuxt/tsconfig.json
-
-    # stylelint: enabled in Sprint 1 once .stylelintrc.cjs and tokens.css exist

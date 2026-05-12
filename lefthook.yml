@@ -1,0 +1,15 @@
+pre-commit:
+  parallel: false
+  commands:
+    unit-tests:
+      name: Unit tests
+      run: pnpm test --run
+    eslint:
+      name: ESLint (security + Vue rules)
+      run: pnpm lint
+    stylelint:
+      name: Design token enforcement
+      run: pnpm dlx stylelint "**/*.css" "**/*.vue" --config .stylelintrc.cjs
+    dep-cruiser:
+      name: Dependency boundary check
+      run: pnpm dependency-cruiser core composables pages server --config .dependency-cruiser.cjs --ts-config .nuxt/tsconfig.json

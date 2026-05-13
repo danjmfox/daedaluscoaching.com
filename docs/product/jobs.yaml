@@ -1,0 +1,127 @@
+# Jobs to be Done — Daedalus Coaching
+# SSOT: docs/product/jobs.yaml
+# Created: DISCUSS wave, feature daedalus-coaching-visual-identity, 2026-05-13
+# Format: job_story = "When [situation], I want to [motivation], so I can [outcome]"
+
+jobs:
+  - id: JOB-VI-001
+    name: Visual brief establishment
+    feature_id: daedalus-coaching-visual-identity
+    persona: owner-editor
+    opportunity_score: 17 # from DISCOVER opportunity-tree.md OPP-V1
+    job_story: >
+      When my practice's visual identity needs to be settled once and for all,
+      I want a brief that holds the three-way professional tension explicitly
+      (Enterprise Architecture seriousness / Agile facilitator energy / Individual Coach confidentiality + credibility),
+      so I can evaluate candidate directions using constraints, not aesthetic preference — and the committed
+      direction does not require revision post-launch.
+    dimensions:
+      functional: >
+        Document the brief; evaluate comparables against it; select typeface category; commit tokens;
+        ship without reverting. Close this feature after the 2-week stability test.
+      emotional: >
+        Feel confident the direction is correct without relying on aesthetic vocabulary.
+        Stop second-guessing. Know the test for "done" before starting so the done condition
+        is recognised when reached.
+      social: >
+        Present a practice identity that reflects who the owner actually is and who they actually serve —
+        not a generic-coach template, not a developer-tool aesthetic, not any of the 4 previous experiments.
+    four_forces:
+      push: >
+        4 failed attempts (PaperFrame, BoxFrame, PostIt-style nav, skewed footer), each resolving toward
+        one of the three tensions at the expense of the other two. Owner says "I don't know how I should present.
+        I don't have a style or brand." No constraint vocabulary to evaluate directions objectively.
+      pull: >
+        A settled visual identity that passes the 2-week test. Ability to close this feature and
+        direct energy to the practice. A site that referral partners can share without caveats.
+      anxiety: >
+        "Will this also fail?" — the execution-quality alternative hypothesis (I'm not good at design,
+        not brief absence) is still live. A brief that helps evaluate but not execute may be incomplete.
+        What if even a good brief produces a direction that looks wrong in the browser?
+      habit: >
+        Pick a direction → implement → evaluate aesthetically ("does this feel right?") →
+        abandon if dissatisfied → repeat. The absence of a testable criterion drives the cycle.
+    status: primary
+    stories: [S-VI-001, S-VI-002, S-VI-006]
+
+  - id: JOB-VI-002
+    name: Organisation evaluator first-impression credibility assessment
+    feature_id: daedalus-coaching-visual-identity
+    persona: persona-prospective-client (org evaluator segment)
+    opportunity_score: 14 # from DISCOVER opportunity-tree.md OPP-V2
+    job_story: >
+      When evaluating whether to propose this coach to my senior leaders or board,
+      I want the visual identity to give me a clear signal within 5 seconds that this practitioner
+      operates at the required seniority level — without needing to read any copy —
+      so I can justify my time investigating further and eventually justify my recommendation.
+    dimensions:
+      functional: >
+        Assess practitioner seniority and credibility from visual register alone.
+        Identify credentials (ICF, B-Corp, 1%FTP) without scrolling.
+        Decide whether to invest 60 seconds reading.
+      emotional: >
+        Feel confident enough in the visual register that I would not be embarrassed to
+        recommend this practitioner to my CFO or programme director.
+      social: >
+        Make a recommendation that reflects my own professional judgement — the site
+        should confirm my assessment without requiring me to caveat it.
+    four_forces:
+      push: >
+        Generic coaching sites where every coach looks the same. Inability to distinguish
+        seniority from visual identity alone. Wasted time evaluating practitioners who
+        clearly aren't at the right level.
+      pull: >
+        Clear signal of senior-level practice within 5 seconds. Confidence in own judgement
+        when recommending.
+      anxiety: >
+        What if I recommend someone and my CFO/board thinks the site looks unprofessional?
+        Will my recommendation be questioned?
+      habit: >
+        Scan visual register → look for credential signals → form an impression in under 60 seconds →
+        decide whether to invest time reading.
+    status: secondary
+    stories: [S-VI-003, S-VI-004, S-VI-005]
+
+  - id: JOB-VI-003
+    name: Referred individual leader confirmation
+    feature_id: daedalus-coaching-visual-identity
+    persona: persona-prospective-client (individual leader segment)
+    opportunity_score: 11
+    job_story: >
+      When confirming whether a referred coach is worth my time,
+      I want the visual identity to confirm my colleague's recommendation was well-placed —
+      without requiring me to search for credentials or read past the hero section —
+      so I feel confident sending an enquiry without needing to justify the decision to myself.
+    dimensions:
+      functional: Confirm practitioner seniority; decide whether to enquire.
+      emotional: Trust that my colleague's judgement was sound; feel confident my time will be well spent.
+      social: Engage a practitioner at my level — not a generic coach, not someone I'd need to explain.
+    four_forces:
+      push: Sites that look generic raise doubt about whether the referral was appropriate.
+      pull: Confirmation within 60 seconds; unhurried visual register that signals the practitioner is not selling.
+      anxiety: What if this isn't the right level? Do I have to explain to my colleague why I didn't follow up?
+      habit: Open URL → scan visually → look for familiar trust signals → decide.
+    status: secondary
+    stories: [S-VI-004, S-VI-005]
+
+  - id: JOB-VI-004
+    name: Referral partner shareable endorsement
+    feature_id: daedalus-coaching-visual-identity
+    persona: persona-referral-partner
+    opportunity_score: 9
+    job_story: >
+      When about to share this practitioner's URL with a high-value contact,
+      I want a site I can send without needing to preface it with caveats or explanations —
+      so my recommendation carries its full weight and my contact forms their own conclusion
+      from the site itself.
+    dimensions:
+      functional: Share URL; contact receives it and draws correct conclusion.
+      emotional: Feel that the site does the endorsement work — I don't have to do it.
+      social: My recommendation reflects my own professional discernment.
+    four_forces:
+      push: Generic or incoherent sites require the referral partner to over-explain.
+      pull: A site that the contact can form an impression from independently.
+      anxiety: What if my contact thinks less of my judgement because the site looks unprofessional?
+      habit: Check the site before sharing → decide whether it needs prefacing → share with or without caveat.
+    status: tertiary
+    stories: [S-VI-005]

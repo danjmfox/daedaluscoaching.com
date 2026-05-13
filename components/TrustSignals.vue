@@ -28,7 +28,7 @@ section {
   margin: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-xs) var(--space-lg);
+  gap: var(--space-xs) var(--space-md);
 }
 
 .signal {
@@ -39,7 +39,8 @@ section {
   color: var(--color-text-secondary);
 }
 
-.signal + .signal::before {
-  content: "·  ";
+.signal + .signal {
+  padding-left: var(--space-md);
+  border-left: 1px solid var(--color-border);
 }
 </style>

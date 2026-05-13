@@ -51,21 +51,21 @@ Owner answer (verbatim): _"I don't know how I should present. I don't have a 'st
 
 ## Wave: DISCUSS / [REF] Locked Decisions
 
-| ID    | Decision                                                                               | Reversible                              | Source                         |
-| ----- | -------------------------------------------------------------------------------------- | --------------------------------------- | ------------------------------ |
-| LD-01 | Brief-before-tokens                                                                    | No                                      | DISCOVER problem-validation.md |
-| LD-02 | One identity for all three tiers                                                       | Low — needs counter-evidence            | DISCOVER H-V2                  |
-| LD-03 | Typography leads, colour follows                                                       | Low — only if comparables disconfirm    | DISCOVER H-V5                  |
-| LD-04 | Metaphor-free visual language                                                          | No — failure pattern is unambiguous     | DISCOVER                       |
-| LD-05 | Warm neutral palette (not cool/grey)                                                   | Yes — comparables may show exceptions   | DISCOVER                       |
-| LD-06 | Done criterion: 2-week behavioural test                                                | Yes — if stronger criterion emerges     | DISCOVER H-V4                  |
-| LD-07 | Three-way tension (Enterprise/Agile/Individual) is the brief's primary constraint      | Yes — comparables exercise may refine   | H-V4 owner answer              |
-| LD-08 | Deep-dive research + peer review before any token decision                             | No — owner decision                     | DISCUSS                        |
-| LD-09 | Minimal walking skeleton: brief → typography → colour+spacing → one page → 2-week test | Yes — if walking skeleton reveals a gap | DISCUSS                        |
-| LD-10 | "Practitioner, not platform" — visual identity must not read as thought-leader/speaker site | No — owner stated explicitly            | C1 evaluation                  |
-| LD-11 | "Individual seniority, not institutional scale" — must read as a solo practitioner with depth, not a firm with reach; "corporate-adjacent" credibility without corporate aesthetic | No — owner stated explicitly | C2 evaluation |
-| LD-12 | "Invitation stance" — the site is present, not reaching; it waits to be found by the right person rather than pursuing the visitor; credentials are placed not foregrounded; CTA offers not demands; whitespace is settled not sparse | No — relational posture of the practice | C3 evaluation |
-| LD-13 | Humanist serif is the typeface category — letterform carries warmth and authority simultaneously; the individual-human quality of humanist design holds the practitioner's position without stating it; geometric and restrained sans-serif eliminated by comparables evidence | No — confirmed by owner using constraint vocabulary after C7 | C1–C7 pattern |
+| ID    | Decision                                                                                                                                                                                                                                                                       | Reversible                                                   | Source                         |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------ |
+| LD-01 | Brief-before-tokens                                                                                                                                                                                                                                                            | No                                                           | DISCOVER problem-validation.md |
+| LD-02 | One identity for all three tiers                                                                                                                                                                                                                                               | Low — needs counter-evidence                                 | DISCOVER H-V2                  |
+| LD-03 | Typography leads, colour follows                                                                                                                                                                                                                                               | Low — only if comparables disconfirm                         | DISCOVER H-V5                  |
+| LD-04 | Metaphor-free visual language                                                                                                                                                                                                                                                  | No — failure pattern is unambiguous                          | DISCOVER                       |
+| LD-05 | Warm neutral palette (not cool/grey)                                                                                                                                                                                                                                           | Yes — comparables may show exceptions                        | DISCOVER                       |
+| LD-06 | Done criterion: 2-week behavioural test                                                                                                                                                                                                                                        | Yes — if stronger criterion emerges                          | DISCOVER H-V4                  |
+| LD-07 | Three-way tension (Enterprise/Agile/Individual) is the brief's primary constraint                                                                                                                                                                                              | Yes — comparables exercise may refine                        | H-V4 owner answer              |
+| LD-08 | Deep-dive research + peer review before any token decision                                                                                                                                                                                                                     | No — owner decision                                          | DISCUSS                        |
+| LD-09 | Minimal walking skeleton: brief → typography → colour+spacing → one page → 2-week test                                                                                                                                                                                         | Yes — if walking skeleton reveals a gap                      | DISCUSS                        |
+| LD-10 | "Practitioner, not platform" — visual identity must not read as thought-leader/speaker site                                                                                                                                                                                    | No — owner stated explicitly                                 | C1 evaluation                  |
+| LD-11 | "Individual seniority, not institutional scale" — must read as a solo practitioner with depth, not a firm with reach; "corporate-adjacent" credibility without corporate aesthetic                                                                                             | No — owner stated explicitly                                 | C2 evaluation                  |
+| LD-12 | "Invitation stance" — the site is present, not reaching; it waits to be found by the right person rather than pursuing the visitor; credentials are placed not foregrounded; CTA offers not demands; whitespace is settled not sparse                                          | No — relational posture of the practice                      | C3 evaluation                  |
+| LD-13 | Humanist serif is the typeface category — letterform carries warmth and authority simultaneously; the individual-human quality of humanist design holds the practitioner's position without stating it; geometric and restrained sans-serif eliminated by comparables evidence | No — confirmed by owner using constraint vocabulary after C7 | C1–C7 pattern                  |
 
 ---
 
@@ -141,15 +141,15 @@ For each comparable, record:
 
 ### Owner evaluation responses
 
-| Site | Verdict | Tensions expressed | Notes |
-| ---- | ------- | ------------------ | ----- |
-| C1 Andy Polaine | does not work — thought-leader/speaker platform; monochrome, no warmth; vanilla typeface | Coaching + thought-leader only — not Enterprise/Agile/Individual simultaneously | Drawn to his anti-leaderism philosophy, not his visual identity |
-| C2 Reos Partners | does not work — too corporate; institutional scale (80+ countries) not solo practitioner seniority | Institutional scale only — none of the three tensions as individual practice | Warmer palette than C1 but heavy/dark; decorative lines without meaning; "corporate-adjacent" needed, this is the wrong side of that line |
-| C3 Harthill | much closer — "who I am"; warm/natural/earthy/calm/(eco)systems | Enterprise seriousness (systems+complexity) + Individual coaching (calm, growth) — strongest multi-tension | Typeface has "colour"/personality; contrast too low; warmth is photography-dependent (cannot replicate) |
-| C4 Tavistock Consulting | does not work / anti-comparable — fully awful; sharp geometry, compressed type, poor execution | Institutional formality only; resolves entirely to one axis | Execution-quality failure as well as register failure; "looks like what I might design" — useful negative mirror |
-| C5 MBS Works | does not work / anti-comparable — personality site; warmth + performance are primary trust carriers | Individual warmth only — no enterprise credibility signal | Works for MBS because reputation anchor (books) exists; requires extroversion as design posture; fails LD-12 |
-| C6 Animas Coaching | does not work — clinical/medical colours, gradient decorative text, simplistic full-width, no text bounding | Consumer coaching only — no enterprise register | Fails LD-04 (gradient text = decoration), fails LD-05 (cool/clinical palette), fails LD-11 (school not practitioner) |
-| C7 James O'Halloran (jamesohalloran.com) | closest / partially works — warm unhurried rhythm, invitation stance, B Corp + trusted testimonial placed correctly | Enterprise credibility + Individual warmth — language carries trust signal design supports | Contemporary sans-serif works because language compensates; warmth is photography-dependent; credential placement model is right for B Corp + 1%FTP + ICF |
+| Site                                     | Verdict                                                                                                             | Tensions expressed                                                                                         | Notes                                                                                                                                                     |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| C1 Andy Polaine                          | does not work — thought-leader/speaker platform; monochrome, no warmth; vanilla typeface                            | Coaching + thought-leader only — not Enterprise/Agile/Individual simultaneously                            | Drawn to his anti-leaderism philosophy, not his visual identity                                                                                           |
+| C2 Reos Partners                         | does not work — too corporate; institutional scale (80+ countries) not solo practitioner seniority                  | Institutional scale only — none of the three tensions as individual practice                               | Warmer palette than C1 but heavy/dark; decorative lines without meaning; "corporate-adjacent" needed, this is the wrong side of that line                 |
+| C3 Harthill                              | much closer — "who I am"; warm/natural/earthy/calm/(eco)systems                                                     | Enterprise seriousness (systems+complexity) + Individual coaching (calm, growth) — strongest multi-tension | Typeface has "colour"/personality; contrast too low; warmth is photography-dependent (cannot replicate)                                                   |
+| C4 Tavistock Consulting                  | does not work / anti-comparable — fully awful; sharp geometry, compressed type, poor execution                      | Institutional formality only; resolves entirely to one axis                                                | Execution-quality failure as well as register failure; "looks like what I might design" — useful negative mirror                                          |
+| C5 MBS Works                             | does not work / anti-comparable — personality site; warmth + performance are primary trust carriers                 | Individual warmth only — no enterprise credibility signal                                                  | Works for MBS because reputation anchor (books) exists; requires extroversion as design posture; fails LD-12                                              |
+| C6 Animas Coaching                       | does not work — clinical/medical colours, gradient decorative text, simplistic full-width, no text bounding         | Consumer coaching only — no enterprise register                                                            | Fails LD-04 (gradient text = decoration), fails LD-05 (cool/clinical palette), fails LD-11 (school not practitioner)                                      |
+| C7 James O'Halloran (jamesohalloran.com) | closest / partially works — warm unhurried rhythm, invitation stance, B Corp + trusted testimonial placed correctly | Enterprise credibility + Individual warmth — language carries trust signal design supports                 | Contemporary sans-serif works because language compensates; warmth is photography-dependent; credential placement model is right for B Corp + 1%FTP + ICF |
 
 ### Typeface category pattern — CONFIRMED
 
@@ -159,14 +159,15 @@ For each comparable, record:
 
 Owner confirmation: _"brings seriousness and warmth to AI leadership questions"_ — constraint vocabulary, not aesthetic preference. Slice 01 learning hypothesis confirmed: the brief is working.
 
-| Eliminated direction | Evidence |
-| -------------------- | -------- |
-| Geometric sans-serif | C1 (Polaine), C6 (Animas) — no warmth register |
-| Restrained monochrome sans | C2 (Reos), C4 (Tavistock) — institutional, excludes individual axis |
-| Personality-first / performance | C5 (MBS) — requires external reputation anchor + extroversion |
-| Photography-dependent warmth | C3, C7 — warmth achieved through imagery, not letterform; cannot transfer |
+| Eliminated direction            | Evidence                                                                  |
+| ------------------------------- | ------------------------------------------------------------------------- |
+| Geometric sans-serif            | C1 (Polaine), C6 (Animas) — no warmth register                            |
+| Restrained monochrome sans      | C2 (Reos), C4 (Tavistock) — institutional, excludes individual axis       |
+| Personality-first / performance | C5 (MBS) — requires external reputation anchor + extroversion             |
+| Photography-dependent warmth    | C3, C7 — warmth achieved through imagery, not letterform; cannot transfer |
 
 **Typeface requirements for Slice 02:**
+
 - Humanist serif or mixed serif/sans system
 - Warmth in the letterform — humanist proportions, calligraphic influence or visible ink traps
 - Strong contrast (Harthill shows warmth ≠ low contrast)
@@ -198,7 +199,7 @@ Decision enabled: Whether a candidate direction is worth implementing at all —
 **Acceptance Criteria:**
 
 - AC1: The brief holds all three tensions as named, observable constraints — each with at least one rejection signal
-- AC2: Owner can read the brief and articulate why a specific example "fails" without using aesthetic vocabulary ("it doesn't feel right")
+- AC2: Owner can read the brief and articulate why a specific example "fails" using constraint vocabulary referencing one of the three tensions by name — e.g. "C5 (MBS Works) fails Enterprise seriousness because warmth is the primary trust carrier and there is no credibility signal for an org evaluator"
 - AC3: The 4 DISCOVER evaluation statements are present as supplementary test cases
 - AC4: The brief contains explicit "what this is NOT" constraints (no metaphors; no geometric-only; no cool grey)
 - AC5: Comparables exercise completed (S-VI-002) before this story is closed — brief is grounded in evidence
@@ -300,7 +301,7 @@ Decision enabled: Whether to start the 2-week stability test clock — or make a
 - AC2: B-Corp, 1%FTP, and ICF credentials are visible above fold using typographic treatment (not icon badges per DISCOVER LD-07)
 - AC3: Single CTA (contact) is visible and reachable in ≤2 clicks
 - AC4: Owner records evaluation against all 4 DISCOVER brief statements (each rated pass/fail with notes)
-- AC5: At least 3 of 4 statements earn a "would not deny" verdict
+- AC5: At least 3 of 4 statements earn a PASS verdict (PASS = "I would recommend this to a peer in my network without caveat"; FAIL = "I would not")
 - AC6: No metaphor-driven visual elements (LD-04)
 
 ---
@@ -321,8 +322,8 @@ Decision enabled: Whether to close JOB-VI-001 and the visual identity feature �
 
 **Acceptance Criteria:**
 
-- AC1: Owner records a verdict against each of the 4 DISCOVER brief statements at day 14
-- AC2: Owner records explicitly: "no changes desired" (binary — yes or no, not "probably")
+- AC1: Owner records a PASS/FAIL verdict (with specific evidence) against each of the 4 DISCOVER brief statements at day 14 — using the same framework applied at S-VI-005
+- AC2: Owner records explicitly: "no changes desired" (binary — yes or no, not "probably"); this is in addition to, not instead of, the four-statement verdicts
 - AC3: If changes ARE desired, a DISCOVER re-entry issue is created with the alternative hypothesis (execution quality) elevated to primary — this is not failure, it is the process working correctly
 - AC4: Verdict document committed to `docs/feature/daedalus-coaching-visual-identity/stability-test.md`
 
@@ -388,18 +389,18 @@ _Slice briefs at `docs/feature/daedalus-coaching-visual-identity/slices/`_
 
 ## Wave: DISCUSS / [REF] Out-of-Scope
 
-| Item                             | Status     | Rationale                                                 |
-| -------------------------------- | ---------- | --------------------------------------------------------- |
-| Blog                             | OUT        | Prior discovery: visitors will not read before first call |
-| Bookshelf                        | OUT        | Same                                                      |
-| Stock photography                | OUT        | Practitioner's presence is the differentiator             |
-| Tier-specific visual expressions | OUT        | LD-02: one identity; copy does segmentation               |
-| Metaphor-driven elements         | OUT        | LD-04: failure pattern is unambiguous                     |
-| Geometric-only sans-serif        | OUT        | Developer-tool signal; wrong for coaching register        |
-| Cool grey neutrals               | OUT        | Industrial register; wrong for coaching relationship      |
-| Multi-register design system     | OUT        | LD-02 confirmed                                           |
-| Pages beyond homepage            | OUT for WS | Expand after stability test passes                        |
-| Page transition / view transitions | OUT — deferred | Valid UX enhancement (CSS @view-transition); separate interaction feature; not a token decision |
+| Item                               | Status                 | Rationale                                                                                                                         |
+| ---------------------------------- | ---------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| Blog                               | OUT                    | Prior discovery: visitors will not read before first call                                                                         |
+| Bookshelf                          | OUT                    | Same                                                                                                                              |
+| Stock photography                  | OUT                    | Practitioner's presence is the differentiator                                                                                     |
+| Tier-specific visual expressions   | OUT                    | LD-02: one identity; copy does segmentation                                                                                       |
+| Metaphor-driven elements           | OUT                    | LD-04: failure pattern is unambiguous                                                                                             |
+| Geometric-only sans-serif          | OUT                    | Developer-tool signal; wrong for coaching register                                                                                |
+| Cool grey neutrals                 | OUT                    | Industrial register; wrong for coaching relationship                                                                              |
+| Multi-register design system       | OUT                    | LD-02 confirmed                                                                                                                   |
+| Pages beyond homepage              | OUT for WS             | Expand after stability test passes                                                                                                |
+| Page transition / view transitions | OUT — deferred         | Valid UX enhancement (CSS @view-transition); separate interaction feature; not a token decision                                   |
 | AI positioning as service offering | OUT — content strategy | AI transformation work belongs as practitioner evidence in credentials/work section — placed, not labelled; consistent with LD-12 |
 
 ---

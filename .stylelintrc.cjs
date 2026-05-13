@@ -4,7 +4,14 @@ module.exports = {
   rules: {
     "import-notation": "string",
     "scale-unlimited/declaration-strict-value": [
-      ["font-family", "font-size", "font-weight", "line-height"],
+      [
+        "font-family",
+        "font-size",
+        "font-weight",
+        "line-height",
+        "color",
+        "background-color",
+      ],
       {
         ignoreVariables: true,
         ignoreKeywords: {
@@ -12,6 +19,8 @@ module.exports = {
           "line-height": ["normal", "inherit"],
           "font-size": ["inherit"],
           "font-family": ["inherit"],
+          color: ["inherit", "transparent", "currentColor"],
+          "background-color": ["inherit", "transparent"],
         },
       },
     ],

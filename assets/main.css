@@ -13,6 +13,8 @@ body {
   font-size: var(--font-size-lg);
   line-height: var(--line-height-relaxed);
   font-weight: var(--font-weight-regular);
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
 }
 
 h1,

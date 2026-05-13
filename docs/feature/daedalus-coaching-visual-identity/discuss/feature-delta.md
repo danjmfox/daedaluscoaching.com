@@ -4,7 +4,7 @@
 feature_id: daedalus-coaching-visual-identity
 wave: DISCUSS
 date: 2026-05-13
-status: IN PROGRESS — COMPARABLES EVALUATION PENDING (interactive gate before typography)
+status: IN PROGRESS — COMPARABLES COMPLETE; PEER REVIEW PENDING (LD-08 gate before typography)
 density: lean + ask-intelligent
 ```
 
@@ -62,6 +62,10 @@ Owner answer (verbatim): _"I don't know how I should present. I don't have a 'st
 | LD-07 | Three-way tension (Enterprise/Agile/Individual) is the brief's primary constraint      | Yes — comparables exercise may refine   | H-V4 owner answer              |
 | LD-08 | Deep-dive research + peer review before any token decision                             | No — owner decision                     | DISCUSS                        |
 | LD-09 | Minimal walking skeleton: brief → typography → colour+spacing → one page → 2-week test | Yes — if walking skeleton reveals a gap | DISCUSS                        |
+| LD-10 | "Practitioner, not platform" — visual identity must not read as thought-leader/speaker site | No — owner stated explicitly            | C1 evaluation                  |
+| LD-11 | "Individual seniority, not institutional scale" — must read as a solo practitioner with depth, not a firm with reach; "corporate-adjacent" credibility without corporate aesthetic | No — owner stated explicitly | C2 evaluation |
+| LD-12 | "Invitation stance" — the site is present, not reaching; it waits to be found by the right person rather than pursuing the visitor; credentials are placed not foregrounded; CTA offers not demands; whitespace is settled not sparse | No — relational posture of the practice | C3 evaluation |
+| LD-13 | Humanist serif is the typeface category — letterform carries warmth and authority simultaneously; the individual-human quality of humanist design holds the practitioner's position without stating it; geometric and restrained sans-serif eliminated by comparables evidence | No — confirmed by owner using constraint vocabulary after C7 | C1–C7 pattern |
 
 ---
 
@@ -135,27 +139,43 @@ For each comparable, record:
 | C6  | Animas Coaching      | animascoaching.com        | Anti-comparable (sector default)   | Contemporary sans-serif; badge-heavy; warm professionalism; marketing-oriented; feels like a school not a practitioner                                                                                                                      |
 | C7  | [Owner to source]    |                           | Non-UK, non-coaching               | Required: at least 1 example from a professional services context outside coaching. Suggested starting point: nybooks.com — typographic authority, no decoration, tests whether "confident without trying" translates outside developer UI. |
 
-### Owner evaluation responses [PENDING]
+### Owner evaluation responses
 
-| Site                    | Owner response | Tensions expressed | Notes |
-| ----------------------- | -------------- | ------------------ | ----- |
-| C1 Andy Polaine         |                |                    |       |
-| C2 Reos Partners        |                |                    |       |
-| C3 Harthill             |                |                    |       |
-| C4 Tavistock Consulting |                |                    |       |
-| C5 MBS Works            |                |                    |       |
-| C6 Animas Coaching      |                |                    |       |
-| C7 Non-UK example       |                |                    |       |
+| Site | Verdict | Tensions expressed | Notes |
+| ---- | ------- | ------------------ | ----- |
+| C1 Andy Polaine | does not work — thought-leader/speaker platform; monochrome, no warmth; vanilla typeface | Coaching + thought-leader only — not Enterprise/Agile/Individual simultaneously | Drawn to his anti-leaderism philosophy, not his visual identity |
+| C2 Reos Partners | does not work — too corporate; institutional scale (80+ countries) not solo practitioner seniority | Institutional scale only — none of the three tensions as individual practice | Warmer palette than C1 but heavy/dark; decorative lines without meaning; "corporate-adjacent" needed, this is the wrong side of that line |
+| C3 Harthill | much closer — "who I am"; warm/natural/earthy/calm/(eco)systems | Enterprise seriousness (systems+complexity) + Individual coaching (calm, growth) — strongest multi-tension | Typeface has "colour"/personality; contrast too low; warmth is photography-dependent (cannot replicate) |
+| C4 Tavistock Consulting | does not work / anti-comparable — fully awful; sharp geometry, compressed type, poor execution | Institutional formality only; resolves entirely to one axis | Execution-quality failure as well as register failure; "looks like what I might design" — useful negative mirror |
+| C5 MBS Works | does not work / anti-comparable — personality site; warmth + performance are primary trust carriers | Individual warmth only — no enterprise credibility signal | Works for MBS because reputation anchor (books) exists; requires extroversion as design posture; fails LD-12 |
+| C6 Animas Coaching | does not work — clinical/medical colours, gradient decorative text, simplistic full-width, no text bounding | Consumer coaching only — no enterprise register | Fails LD-04 (gradient text = decoration), fails LD-05 (cool/clinical palette), fails LD-11 (school not practitioner) |
+| C7 James O'Halloran (jamesohalloran.com) | closest / partially works — warm unhurried rhythm, invitation stance, B Corp + trusted testimonial placed correctly | Enterprise credibility + Individual warmth — language carries trust signal design supports | Contemporary sans-serif works because language compensates; warmth is photography-dependent; credential placement model is right for B Corp + 1%FTP + ICF |
 
-### Typography hypothesis (to be confirmed or disconfirmed by evaluations)
+### Typeface category pattern — CONFIRMED
 
-The correct typeface category for Daedalus Coaching is a **humanist** typeface (serif or sans-serif) with:
+**Finding (S-VI-002 AC5):** No purely sans-serif site in the comparable set held all three tensions through typography alone. The two closest (C3 Harthill, C7 James O'Halloran) both rely on photography or language to carry warmth. The site's constraint is harder: typography and spacing must carry the warmth without photography budget.
 
-- Warmth and personality in the letterform (humanist proportions, not geometric)
-- Clear weight differentiation between headings and body (not a monoline system)
-- Neither traditional-serif formality nor geometric-sans-serif coldness
+**Confirmed: LD-13 — Humanist serif typeface category.**
 
-This hypothesis must be confirmed or disconfirmed before any token decision.
+Owner confirmation: _"brings seriousness and warmth to AI leadership questions"_ — constraint vocabulary, not aesthetic preference. Slice 01 learning hypothesis confirmed: the brief is working.
+
+| Eliminated direction | Evidence |
+| -------------------- | -------- |
+| Geometric sans-serif | C1 (Polaine), C6 (Animas) — no warmth register |
+| Restrained monochrome sans | C2 (Reos), C4 (Tavistock) — institutional, excludes individual axis |
+| Personality-first / performance | C5 (MBS) — requires external reputation anchor + extroversion |
+| Photography-dependent warmth | C3, C7 — warmth achieved through imagery, not letterform; cannot transfer |
+
+**Typeface requirements for Slice 02:**
+- Humanist serif or mixed serif/sans system
+- Warmth in the letterform — humanist proportions, calligraphic influence or visible ink traps
+- Strong contrast (Harthill shows warmth ≠ low contrast)
+- Compatible with warm cream background + teal/coral logo palette
+- Potentially: serif headings / humanist sans body (earthy authority + readable clarity)
+
+**Additional finding:** No direct comparables exist for this practice's intersection (Agile Coach + EA + Individual Leader). Visual register must be originated, not borrowed from a recognisable category.
+
+**Credential placement finding (from C7):** B Corp + trusted testimonial placed without ceremony is the right model. Applies directly to Slice 04 AC2 (credentials above fold as typographic elements, not badges).
 
 ---
 
@@ -355,8 +375,8 @@ _Slice briefs at `docs/feature/daedalus-coaching-visual-identity/slices/`_
 - [ ] JTBD analysis complete with four forces documented for primary job (JOB-VI-001)
 - [ ] All 4 jobs in jobs.yaml with functional/emotional/social dimensions
 - [ ] H-V4 gate cleared — constraint vocabulary extracted and documented
-- [ ] Comparables exercise completed: 5-7 sites, 6-dimension framework, owner responses
-- [ ] Typeface category pattern documented from comparables evaluations
+- [x] Comparables exercise completed: 7 sites, 6-dimension framework, owner responses
+- [x] Typeface category pattern documented from comparables evaluations — humanist serif confirmed (LD-13)
 - [ ] Brief peer review completed before any token decision (LD-08)
 - [ ] 6 user stories with elevator pitches, ACs, job_id references
 - [ ] Story map with 4 slices + milestone; all Carpaccio taste tests passed
@@ -379,6 +399,8 @@ _Slice briefs at `docs/feature/daedalus-coaching-visual-identity/slices/`_
 | Cool grey neutrals               | OUT        | Industrial register; wrong for coaching relationship      |
 | Multi-register design system     | OUT        | LD-02 confirmed                                           |
 | Pages beyond homepage            | OUT for WS | Expand after stability test passes                        |
+| Page transition / view transitions | OUT — deferred | Valid UX enhancement (CSS @view-transition); separate interaction feature; not a token decision |
+| AI positioning as service offering | OUT — content strategy | AI transformation work belongs as practitioner evidence in credentials/work section — placed, not labelled; consistent with LD-12 |
 
 ---
 
@@ -413,7 +435,7 @@ The skeleton does NOT prove full site coverage (about, contact, Swoopy embed). T
 | ---------------------------------- | -------------------------------------------------- | ------------------------------------------- |
 | DISCOVER wave                      | APPROVED FOR HANDOFF                               | —                                           |
 | H-V4 gate                          | CONDITIONAL PASS (constraint vocabulary extracted) | Comparables must complete before typography |
-| Owner evaluation of comparables    | PENDING                                            | Yes — blocks Slice 02                       |
+| Owner evaluation of comparables    | COMPLETE — C1–C7 evaluated; LD-13 locked           | —                                           |
 | Peer review of brief               | PENDING (LD-08)                                    | Yes — blocks Slice 02 (typography)          |
 | docs/product/jobs.yaml             | CREATED (this wave)                                | —                                           |
 | assets/tokens.css                  | EXISTS — needs content                             | Slice 02–03 output                          |

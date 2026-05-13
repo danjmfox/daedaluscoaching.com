@@ -41,7 +41,9 @@ jobs:
       #       grype (vuln scan), osv-scanner, trufflehog (secrets), checkov
       # --ci flag: non-interactive, exits 1 on violations, no fix applied
       - name: Trunk check
-        run: trunk check --ci
+        uses: trunk-io/trunk-action@v1
+        with:
+          trunk-token: ${{ secrets.TRUNK_TOKEN }}
 
       # stylelint: re-enabled in Sprint 1 once .stylelintrc.cjs and tokens.css exist
 

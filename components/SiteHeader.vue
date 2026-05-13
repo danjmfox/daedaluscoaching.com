@@ -2,7 +2,7 @@
   <header class="site-header">
     <div class="header-inner">
       <NuxtLink to="/" class="logo-link" aria-label="Daedalus Coaching — home">
-        <!-- TODO: replace inner span with <img> once SVG logo file is in public/ -->
+        <img src="/logo.svg" alt="" aria-hidden="true" class="logo-mark" width="48" height="32" />
         <span class="logo-wordmark">Daedalus Coaching</span>
       </NuxtLink>
       <nav aria-label="Main navigation">
@@ -35,6 +35,15 @@
 .logo-link {
   text-decoration: none;
   color: var(--color-text-primary);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.logo-mark {
+  display: block;
+  height: 2rem;
+  width: auto;
 }
 
 .logo-wordmark {

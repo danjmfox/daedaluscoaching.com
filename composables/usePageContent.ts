@@ -2,7 +2,7 @@ import type { ContentPage } from "~/core/content/content-port";
 
 export function usePageContent(path: string) {
   const { data: rawDoc } = useAsyncData(path, () =>
-    queryCollection("content").path(path).first(),
+    queryCollection("pages").path(path).first(),
   );
 
   const page = computed<ContentPage | null>(() =>

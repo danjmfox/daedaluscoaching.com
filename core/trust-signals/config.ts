@@ -1,0 +1,27 @@
+export interface TrustSignalsConfig {
+  bcorp: { enabled: boolean; label: string };
+  onePercentPlanet: { enabled: boolean; label: string };
+  accreditations: { enabled: boolean; items: string[] };
+}
+
+export const trustSignalsConfig: TrustSignalsConfig = {
+  bcorp: { enabled: false, label: "B Corp Certified" },
+  onePercentPlanet: { enabled: false, label: "1% for the Planet" },
+  accreditations: { enabled: false, items: [] },
+};
+
+export function enabledSignals(config: TrustSignalsConfig) {
+  return [
+    config.bcorp.enabled && { key: "bcorp", label: config.bcorp.label },
+    config.onePercentPlanet.enabled && {
+      key: "onePercentPlanet",
+      label: config.onePercentPlanet.label,
+    },
+    ...(config.accreditations.enabled
+      ? config.accreditations.items.map((item) => ({
+          key: item,
+          label: item,
+        }))
+      : []),
+  ].filter(Boolean) as { key: string; label: string }[];
+}

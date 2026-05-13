@@ -15,7 +15,8 @@
     "@nuxt/content": "^3.5.0",
     "better-sqlite3": "^12.5.0",
     "nuxt": "^3.17.0",
-    "vue": "^3.5.0"
+    "vue": "^3.5.0",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@nuxt/eslint": "^1.0.0",

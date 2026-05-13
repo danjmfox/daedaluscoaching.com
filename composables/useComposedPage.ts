@@ -7,6 +7,9 @@ export function useComposedPage(path: string) {
         queryCollection("blocks").path(`/blocks/${slug}`).first(),
       ),
     );
-    return { page, blocks: blocks.filter(Boolean) };
+    return {
+      page,
+      blocks: blocks.filter((b): b is NonNullable<typeof b> => b !== null),
+    };
   });
 }

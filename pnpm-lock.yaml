@@ -20,6 +20,9 @@ importers:
       vue:
         specifier: ^3.5.0
         version: 3.5.34(typescript@5.9.3)
+      zod:
+        specifier: ^3.25.76
+        version: 3.25.76
     devDependencies:
       '@nuxt/eslint':
         specifier: ^1.0.0

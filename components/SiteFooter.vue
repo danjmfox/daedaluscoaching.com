@@ -7,8 +7,7 @@
       <nav aria-label="Footer navigation">
         <ul class="footer-links">
           <li>
-            <!-- TODO: replace href with iubenda privacy policy URL -->
-            <a href="#" class="footer-link">Privacy policy</a>
+              <NuxtLink to="/privacy" class="footer-link">Privacy policy</NuxtLink>
           </li>
         </ul>
       </nav>

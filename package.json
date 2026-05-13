@@ -33,7 +33,8 @@
     "onlyBuiltDependencies": [
       "@parcel/watcher",
       "esbuild",
-      "better-sqlite3"
+      "better-sqlite3",
+      "oxc-parser"
     ]
   }
 }

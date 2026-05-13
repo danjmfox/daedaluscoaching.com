@@ -4,7 +4,7 @@
 feature_id: daedalus-coaching-visual-identity
 wave: DISCUSS
 date: 2026-05-13
-status: IN PROGRESS — COMPARABLES COMPLETE; PEER REVIEW PENDING (LD-08 gate before typography)
+status: STABILITY TEST IN PROGRESS — clock started 2026-05-13; verdict due 2026-05-27
 density: lean + ask-intelligent
 ```
 

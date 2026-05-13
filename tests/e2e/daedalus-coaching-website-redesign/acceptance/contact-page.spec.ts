@@ -12,12 +12,12 @@
 import { test, expect, type Page } from "@playwright/test";
 
 // Waits for Vue hydration to complete before interacting with the form.
-// In Nuxt dev mode, SSR renders HTML then Vue re-hydrates async — filling
-// inputs before hydration causes v-model to reset values on hydration.
+// Nuxt dev mode: SSR renders the form HTML, then Vue re-hydrates async.
+// A fill landing before v-model attaches gets reset to "" when hydration runs.
+// ContactForm.vue sets data-hydrated="true" in onMounted — that hook fires
+// only after Vue has finished hydrating the component tree and v-model is live.
 async function waitForForm(page: Page) {
-  await expect(
-    page.getByRole("button", { name: /send|submit/i }),
-  ).toBeEnabled();
+  await page.locator('form[data-hydrated="true"]').waitFor();
 }
 
 // Scenario 1 (enabled): the contact form is reachable and all fields are present.

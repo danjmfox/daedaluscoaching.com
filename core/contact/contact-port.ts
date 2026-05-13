@@ -1,7 +1,7 @@
 import type { ContactFields } from "./contact-schema";
 
-export type SubmissionResult =
-  | { ok: true }
-  | { ok: false; error: string };
+export type SubmissionResult = { ok: true } | { ok: false; error: string };
 
-export type SubmissionPort = (fields: ContactFields) => Promise<SubmissionResult>;
+export type SubmissionPort = (
+  fields: ContactFields,
+) => Promise<SubmissionResult>;

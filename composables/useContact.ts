@@ -1,4 +1,7 @@
-import { contactSchema, type ContactFields } from "~/core/contact/contact-schema";
+import {
+  contactSchema,
+  type ContactFields,
+} from "~/core/contact/contact-schema";
 
 type FieldErrors = Partial<Record<keyof ContactFields, string>>;
 
@@ -10,7 +13,11 @@ export function useContact() {
 
   function validate(): boolean {
     const result = contactSchema.safeParse(fields);
-    Object.assign(errors, { name: undefined, email: undefined, message: undefined });
+    Object.assign(errors, {
+      name: undefined,
+      email: undefined,
+      message: undefined,
+    });
     if (!result.success) {
       for (const issue of result.error.issues) {
         const key = issue.path[0] as keyof ContactFields;

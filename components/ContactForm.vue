@@ -9,6 +9,7 @@
     name="contact"
     method="POST"
     novalidate
+    :data-hydrated="mounted ? 'true' : undefined"
     @submit.prevent="submit"
   >
     <input type="hidden" name="form-name" value="contact" />
@@ -56,4 +57,9 @@
 
 <script setup lang="ts">
 const { fields, errors, submitted, submitting, submit } = useContact();
+
+const mounted = ref(false);
+onMounted(() => {
+  mounted.value = true;
+});
 </script>

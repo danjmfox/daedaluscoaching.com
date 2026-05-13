@@ -5,9 +5,16 @@ export interface TrustSignalsConfig {
 }
 
 export const trustSignalsConfig: TrustSignalsConfig = {
-  bcorp: { enabled: false, label: "B Corp Certified" },
-  onePercentPlanet: { enabled: false, label: "1% for the Planet" },
-  accreditations: { enabled: false, items: [] },
+  bcorp: { enabled: true, label: "B Corp Certified" },
+  onePercentPlanet: { enabled: true, label: "1% for the Planet" },
+  accreditations: {
+    enabled: true,
+    items: [
+      "ICAgile Enterprise Coach (ICP-ENT)",
+      "The Art of Professional Coaching (AWA Global)",
+      "ORSC Foundation (CRRUK)",
+    ],
+  },
 };
 
 export function enabledSignals(config: TrustSignalsConfig) {

@@ -129,7 +129,7 @@ test("visitor submitting without a message sees a message-required error", async
 // Scenario 8 (error path): field errors are announced accessibly.
 // Screen reader users must receive inline error messages as role="alert" so
 // assistive technology announces them without needing to re-read the form.
-test.skip("inline validation errors are communicated to visitors using assistive technology", async ({
+test("inline validation errors are communicated to visitors using assistive technology", async ({
   page,
 }) => {
   await page.goto("/contact");
@@ -144,9 +144,15 @@ test.skip("inline validation errors are communicated to visitors using assistive
 
 // Scenario 9 (edge): the send button is unavailable while the enquiry is being
 // sent — prevents duplicate submissions during network latency.
-test.skip("the send button is unavailable while the enquiry is being sent", async ({
+test("the send button is unavailable while the enquiry is being sent", async ({
   page,
 }) => {
+  // Delay the /api/contact response so the submitting state is observable.
+  await page.route("**/api/contact", async (route) => {
+    await new Promise((r) => setTimeout(r, 500));
+    await route.continue();
+  });
+
   await page.goto("/contact");
   await waitForForm(page);
 
@@ -154,9 +160,6 @@ test.skip("the send button is unavailable while the enquiry is being sent", asyn
   await page.getByLabel("Email").fill("alex@example.com");
   await page.getByLabel("Message").fill("I would like to discuss coaching.");
 
-  // Click without awaiting the response — check the button state immediately.
   await page.getByRole("button", { name: /send|submit/i }).click();
-  await expect(
-    page.getByRole("button", { name: /sending/i }),
-  ).toBeDisabled();
+  await expect(page.getByRole("button", { name: /sending/i })).toBeDisabled();
 });

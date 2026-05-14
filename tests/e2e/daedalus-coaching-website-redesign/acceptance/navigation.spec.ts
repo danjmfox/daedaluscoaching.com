@@ -29,9 +29,7 @@ test("visitor on the homepage sees navigation links for all main sections", asyn
 });
 
 // Scenario 2: visitor can navigate to the about page from the homepage.
-test.skip("visitor selects About and reaches the about page", async ({
-  page,
-}) => {
+test("visitor selects About and reaches the about page", async ({ page }) => {
   await page.goto("/");
 
   await page
@@ -44,7 +42,7 @@ test.skip("visitor selects About and reaches the about page", async ({
 });
 
 // Scenario 3: visitor can navigate to the services page.
-test.skip("visitor selects Services and reaches the services page", async ({
+test("visitor selects Services and reaches the services page", async ({
   page,
 }) => {
   await page.goto("/");
@@ -59,7 +57,7 @@ test.skip("visitor selects Services and reaches the services page", async ({
 });
 
 // Scenario 4: visitor can navigate to the systems page.
-test.skip("visitor selects Systems and reaches the systems page", async ({
+test("visitor selects Systems and reaches the systems page", async ({
   page,
 }) => {
   await page.goto("/");
@@ -75,7 +73,7 @@ test.skip("visitor selects Systems and reaches the systems page", async ({
 });
 
 // Scenario 5: visitor can navigate to the contact page.
-test.skip("visitor selects Contact and reaches the contact page", async ({
+test("visitor selects Contact and reaches the contact page", async ({
   page,
 }) => {
   await page.goto("/");
@@ -90,7 +88,7 @@ test.skip("visitor selects Contact and reaches the contact page", async ({
 });
 
 // Scenario 6: logo returns visitor to the homepage from any page.
-test.skip("visitor on the about page selects the logo and returns to the homepage", async ({
+test("visitor on the about page selects the logo and returns to the homepage", async ({
   page,
 }) => {
   await page.goto("/about");
@@ -105,7 +103,7 @@ test.skip("visitor on the about page selects the logo and returns to the homepag
 
 // Scenario 7 (error path): navigating to an unknown path shows a not-found
 // response, not a server error.
-test.skip("visitor navigating to a page that does not exist sees a not-found response, not a server error", async ({
+test("visitor navigating to a page that does not exist sees a not-found response, not a server error", async ({
   page,
 }) => {
   const response = await page.goto("/does-not-exist-xyz");
@@ -118,7 +116,7 @@ test.skip("visitor navigating to a page that does not exist sees a not-found res
 });
 
 // Scenario 8: homepage CTA link navigates to the contact form.
-test.skip("visitor selects the homepage CTA and reaches the contact form", async ({
+test("visitor selects the homepage CTA and reaches the contact form", async ({
   page,
 }) => {
   await page.goto("/");

@@ -24,7 +24,7 @@ test("visitor reaches the services page and sees the page heading", async ({
 });
 
 // Scenario 2: page delivers content from the content file, not a blank page.
-test.skip("visitor reads content about how the coach works on the services page", async ({
+test("visitor reads content about how the coach works on the services page", async ({
   page,
 }) => {
   await page.goto("/services");
@@ -40,7 +40,7 @@ test.skip("visitor reads content about how the coach works on the services page"
 
 // Scenario 3 (error path): navigating to an unknown services sub-path does not
 // produce a server error.
-test.skip("visitor navigating to an unknown services path sees a not-found response", async ({
+test("visitor navigating to an unknown services path sees a not-found response", async ({
   page,
 }) => {
   const response = await page.goto("/services/does-not-exist");

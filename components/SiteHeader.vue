@@ -8,6 +8,7 @@
       <nav aria-label="Main navigation">
         <ul class="nav-list">
           <li><NuxtLink to="/about" class="nav-link">About</NuxtLink></li>
+          <li><NuxtLink to="/services" class="nav-link">Services</NuxtLink></li>
           <li><NuxtLink to="/systems" class="nav-link">Systems</NuxtLink></li>
           <li><NuxtLink to="/contact" class="nav-link">Contact</NuxtLink></li>
         </ul>

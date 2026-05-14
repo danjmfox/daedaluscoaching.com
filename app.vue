@@ -17,10 +17,5 @@
 
 .site-content {
   flex: 1;
-  max-width: 48rem;
-  width: 100%;
-  margin-inline: auto;
-  padding-inline: var(--space-xl);
-  padding-block: var(--space-3xl);
 }
 </style>

@@ -7,12 +7,24 @@
           <div
             v-for="block in data.blocks"
             :key="block.stem"
-            class="content-block"
+            :class="[
+              'content-block',
+              block.image && block.image_position === 'left' && 'content-block--image-left',
+              block.image && block.image_position === 'right' && 'content-block--image-right',
+            ]"
           >
-            <h2 v-if="block.heading !== false && block.title">
-              {{ block.title }}
-            </h2>
-            <ContentRenderer :value="block" />
+            <div v-if="block.image && block.image_position === 'left'" class="content-block__image">
+              <img :src="`/images/diagrams/${block.image}.svg`" :alt="block.image_alt || ''" aria-hidden="!block.image_alt" />
+            </div>
+            <div :class="block.image ? 'content-block__text' : undefined">
+              <h2 v-if="block.heading !== false && block.title">
+                {{ block.title }}
+              </h2>
+              <ContentRenderer :value="block" />
+            </div>
+            <div v-if="block.image && block.image_position === 'right'" class="content-block__image">
+              <img :src="`/images/diagrams/${block.image}.svg`" :alt="block.image_alt || ''" :aria-hidden="!block.image_alt" />
+            </div>
           </div>
         </template>
         <p v-else>Content not found</p>

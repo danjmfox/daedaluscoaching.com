@@ -80,3 +80,43 @@ h4 a {
 .section {
   padding-block: var(--space-3xl);
 }
+
+/* Block image layout — 33/66 (image/text), explicit placement */
+.content-block--image-left,
+.content-block--image-right {
+  display: grid;
+  gap: var(--space-2xl);
+  align-items: start;
+}
+
+.content-block--image-left {
+  grid-template-columns: 1fr 2fr;
+}
+
+.content-block--image-right {
+  grid-template-columns: 2fr 1fr;
+}
+
+.content-block__image {
+  display: flex;
+  align-items: flex-start;
+}
+
+.content-block__image img,
+.content-block__image svg {
+  width: 100%;
+  height: auto;
+  color: var(--color-border);
+}
+
+/* Mobile: stack image above text regardless of placement */
+@media (max-width: 48rem) {
+  .content-block--image-left,
+  .content-block--image-right {
+    grid-template-columns: 1fr;
+  }
+
+  .content-block--image-right .content-block__image {
+    order: -1;
+  }
+}

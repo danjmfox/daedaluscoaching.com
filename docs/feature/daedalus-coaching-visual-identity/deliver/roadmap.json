@@ -1,0 +1,157 @@
+{
+  "roadmap": {
+    "project_id": "daedalus-coaching-visual-identity",
+    "created_at": "2026-05-14T00:00:00Z",
+    "goal": "Extend walking skeleton: composable block layout (LD-14), CSS fixes, real content",
+    "total_steps": 12,
+    "phases": 4,
+    "notes": "Phase 04 steps emerged during stability test day 1–2 and were implemented before roadmap capture (methodology drift). Commits are the authoritative record. Execution log incomplete for Phase 04 — des CLI non-functional (ModuleNotFoundError: No module named des)."
+  },
+  "phases": [
+    {
+      "id": "01",
+      "name": "Layout and CSS foundation",
+      "description": "Refactor the layout architecture to support composable blocks (LD-14) and fix CSS gaps. All subsequent phases depend on this.",
+      "steps": [
+        {
+          "id": "01-01",
+          "name": "Container pattern — app.vue and main.css",
+          "description": "Remove max-width, padding-inline, and padding-block from .site-content in app.vue so it becomes flex: 1; width: 100%. Add .container utility to main.css (max-width: 48rem; margin-inline: auto; padding-inline: var(--space-xl)) and .section utility (padding-block: var(--space-3xl)). These two classes are the composable block vocabulary — every page section uses .section for vertical rhythm and .container for text-width constraint.",
+          "criteria": "(1) .site-content in app.vue has no max-width, padding-inline, or padding-block, (2) .container class exists in main.css with correct max-width and inline padding, (3) .section class exists in main.css with padding-block, (4) existing pages still render without layout breakage",
+          "test_file": "",
+          "scenario_name": ""
+        },
+        {
+          "id": "01-02",
+          "name": "Link and heading anchor styles — main.css",
+          "description": "Add global link styles to main.css: a { color: var(--color-accent); text-decoration: none; } a:hover { text-decoration: underline; } and suppress heading anchor links rendered by Nuxt Content: h1 a, h2 a, h3 a, h4 a { color: inherit; text-decoration: none; }. Fixes blue underlined headings on privacy page and any other ContentRenderer output.",
+          "criteria": "(1) a elements render in --color-accent teal with no underline at rest, (2) a:hover shows underline, (3) heading anchor links rendered by ContentRenderer inherit heading colour and have no underline",
+          "test_file": "",
+          "scenario_name": ""
+        },
+        {
+          "id": "01-03",
+          "name": "SiteFooter surface background",
+          "description": "In SiteFooter.vue change .site-footer background-color from var(--color-background) to var(--color-surface). Also remove margin-top from .site-footer (vertical rhythm is now owned by the last page section). This makes the footer visually distinct from the page body — the first visible application of the composable block principle to site chrome.",
+          "criteria": "(1) .site-footer background is --color-surface, (2) footer is visually distinguishable from page body on all pages, (3) no margin-top on .site-footer",
+          "test_file": "",
+          "scenario_name": ""
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "name": "Composable block pages",
+      "description": "Apply the block structure to all pages. Homepage gets full section restructure. ContactForm gets styling. Secondary pages get container wrappers.",
+      "steps": [
+        {
+          "id": "02-01",
+          "name": "Homepage composable sections — pages/index.vue",
+          "description": "Restructure pages/index.vue into three full-width sections using .section and .container: (1) hero section on --color-background with TrustSignals and page h1 + intro paragraph, (2) body section on --color-surface with ContentRenderer output, (3) CTA section on --color-background with the Get in touch link. Each section is a semantic <section> element with class='section'. Inner content wrapped in <div class='container'>.",
+          "criteria": "(1) page renders three visually distinct sections with alternating background colours, (2) TrustSignals is in the hero section above the h1, (3) CTA is in its own section at the bottom, (4) no raw max-width or padding values in scoped styles — all layout via .section/.container utilities",
+          "test_file": "",
+          "scenario_name": ""
+        },
+        {
+          "id": "02-02",
+          "name": "ContactForm styles — components/ContactForm.vue",
+          "description": "Add a <style scoped> block to ContactForm.vue. Style the form using only design tokens. Layout: each field group (label + input/textarea + error) stacked vertically with var(--space-lg) gap. Labels: font-family body, font-size sm, font-weight medium, color text-secondary. Inputs and textarea: full width, border 1px solid --color-border, background --color-surface, padding var(--space-sm) var(--space-md), font-family body, font-size base, color text-primary, border-radius 2px. Focus: border-color --color-accent, outline none. Error messages: font-size sm, color --color-brand-coral. Submit button: background --color-accent, color --color-background, font-family body, font-weight medium, padding var(--space-sm) var(--space-xl), border none, cursor pointer. Button hover: background --color-accent-hover.",
+          "criteria": "(1) form fields are visually styled with token-driven CSS, (2) no raw hex/rgb values in styles, (3) focus state uses --color-accent border, (4) submit button uses --color-accent background, (5) error messages are visually distinct",
+          "test_file": "",
+          "scenario_name": ""
+        },
+        {
+          "id": "02-03",
+          "name": "Secondary pages container wrap — about, contact, privacy, systems",
+          "description": "Wrap page content in pages/about.vue, pages/contact.vue, pages/privacy.vue, and pages/systems.vue with a <section class='section'><div class='container'>...</div></section> pattern. Remove any existing scoped padding/margin that duplicates the utility classes. Each page becomes a single composable block for now — multi-section treatment deferred until content is settled.",
+          "criteria": "(1) all four pages use .section and .container for layout, (2) no scoped padding-block or margin-top values that duplicate utility classes, (3) pages render at the correct text width with consistent vertical padding",
+          "test_file": "",
+          "scenario_name": ""
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "name": "Real content",
+      "description": "Replace placeholder copy with content drafted through the brief's constraints. Source material: old Contentful export (docs/contentful-export-*.json) and Gatsby page-data JSONs in _ARCHIVE_. Brief constraints: LD-10 practitioner not platform, LD-11 individual seniority, LD-12 invitation stance, credentials placed not foregrounded. Register: first person, unhurried, no methodology jargon.",
+      "steps": [
+        {
+          "id": "03-01",
+          "name": "Homepage copy — content/home.md",
+          "description": "Rewrite content/home.md with real copy. Lead with a single strong statement that holds all three brief tensions (Enterprise/Agile/Individual) simultaneously — not a credentials list. Follow with 2–3 short paragraphs in the invitation stance register. Do not name methodologies in the hero paragraph. The For Organisations/Teams/Individuals structure from the old site may inform the copy but should not appear as explicit headers on the homepage. Source: old 'What do I do?' block — rewrite through the brief, not copy-paste.",
+          "criteria": "(1) no methodology names (Scrum, Agile, LeSS, Kanban) in the opening paragraph, (2) copy holds Enterprise seriousness + Agile facilitation + Individual warmth simultaneously, (3) credentials (B-Corp, ICF, 1%FTP) are not in this file — they live in TrustSignals component, (4) tone is settled and unhurried, not reaching",
+          "test_file": "",
+          "scenario_name": ""
+        },
+        {
+          "id": "03-02",
+          "name": "About page copy — content/about.md and content/blocks/",
+          "description": "Rewrite content/blocks/about-approach.md and content/blocks/about-background.md with real copy drawn from the old Contentful blocks. about-approach: expand 'I work at the intersection of systems thinking and leadership development' into 2–3 paragraphs — draw from 'About Me' generalist background block and 'My History: Agility' block, rewritten in present tense and brief register. about-background: draw from 'My History: Pre-Agile' block (HP 1995, AppleScript, start-ups) and 'Why Daedalus?' block — keep the mythology paragraph verbatim or near-verbatim, it earns the brief. Add a new content/blocks/about-certifications.md block using the draft Certifications block ('A 2-day course does not a Scrum Master make') — this earns LD-11 without foregrounding credentials.",
+          "criteria": "(1) about-approach.md is 2–3 paragraphs, present tense, no methodology jargon in opening sentence, (2) about-background.md includes the 1995 HP origin story and the 'Why Daedalus?' paragraph, (3) about-certifications.md exists with the 'continuous learning' framing, (4) no block exceeds ~200 words",
+          "test_file": "",
+          "scenario_name": ""
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "name": "Emerged enhancements — stability test day 1–2",
+      "description": "Design enhancements discovered during live use of the walking skeleton. All emerged from the stability test period; captured here per methodology (emerged from use, not gaps in original spec). DES CLI was non-functional during this phase (des module not installed); execution log could not be updated. Commits are the authoritative record.",
+      "steps": [
+        {
+          "id": "04-01",
+          "name": "Block heading system with opt-out",
+          "description": "Render block.title as visible h2 in about.vue. Opt-out via heading: false in block frontmatter. .content-block wrapper with gap spacing. Block titles (Approach, Background, Certifications) now visible as section headings.",
+          "criteria": "(1) block titles render as h2, (2) heading: false suppresses the heading, (3) spacing between blocks via .content-block + .content-block",
+          "commits": ["d209355"],
+          "test_file": "",
+          "scenario_name": ""
+        },
+        {
+          "id": "04-02",
+          "name": "2-column image+text block layout (33/66)",
+          "description": "LD-14 amended: blocks may use image+text 2-column layout. 33/66 ratio (image/text). Explicit placement via block.meta.image_position: left|right. Graceful degradation to single column when no image. Mobile stacking. align-items: center for balanced layout when text overflows image height.",
+          "criteria": "(1) .content-block--image-left and --image-right grid utilities in main.css, (2) block.meta fields read correctly, (3) mobile cap at 8rem, (4) vertically centred in wide layout",
+          "commits": ["b4ab334", "e8031b8", "d3b20bf", "6479527"],
+          "test_file": "",
+          "scenario_name": ""
+        },
+        {
+          "id": "04-03",
+          "name": "Placeholder CLD diagrams for about blocks",
+          "description": "approach.svg: triangular feedback loop (3 nodes, clockwise arrows). background.svg: winding path with 5 milestone nodes. Placed at image_position: left (approach) and right (background). about-certifications intentionally image-free. SVGs use hardcoded --color-border (#e0d9d0); to be replaced with real practice-derived CLDs.",
+          "criteria": "(1) SVGs exist in public/images/diagrams/, (2) frontmatter wired correctly, (3) images render in 2-column layout",
+          "commits": ["396042c"],
+          "test_file": "",
+          "scenario_name": ""
+        },
+        {
+          "id": "04-04",
+          "name": "NarrativeEdge component and content block surface fill",
+          "description": "NarrativeEdge.vue: soft bezier curve connecting text-bottom of one block to text-top of the next. X positions derived from grid geometry (left≈31%, center=50%, right≈69%). vector-effect non-scaling-stroke at 1.5px. Curve shape encodes layout relationship. Content blocks given background-color: --color-surface so edges connect to visible warm boxes. Fan-out/fan-in pattern (BlockGroup + FanEdge) noted as deferred.",
+          "criteria": "(1) NarrativeEdge renders between all adjacent block pairs, (2) textPosition() maps image_position to text column side, (3) .content-block has --color-surface fill",
+          "commits": ["ce83881", "9511d21"],
+          "test_file": "",
+          "scenario_name": ""
+        }
+      ]
+    }
+  ],
+  "implementation_scope": {
+    "source_directories": [
+      "app.vue",
+      "assets",
+      "components",
+      "pages",
+      "content"
+    ],
+    "test_directories": [],
+    "excluded_patterns": ["node_modules/**", ".nuxt/**", ".output/**"]
+  },
+  "validation": {
+    "status": "approved",
+    "reviewer": "owner",
+    "approved_at": "2026-05-14",
+    "notes": "CLI not installed; skeleton written manually to spec. des-roadmap validate skipped."
+  }
+}

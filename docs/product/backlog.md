@@ -47,13 +47,13 @@ Calibrate to the org evaluator persona — corporate environments often include 
 
 | ID     | Status | Item                                                              | Notes                                                                  |
 | ------ | ------ | ----------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| A11-1  | NEXT   | Audit keyboard navigation throughout                              | Tab order, focus traps, skip-to-main link                              |
-| A11-2  | NEXT   | Add skip navigation link (`<a href="#main">Skip to content</a>`)  | First focusable element; hidden until focused                          |
+| A11-1  | NEXT   | Audit keyboard navigation throughout                              | Tab order, focus traps — manual keyboard pass needed                   |
+| A11-2  | DONE   | Add skip navigation link (`<a href="#main">Skip to content</a>`)  | Done 2026-05-14                                                        |
 | A11-3  | NEXT   | Verify colour contrast — all text and interactive elements        | 4.5:1 normal text, 3:1 large text; check against committed tokens      |
-| A11-4  | NEXT   | Audit focus indicators                                            | Visible focus ring on all interactive elements; never `outline: none`  |
-| A11-5  | NEXT   | Add `prefers-reduced-motion` guards to NarrativeEdge animations   | Bezier curve animations must respect system preference                 |
+| A11-4  | DONE   | Audit focus indicators                                            | Done 2026-05-14 — global :focus-visible + form scoped override         |
+| A11-5  | DONE   | Add `prefers-reduced-motion` guards to NarrativeEdge animations   | N/A — NarrativeEdge is a static SVG, no animation                      |
 | A11-6  | NEXT   | Alt text audit — all images                                       | Decorative images get `alt=""`; informative images get descriptive alt |
-| A11-7  | NEXT   | ARIA landmarks — verify `<main>`, `<nav>`, `<header>`, `<footer>` | Structural landmarks required for screen reader navigation             |
+| A11-7  | NEXT   | ARIA landmarks — verify `<main>`, `<nav>`, `<header>`, `<footer>` | Landmarks verified in snapshot; nav labels present                     |
 | A11-8  | LATER  | Screen reader test (VoiceOver + NVDA)                             | Manual pass; catch issues automated tools miss                         |
 | A11-9  | LATER  | High-contrast mode support                                        | Verify `forced-colors: active` doesn't break layout or icons           |
 | A11-10 | LATER  | Touch target size audit                                           | Min 44×44px (WCAG 2.5.5); check mobile nav and contact CTA             |
@@ -86,10 +86,10 @@ Calibrate to the org evaluator persona — corporate environments often include 
 
 | ID    | Status | Item                                                       | Notes                                                               |
 | ----- | ------ | ---------------------------------------------------------- | ------------------------------------------------------------------- |
-| SEC-1 | NEXT   | CSP: finalise Content-Security-Policy in `public/_headers` | CLAUDE.md Sprint 1 gate; iubenda + Plausible domains whitelisted    |
-| SEC-2 | NEXT   | HSTS header: `Strict-Transport-Security: max-age=31536000` | Netlify serves HTTPS; enforce at header level too                   |
-| SEC-3 | NEXT   | Permissions-Policy header                                  | Disable unused browser features (camera, microphone, geolocation)   |
-| SEC-4 | NEXT   | Referrer-Policy header                                     | `strict-origin-when-cross-origin` is the sensible default           |
+| SEC-1 | DONE   | CSP: finalise Content-Security-Policy in `public/_headers` | Done 2026-05-14 — iubenda + Plausible domains added                 |
+| SEC-2 | DONE   | HSTS header: `Strict-Transport-Security: max-age=31536000` | Done 2026-05-14                                                     |
+| SEC-3 | DONE   | Permissions-Policy header                                  | Was already in place                                                |
+| SEC-4 | DONE   | Referrer-Policy header                                     | Was already in place                                                |
 | SEC-5 | LATER  | Contact form spam protection                               | Netlify honeypot field or Turnstile; current form has no protection |
 
 ---

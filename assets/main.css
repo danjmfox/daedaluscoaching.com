@@ -86,7 +86,7 @@ h4 a {
 .content-block--image-right {
   display: grid;
   gap: var(--space-2xl);
-  align-items: start;
+  align-items: center;
 }
 
 .content-block--image-left {

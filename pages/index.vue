@@ -28,6 +28,14 @@
 
 <script setup lang="ts">
 const { page, rawDoc } = await usePageContent('/home')
+
+useSeoMeta({
+  title: () => page.value?.title ?? 'Daedalus Coaching',
+  description: () => page.value?.description ?? '',
+  ogTitle: () => page.value?.title ?? 'Daedalus Coaching',
+  ogDescription: () => page.value?.description ?? '',
+  ogUrl: 'https://daedaluscoaching.com/',
+})
 </script>
 
 <style scoped>

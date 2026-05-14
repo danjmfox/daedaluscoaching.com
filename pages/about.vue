@@ -41,6 +41,14 @@
 <script setup lang="ts">
 const { data } = await useComposedPage("/about");
 
+useSeoMeta({
+  title: () => data.value?.page?.title ?? 'About',
+  description: () => (data.value?.page as { description?: string } | null)?.description ?? '',
+  ogTitle: () => data.value?.page?.title ?? 'About',
+  ogDescription: () => (data.value?.page as { description?: string } | null)?.description ?? '',
+  ogUrl: 'https://daedaluscoaching.com/about',
+})
+
 type Position = "left" | "center" | "right";
 
 function textPosition(block: { meta?: { image_position?: string } }): Position {

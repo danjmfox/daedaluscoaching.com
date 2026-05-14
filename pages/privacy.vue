@@ -14,4 +14,12 @@
 
 <script setup lang="ts">
 const { page, rawDoc } = await usePageContent('/privacy')
+
+useSeoMeta({
+  title: () => page.value?.title ?? 'Privacy policy',
+  description: () => page.value?.description ?? '',
+  ogTitle: () => page.value?.title ?? 'Privacy policy',
+  ogDescription: () => page.value?.description ?? '',
+  ogUrl: 'https://daedaluscoaching.com/privacy',
+})
 </script>

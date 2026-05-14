@@ -1,6 +1,6 @@
 ---
 title: Background
-image: background
+image: era-digital
 image_position: right
 image_alt: ""
 ---

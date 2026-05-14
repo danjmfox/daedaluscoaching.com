@@ -25,6 +25,14 @@
 // image-right → text column centre ≈ 31%
 // no image    → text column centre = 50%
 const POSITIONS = { left: 31, center: 50, right: 69 } as const
+
+// DEFERRED — Fan-out / fan-in pattern:
+// A future Services page may link one block → [Svc X, Svc Y, Svc Z] → one block.
+// This requires: (1) a BlockGroup abstraction in useComposedPage (nested arrays in
+// frontmatter resolved as { type: 'group', blocks: [] }), (2) a FanEdge variant
+// where N bezier curves share a single origin or terminus point.
+// The current 1:1 NarrativeEdge should not be changed to accommodate this —
+// FanEdge is a separate component that renders alongside BlockGroup.
 type Position = keyof typeof POSITIONS
 
 const props = defineProps<{ from: Position; to: Position }>()

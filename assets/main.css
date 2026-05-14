@@ -81,6 +81,12 @@ h4 a {
   padding-block: var(--space-3xl);
 }
 
+/* Content block — warm surface box; narrative edges connect between these */
+.content-block {
+  background-color: var(--color-surface);
+  padding: var(--space-xl);
+}
+
 /* Block image layout — 33/66 (image/text), explicit placement */
 .content-block--image-left,
 .content-block--image-right {

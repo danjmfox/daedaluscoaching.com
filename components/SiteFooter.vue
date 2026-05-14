@@ -2,7 +2,8 @@
   <footer class="site-footer">
     <div class="footer-inner">
       <p class="footer-copy">
-        © {{ year }} Daedalus Coaching Ltd
+        © {{ year }} Daedalus Coaching Ltd ·
+        <a :href="companyUrl" class="footer-link" target="_blank" rel="noopener noreferrer">No. {{ companyNumber }}</a>
       </p>
       <nav aria-label="Footer navigation">
         <ul class="footer-links">
@@ -23,7 +24,7 @@
 
 <script setup lang="ts">
 const year = new Date().getFullYear()
-const { linkedinPersonal, linkedinCompany } = useRuntimeConfig().public
+const { linkedinPersonal, linkedinCompany, companyNumber, companyUrl } = useRuntimeConfig().public
 </script>
 
 <style scoped>

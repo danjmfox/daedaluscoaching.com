@@ -11,6 +11,11 @@ export default defineNuxtConfig({
       linkedinCompany: "https://www.linkedin.com/company/13049181/",
       // Override with NUXT_PUBLIC_LOCATION at build time
       location: "Hampshire, UK — remote available",
+      // Override with NUXT_PUBLIC_COMPANY_NUMBER at build time
+      companyNumber: "10892829",
+      // Override with NUXT_PUBLIC_COMPANY_URL at build time
+      companyUrl:
+        "https://find-and-update.company-information.service.gov.uk/company/10892829",
     },
   },
   app: {

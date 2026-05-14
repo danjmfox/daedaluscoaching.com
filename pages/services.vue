@@ -5,16 +5,30 @@
         <template v-if="data?.page">
           <h1>{{ data.page.title }}</h1>
           <template v-for="(block, i) in data.blocks" :key="block.stem">
-            <div class="content-block">
-              <h2 v-if="block.meta?.heading !== false && block.title">
-                {{ block.title }}
-              </h2>
-              <ContentRenderer :value="block" />
+            <div
+              :class="[
+                'content-block',
+                block.meta?.image && block.meta?.image_position === 'left' && 'content-block--image-left',
+                block.meta?.image && block.meta?.image_position === 'right' && 'content-block--image-right',
+              ]"
+            >
+              <div v-if="block.meta?.image && block.meta?.image_position === 'left'" class="content-block__image">
+                <img :src="`/images/diagrams/${block.meta.image}.svg`" :alt="block.meta.image_alt || ''" :aria-hidden="!block.meta.image_alt" />
+              </div>
+              <div :class="block.meta?.image ? 'content-block__text' : undefined">
+                <h2 v-if="block.meta?.heading !== false && block.title">
+                  {{ block.title }}
+                </h2>
+                <ContentRenderer :value="block" />
+              </div>
+              <div v-if="block.meta?.image && block.meta?.image_position === 'right'" class="content-block__image">
+                <img :src="`/images/diagrams/${block.meta.image}.svg`" :alt="block.meta.image_alt || ''" :aria-hidden="!block.meta.image_alt" />
+              </div>
             </div>
             <NarrativeEdge
               v-if="i < data.blocks.length - 1"
-              from="center"
-              to="center"
+              :from="textPosition(block)"
+              :to="textPosition(data.blocks[i + 1])"
             />
           </template>
         </template>
@@ -36,6 +50,14 @@ useSeoMeta({
     (data.value?.page as { description?: string } | null)?.description ?? "",
   ogUrl: "https://daedaluscoaching.com/services",
 });
+
+type Position = "left" | "center" | "right";
+
+function textPosition(block: { meta?: { image_position?: string } }): Position {
+  if (block.meta?.image_position === "left") return "right";
+  if (block.meta?.image_position === "right") return "left";
+  return "center";
+}
 </script>
 
 <style scoped>

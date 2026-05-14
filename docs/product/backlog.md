@@ -38,11 +38,12 @@ Items are ordered by priority within each section.
 | CN-5  | LATER  | 404 page                                        | No custom error page yet; Nuxt fallback only                                                      |
 | CN-6  | LATER  | Privacy policy page                             | Required for GDPR; iubenda may supply but needs a dedicated URL                                   |
 | CN-7  | LATER  | Accessibility statement                         | Legal requirement in many jurisdictions; brief + contact details                                  |
-| CN-8  | NEXT   | Services page — content block redesign          | Intro block + one each for individuals/teams/orgs; 3-way NarrativeEdge fan-out/fan-in             |
-| CN-9  | NEXT   | Coach identity — bio and LinkedIn links         | No mention of who the coach is; personal + Daedalus Coaching LinkedIn; about page or homepage     |
-| CN-10 | NOW    | Coach photo — placeholder + enable/disable flag | Real headshot not yet ready; flag-driven like trust signals; hidden until enabled                 |
-| CN-11 | NEXT   | Location / geography                            | UK, Hampshire, or remote — currently missing; relevant for in-person engagements                  |
-| CN-12 | NEXT   | Engagement scales on services page              | Permie, FTC, contract, standalone coaching — prospects need to know what engagements are possible |
+| CN-8  | DONE   | Services page — content block redesign          | Done 2026-05-14 — 5 blocks + sequential NarrativeEdge; FanEdge fan-out/fan-in → CN-15            |
+| CN-9  | DONE   | Coach identity — LinkedIn links                 | Done 2026-05-14 — footer via runtimeConfig; bio on about page via existing narrative              |
+| CN-10 | DONE   | Coach photo — placeholder + enable/disable flag | Done 2026-05-14 — flip enabled=true + drop headshot.jpg when ready                               |
+| CN-11 | DONE   | Location / geography                            | Done 2026-05-14 — contact page: "Hampshire, UK and remote"                                        |
+| CN-12 | DONE   | Engagement scales on services page              | Done 2026-05-14 — services-engagement.md block                                                    |
+| CN-15 | LATER  | FanEdge — 3-way fork/recombine on services page | Needs FanEdge.vue + BlockGroup abstraction in useComposedPage; design session required            |
 | CN-13 | LATER  | Credentials "Find out more" expand pattern      | Low-key link/expand to certification bodies from trust signals or about page                      |
 | CN-14 | LATER  | Abstract imagery for service personas           | Individual / team / org content blocks on services page (depends on CN-8)                         |
 
@@ -74,7 +75,7 @@ Calibrate to the org evaluator persona — corporate environments often include 
 | PF-1 | NEXT   | Image optimisation — WebP + `srcset` + lazy loading  | Any non-SVG images; Nuxt Image module candidate            |
 | PF-2 | NEXT   | Font strategy — `font-display: swap` + subsetting    | Check current font loading; subset to used characters      |
 | PF-3 | LATER  | Core Web Vitals baseline — run PageSpeed Insights    | LCP, CLS, INP targets: all green before launch             |
-| PF-4 | LATER  | Audit third-party script impact (iubenda, Plausible) | Both are on the CSP allow-list; measure actual render cost |
+| PF-4 | LATER  | Audit third-party script impact (iubenda)            | iubenda consent banner; measure actual render cost         |
 
 ---
 
@@ -141,7 +142,7 @@ Low-acquisition-channel site, but referral partners checking the URL will share 
 
 | ID   | Status | Item                                                   | Notes                                                            |
 | ---- | ------ | ------------------------------------------------------ | ---------------------------------------------------------------- |
-| UX-1 | NEXT   | Contact form success and error states                  | Current form has no post-submit feedback; required for usability |
+| UX-1 | DONE   | Contact form success and error states                  | Done — v-if="submitted" confirmation state in ContactForm.vue    |
 | UX-2 | NEXT   | Email confirmation to enquirer on form submit          | Basic trust signal; Netlify Forms can trigger via notification   |
 | UX-3 | LATER  | Mobile nav — verify usability at 375px                 | Keyboard + touch; current nav not tested at phone breakpoints    |
 | UX-4 | LATER  | Print stylesheet                                       | Low priority but some org evaluators print pages                 |
@@ -153,8 +154,8 @@ Low-acquisition-channel site, but referral partners checking the URL will share 
 
 | ID    | Status | Item                                                       | Notes                                                          |
 | ----- | ------ | ---------------------------------------------------------- | -------------------------------------------------------------- |
-| TST-1 | NEXT   | Contact form acceptance tests (DISTILL wave artifact)      | Core user journey; no acceptance tests exist yet               |
-| TST-2 | NEXT   | Swoopy embed acceptance tests (DISTILL wave artifact)      | Depends on Swoopy deployment (INF-1)                           |
+| TST-1 | DONE   | Contact form acceptance tests                              | Done 2026-05-14 — 9 scenarios in contact-page.spec.ts          |
+| TST-2 | DONE   | Swoopy embed acceptance tests                              | Done 2026-05-14 — 4 enabled; modelId scenario skipped (INF-1)  |
 | TST-3 | LATER  | Visual regression baseline                                 | After stability test passes; snapshot before any token changes |
 | TST-4 | LATER  | Playwright e2e smoke test — contact form submit on Netlify | Requires staging environment or branch deploy                  |
 

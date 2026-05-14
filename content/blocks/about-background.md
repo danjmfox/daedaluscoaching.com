@@ -1,5 +1,8 @@
 ---
 title: Background
+image: background
+image_position: right
+image_alt: ""
 ---
 
 I started working on the web in 1995, as part of an experiment with Hewlett Packard to test whether the web could become a profitable revenue channel. It was essentially a start-up before start-ups were a thing. We worked for luxury travel brands, cobbling together daisy-chained SCSI drives, Macs, a FileMaker Pro database, and an unfeasible amount of AppleScript — generating large static sites piped up an ISDN line to a server under a desk in Bristol. As the web matured, AppleScript gave way to Java Servlets, and we moved on to booking engines, loyalty programmes, and itinerary planners. I spent several years as a combination business analyst and project manager before discovering agile.

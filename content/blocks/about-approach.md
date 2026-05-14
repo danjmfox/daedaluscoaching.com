@@ -1,5 +1,8 @@
 ---
 title: Approach
+image: approach
+image_position: left
+image_alt: ""
 ---
 
 Most of the leaders I work with are not lacking knowledge. They are navigating situations where the right answer is not obvious, the system keeps producing the same outcomes despite repeated interventions, or the people around them are not pulling in the same direction. The problem is rarely what it looks like on the surface.

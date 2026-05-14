@@ -98,10 +98,11 @@ onMounted(() => {
   appearance: none;
 }
 
-.field input:focus,
-.field textarea:focus {
+.field input:focus-visible,
+.field textarea:focus-visible {
   border-color: var(--color-accent);
-  outline: none;
+  outline: 2px solid var(--color-accent);
+  outline-offset: 0;
 }
 
 .field-error {

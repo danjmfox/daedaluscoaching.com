@@ -63,6 +63,30 @@ a:hover {
   text-decoration: underline;
 }
 
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-xl);
+  z-index: 100;
+  background-color: var(--color-accent);
+  color: var(--color-background);
+  padding: var(--space-sm) var(--space-md);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: var(--space-sm);
+}
+
 h1 a,
 h2 a,
 h3 a,

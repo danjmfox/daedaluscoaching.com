@@ -1,7 +1,7 @@
 <template>
   <div class="site">
     <SiteHeader />
-    <div class="site-content">
+    <div id="main" class="site-content">
       <NuxtPage />
     </div>
     <SiteFooter />

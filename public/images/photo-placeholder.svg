@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" fill="none">
+  <!-- head -->
+  <circle cx="100" cy="80" r="44" fill="#e0d9d0"/>
+  <!-- shoulders -->
+  <path d="M20 240 C20 170 60 148 100 148 C140 148 180 170 180 240Z" fill="#e0d9d0"/>
+</svg>

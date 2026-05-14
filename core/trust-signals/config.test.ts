@@ -1,5 +1,9 @@
 import { describe, it, expect } from "vitest";
-import { enabledSignals, trustSignalsConfig, type TrustSignalsConfig } from "./config";
+import {
+  enabledSignals,
+  trustSignalsConfig,
+  type TrustSignalsConfig,
+} from "./config";
 
 describe("enabledSignals", () => {
   it("returns only enabled signals", () => {

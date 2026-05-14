@@ -4,6 +4,7 @@
       <div class="container">
         <template v-if="data?.page">
           <h1>{{ data.page.title }}</h1>
+          <CoachPhoto />
           <template v-for="(block, i) in data.blocks" :key="block.stem">
             <div
               :class="[

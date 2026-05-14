@@ -34,10 +34,17 @@ Items are ordered by priority within each section.
 | CN-1 | DONE   | Contact page prose            | Done 2026-05-14                                                         |
 | CN-2 | DONE   | Services page — full build    | Done 2026-05-14 — three-mode structure (individuals/teams/orgs)         |
 | CN-3 | NEXT   | Replace placeholder CLD SVGs  | `public/images/diagrams/approach.svg`, `background.svg` — hardcoded hex |
-| CN-4 | LATER  | About page — deepen narrative | Skeleton exists; may need expansion after stability test verdict        |
-| CN-5 | LATER  | 404 page                      | No custom error page yet; Nuxt fallback only                            |
-| CN-6 | LATER  | Privacy policy page           | Required for GDPR; iubenda may supply but needs a dedicated URL         |
-| CN-7 | LATER  | Accessibility statement       | Legal requirement in many jurisdictions; brief + contact details        |
+| CN-4  | LATER  | About page — deepen narrative                   | Skeleton exists; may need expansion after stability test verdict                                     |
+| CN-5  | LATER  | 404 page                                        | No custom error page yet; Nuxt fallback only                                                        |
+| CN-6  | LATER  | Privacy policy page                             | Required for GDPR; iubenda may supply but needs a dedicated URL                                     |
+| CN-7  | LATER  | Accessibility statement                         | Legal requirement in many jurisdictions; brief + contact details                                    |
+| CN-8  | NEXT   | Services page — content block redesign          | Intro block + one each for individuals/teams/orgs; 3-way NarrativeEdge fan-out/fan-in              |
+| CN-9  | NEXT   | Coach identity — bio and LinkedIn links         | No mention of who the coach is; personal + Daedalus Coaching LinkedIn; about page or homepage       |
+| CN-10 | NOW    | Coach photo — placeholder + enable/disable flag | Real headshot not yet ready; flag-driven like trust signals; hidden until enabled                   |
+| CN-11 | NEXT   | Location / geography                            | UK, Hampshire, or remote — currently missing; relevant for in-person engagements                    |
+| CN-12 | NEXT   | Engagement scales on services page              | Permie, FTC, contract, standalone coaching — prospects need to know what engagements are possible   |
+| CN-13 | LATER  | Credentials "Find out more" expand pattern      | Low-key link/expand to certification bodies from trust signals or about page                        |
+| CN-14 | LATER  | Abstract imagery for service personas           | Individual / team / org content blocks on services page (depends on CN-8)                          |
 
 ---
 

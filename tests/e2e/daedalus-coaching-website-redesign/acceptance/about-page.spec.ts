@@ -55,7 +55,8 @@ test("visitor sees all content blocks rendered in the order declared in the page
   const bodyText = await page.locator("main").textContent();
   // "conditions for clearer thinking" is in about-approach (block 1)
   // "1995" is in about-background (block 2)
-  const approachIndex = bodyText?.indexOf("conditions for clearer thinking") ?? -1;
+  const approachIndex =
+    bodyText?.indexOf("conditions for clearer thinking") ?? -1;
   const backgroundIndex = bodyText?.indexOf("1995") ?? -1;
 
   expect(approachIndex).toBeGreaterThan(-1);

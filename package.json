@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "@nuxt/eslint": "^1.0.0",
-    "@nuxt/test-utils": "^3.17.0",
+    "@nuxt/test-utils": "^4.0.3",
     "@playwright/test": "^1.52.0",
     "@types/better-sqlite3": "^7.6.0",
     "dependency-cruiser": "^16.9.0",
@@ -35,6 +35,6 @@
     "stylelint-config-recommended-vue": "^1.6.1",
     "stylelint-config-standard": "^40.0.0",
     "stylelint-declaration-strict-value": "^1.11.1",
-    "vitest": "^3.2.0"
+    "vitest": "^4.1.6"
   }
 }

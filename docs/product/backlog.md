@@ -75,7 +75,7 @@ Calibrate to the org evaluator persona — corporate environments often include 
 
 | ID   | Status | Item                                                        | Notes                                                        |
 | ---- | ------ | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| PL-1 | NEXT   | Confirm Plausible — cloud vs self-host                      | CLAUDE.md open item; decision affects CSP and data residency |
+| PL-1 | DONE   | Confirm Plausible — cloud vs self-host                      | Cloud — implicit from pre-existing CSP with plausible.io     |
 | PL-2 | NEXT   | Verify iubenda consent banner fires before Plausible loads  | GDPR requires consent-gated analytics                        |
 | PL-3 | LATER  | Cookie policy — confirm iubenda covers it or add standalone | Check iubenda plan covers cookie policy generation           |
 | PL-4 | LATER  | Data retention statement for contact form submissions       | Netlify Forms stores submissions — document retention period |
@@ -100,13 +100,14 @@ Low-acquisition-channel site, but referral partners checking the URL will share 
 
 | ID    | Status | Item                                                       | Notes                                                               |
 | ----- | ------ | ---------------------------------------------------------- | ------------------------------------------------------------------- |
-| SEO-1 | NEXT   | `<meta>` description per page                              | Currently missing or generic                                        |
-| SEO-2 | NEXT   | Open Graph tags (`og:title`, `og:description`, `og:image`) | Affects link previews when referral partners share the URL          |
-| SEO-3 | NEXT   | `robots.txt`                                               | Should exist even if just `Allow: /`                                |
-| SEO-4 | NEXT   | `sitemap.xml` generation                                   | Nuxt can generate at build time via `@nuxtjs/sitemap`               |
+| SEO-1 | DONE   | `<meta>` description per page                              | Done 2026-05-14 — useSeoMeta on all 6 pages from frontmatter        |
+| SEO-2 | DONE   | Open Graph tags (`og:title`, `og:description`, `og:image`) | Done 2026-05-14 — og:title, og:desc, og:url, og:type on all pages; og:image still LATER |
+| SEO-3 | DONE   | `robots.txt`                                               | Done 2026-05-14                                                     |
+| SEO-4 | DONE   | `sitemap.xml` generation                                   | Done 2026-05-14 — static file, all 6 pages                          |
 | SEO-5 | LATER  | Canonical URLs                                             | Prevent duplicate-content issues if Netlify serves on multiple URLs |
 | SEO-6 | LATER  | Structured data — Person + LocalBusiness schema (JSON-LD)  | Helps Google understand the practitioner context                    |
-| SEO-7 | LATER  | Twitter/X Card meta tags                                   | Low priority given persona; but trivial once OG is in place         |
+| SEO-7 | DONE   | Twitter/X Card meta tags                                   | Done 2026-05-14 — twitter:card summary via global head config       |
+| SEO-8 | LATER  | OG image (social card)                                     | 1200×630px PNG needed; text-only previews until then                |
 
 ---
 
@@ -114,7 +115,7 @@ Low-acquisition-channel site, but referral partners checking the URL will share 
 
 | ID   | Status | Item                                                             | Notes                                                  |
 | ---- | ------ | ---------------------------------------------------------------- | ------------------------------------------------------ |
-| AN-1 | NEXT   | Wire up Plausible once cloud/self-host decided (PL-1)            | Privacy-first; no cookies; consent-gate if EU visitors |
+| AN-1 | NEXT   | Wire up Plausible (cloud confirmed — PL-1 done)                  | Privacy-first; no cookies; consent-gate if EU visitors |
 | AN-2 | LATER  | Define 2–3 goals in Plausible (contact form submit, Swoopy load) | Visitor behaviour signals for owner-editor             |
 
 ---

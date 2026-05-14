@@ -237,13 +237,13 @@ boundary). The acceptance test validates the confirmation UX, not the Netlify ca
 All acceptance scenarios enter through the browser (Playwright) invoking the rendered Nuxt
 pages. This maps to the architecture's driving ports as follows:
 
-| Acceptance test target    | Driving port invoked                    | Architecture mapping                     |
-| ------------------------- | --------------------------------------- | ---------------------------------------- |
-| Contact form scenarios    | Browser → `/contact` page               | ContactForm.vue → useContact.ts → core   |
-| Content rendering         | Browser → `/`, `/about`, `/services`    | pages → usePageContent.ts → @nuxt/content|
-| Trust signals             | Browser → `/` (TrustSignals.vue)        | core/trust-signals/config.ts             |
-| Swoopy embed              | Browser → `/systems` (SwoopyEmbed.vue)  | core/swoopy/swoopy-url.ts → iframe       |
-| Navigation                | Browser → all pages via nav links       | SiteHeader.vue → NuxtLink router         |
+| Acceptance test target | Driving port invoked                   | Architecture mapping                      |
+| ---------------------- | -------------------------------------- | ----------------------------------------- |
+| Contact form scenarios | Browser → `/contact` page              | ContactForm.vue → useContact.ts → core    |
+| Content rendering      | Browser → `/`, `/about`, `/services`   | pages → usePageContent.ts → @nuxt/content |
+| Trust signals          | Browser → `/` (TrustSignals.vue)       | core/trust-signals/config.ts              |
+| Swoopy embed           | Browser → `/systems` (SwoopyEmbed.vue) | core/swoopy/swoopy-url.ts → iframe        |
+| Navigation             | Browser → all pages via nav links      | SiteHeader.vue → NuxtLink router          |
 
 Mandate CM-A: zero test files import internal components or core modules directly. All
 invocations are through the browser rendering public pages.
@@ -255,27 +255,27 @@ invocations are through the browser rendering public pages.
 **Feature file (specification layer)**:
 `tests/e2e/daedalus-coaching-website-redesign/acceptance/warm-referral-journey.feature`
 
-| Category              | Count |
-| --------------------- | ----- |
-| Walking skeletons     | 3     |
-| Happy path            | 19    |
-| Error / edge          | 15    |
-| **Total**             | **37**|
+| Category          | Count  |
+| ----------------- | ------ |
+| Walking skeletons | 3      |
+| Happy path        | 19     |
+| Error / edge      | 15     |
+| **Total**         | **37** |
 
 Error/edge ratio: **40.5%** — mandate gate passed (target >= 40%).
 
 **Spec files (executable implementation layer)**:
 
-| File                    | Enabled | Skipped | Total |
-| ----------------------- | ------- | ------- | ----- |
-| `walking-skeleton.spec.ts` | 1    | 0       | 1     |
-| `contact-page.spec.ts`  | 7       | 2       | 9     |
-| `about-page.spec.ts`    | 2       | 2       | 4     |
-| `trust-signals.spec.ts` | 1       | 4       | 5     |
-| `swoopy-embed.spec.ts`  | 4       | 1       | 5     |
-| `navigation.spec.ts`    | 1       | 7       | 8     |
-| `services-page.spec.ts` | 1       | 2       | 3     |
-| **Total**               | **17**  | **18**  | **35**|
+| File                       | Enabled | Skipped | Total  |
+| -------------------------- | ------- | ------- | ------ |
+| `walking-skeleton.spec.ts` | 1       | 0       | 1      |
+| `contact-page.spec.ts`     | 7       | 2       | 9      |
+| `about-page.spec.ts`       | 2       | 2       | 4      |
+| `trust-signals.spec.ts`    | 1       | 4       | 5      |
+| `swoopy-embed.spec.ts`     | 4       | 1       | 5      |
+| `navigation.spec.ts`       | 1       | 7       | 8      |
+| `services-page.spec.ts`    | 1       | 2       | 3      |
+| **Total**                  | **17**  | **18**  | **35** |
 
 17 scenarios enabled and passing. 18 skipped — one enabled per file, implement and
 enable one at a time per DELIVER wave TDD discipline.
@@ -314,6 +314,7 @@ confined to spec files (step implementation layer only).
 
 **CM-C — User journey completeness**:
 All 5 steps of `journey-warm-referral.yaml` are covered:
+
 - Step 1 (Arrive): homepage content and load scenarios
 - Step 2 (Scan): trust signals scenarios
 - Step 3 (Assess approach): about page and services page scenarios
@@ -331,39 +332,39 @@ these functions are the inner-loop responsibility (Vitest, not in scope for DIST
 
 Recommended order for enabling skipped scenarios. Each represents one TDD outer-loop cycle.
 
-| Order | Spec file            | Scenario                                                          | Unlock condition                         |
-| ----- | -------------------- | ----------------------------------------------------------------- | ---------------------------------------- |
-| 1     | `navigation.spec.ts` | About page reachable via nav link                                 | All pages routed                         |
-| 2     | `navigation.spec.ts` | Services page reachable via nav link                              | After (1)                                |
-| 3     | `navigation.spec.ts` | Systems page reachable via nav link                               | After (2)                                |
-| 4     | `navigation.spec.ts` | Contact page reachable via nav link                               | After (3)                                |
-| 5     | `navigation.spec.ts` | Logo returns visitor to homepage                                  | After (4)                                |
-| 6     | `navigation.spec.ts` | 404 path does not produce server error                            | After (5)                                |
-| 7     | `navigation.spec.ts` | Homepage CTA leads to contact form                                | After (6)                                |
-| 8     | `about-page.spec.ts` | About page prose from content blocks                              | Content blocks wired                     |
-| 9     | `about-page.spec.ts` | Blocks rendered in declared order                                 | After (8)                                |
-| 10    | `about-page.spec.ts` | Unknown about sub-path: not-found, no crash                       | After (9)                                |
-| 11    | `services-page.spec.ts` | Services page delivers prose from content file                 | Content composable working               |
-| 12    | `services-page.spec.ts` | Unknown services path: not-found, no crash                     | After (11)                               |
-| 13    | `trust-signals.spec.ts` | B-Corp credential visible (when flag enabled)                  | B-Corp flag enabled in config            |
-| 14    | `trust-signals.spec.ts` | 1% for the Planet visible (when flag enabled)                  | 1%FTP flag enabled in config             |
-| 15    | `trust-signals.spec.ts` | Professional accreditations visible (when flags enabled)       | Accreditation flags enabled              |
-| 16    | `trust-signals.spec.ts` | Trust signals present in SSG HTML without JS                   | After SSG build validation               |
-| 17    | `swoopy-embed.spec.ts`  | Iframe links to specific model when modelId provided           | A page with modelId prop exists          |
-| 18    | `contact-page.spec.ts`  | Validation errors announced as role="alert"                    | Accessibility markup confirmed           |
-| 19    | `contact-page.spec.ts`  | Send button disabled while sending                             | Submitting state UX confirmed            |
+| Order | Spec file               | Scenario                                                 | Unlock condition                |
+| ----- | ----------------------- | -------------------------------------------------------- | ------------------------------- |
+| 1     | `navigation.spec.ts`    | About page reachable via nav link                        | All pages routed                |
+| 2     | `navigation.spec.ts`    | Services page reachable via nav link                     | After (1)                       |
+| 3     | `navigation.spec.ts`    | Systems page reachable via nav link                      | After (2)                       |
+| 4     | `navigation.spec.ts`    | Contact page reachable via nav link                      | After (3)                       |
+| 5     | `navigation.spec.ts`    | Logo returns visitor to homepage                         | After (4)                       |
+| 6     | `navigation.spec.ts`    | 404 path does not produce server error                   | After (5)                       |
+| 7     | `navigation.spec.ts`    | Homepage CTA leads to contact form                       | After (6)                       |
+| 8     | `about-page.spec.ts`    | About page prose from content blocks                     | Content blocks wired            |
+| 9     | `about-page.spec.ts`    | Blocks rendered in declared order                        | After (8)                       |
+| 10    | `about-page.spec.ts`    | Unknown about sub-path: not-found, no crash              | After (9)                       |
+| 11    | `services-page.spec.ts` | Services page delivers prose from content file           | Content composable working      |
+| 12    | `services-page.spec.ts` | Unknown services path: not-found, no crash               | After (11)                      |
+| 13    | `trust-signals.spec.ts` | B-Corp credential visible (when flag enabled)            | B-Corp flag enabled in config   |
+| 14    | `trust-signals.spec.ts` | 1% for the Planet visible (when flag enabled)            | 1%FTP flag enabled in config    |
+| 15    | `trust-signals.spec.ts` | Professional accreditations visible (when flags enabled) | Accreditation flags enabled     |
+| 16    | `trust-signals.spec.ts` | Trust signals present in SSG HTML without JS             | After SSG build validation      |
+| 17    | `swoopy-embed.spec.ts`  | Iframe links to specific model when modelId provided     | A page with modelId prop exists |
+| 18    | `contact-page.spec.ts`  | Validation errors announced as role="alert"              | Accessibility markup confirmed  |
+| 19    | `contact-page.spec.ts`  | Send button disabled while sending                       | Submitting state UX confirmed   |
 
 ---
 
 ### Open Items (DISTILL wave)
 
-| ID          | Item                                                                                             | Owner     | Trigger                                      |
-| ----------- | ------------------------------------------------------------------------------------------------ | --------- | -------------------------------------------- |
-| DISTILL-01  | `walking-skeleton.spec.ts` asserts specific content text — update if copy changes              | Developer | Any homepage copy edit                       |
-| DISTILL-02  | Swoopy iframe unavailability scenario (diagram not responding) has no executable spec yet        | Developer | When Swoopy deploy is confirmed stable       |
-| DISTILL-03  | Trust signal credential scenarios skipped until flags are enabled in config                      | Owner     | When each credential is earned/confirmed     |
-| DISTILL-04  | Navigation "already on this page" edge case has no executable spec yet                           | Developer | When navigation is fully wired               |
-| DISTILL-05  | Whitespace-only name validation: Zod schema must trim and reject — verify in unit tests         | Developer | Inner loop (Vitest on core/contact)          |
+| ID         | Item                                                                                      | Owner     | Trigger                                  |
+| ---------- | ----------------------------------------------------------------------------------------- | --------- | ---------------------------------------- |
+| DISTILL-01 | `walking-skeleton.spec.ts` asserts specific content text — update if copy changes         | Developer | Any homepage copy edit                   |
+| DISTILL-02 | Swoopy iframe unavailability scenario (diagram not responding) has no executable spec yet | Developer | When Swoopy deploy is confirmed stable   |
+| DISTILL-03 | Trust signal credential scenarios skipped until flags are enabled in config               | Owner     | When each credential is earned/confirmed |
+| DISTILL-04 | Navigation "already on this page" edge case has no executable spec yet                    | Developer | When navigation is fully wired           |
+| DISTILL-05 | Whitespace-only name validation: Zod schema must trim and reject — verify in unit tests   | Developer | Inner loop (Vitest on core/contact)      |
 
 ---
 
@@ -372,17 +373,17 @@ Recommended order for enabling skipped scenarios. Each represents one TDD outer-
 Reviewer: acceptance-designer (self-review, critique-dimensions skill)
 Result: **APPROVED**
 
-| Dimension                         | Status      | Notes                                                         |
-| --------------------------------- | ----------- | ------------------------------------------------------------- |
-| 1. Happy path bias                | PASSED      | 40.5% error/edge scenarios                                    |
-| 2. GWT format compliance          | PASSED      | All feature scenarios have Given/When/Then; single When each  |
-| 3. Business language purity       | PASSED      | Feature file clean; technical terms confined to spec files    |
-| 4. Coverage completeness          | PASSED      | All 5 journey steps covered; all in-scope capabilities tested |
-| 5. Walking skeleton user-centricity | PASSED    | 3 WS scenarios; all title/Then describe user goals/outcomes   |
-| 6. Priority validation            | PASSED      | Trust signals + contact form = highest DISCOVER opportunities |
-| 7. Observable behavior assertions | PASSED      | All Then steps assert visible elements or observable outcomes |
-| 8. Traceability coverage          | N/A         | DISCUSS skipped; traces to journey steps and DISCOVER opps    |
-| 9. WS boundary proof              | PASSED      | Strategy C; real browser + real dev server; no InMemory       |
+| Dimension                           | Status | Notes                                                         |
+| ----------------------------------- | ------ | ------------------------------------------------------------- |
+| 1. Happy path bias                  | PASSED | 40.5% error/edge scenarios                                    |
+| 2. GWT format compliance            | PASSED | All feature scenarios have Given/When/Then; single When each  |
+| 3. Business language purity         | PASSED | Feature file clean; technical terms confined to spec files    |
+| 4. Coverage completeness            | PASSED | All 5 journey steps covered; all in-scope capabilities tested |
+| 5. Walking skeleton user-centricity | PASSED | 3 WS scenarios; all title/Then describe user goals/outcomes   |
+| 6. Priority validation              | PASSED | Trust signals + contact form = highest DISCOVER opportunities |
+| 7. Observable behavior assertions   | PASSED | All Then steps assert visible elements or observable outcomes |
+| 8. Traceability coverage            | N/A    | DISCUSS skipped; traces to journey steps and DISCOVER opps    |
+| 9. WS boundary proof                | PASSED | Strategy C; real browser + real dev server; no InMemory       |
 
 Critical issues: 0 | High issues: 0 | Medium issues: 1
 

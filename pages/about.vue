@@ -4,6 +4,7 @@
       <div class="container">
         <template v-if="data?.page">
           <h1>{{ data.page.title }}</h1>
+          <p class="coach-role">{{ coachRole }}</p>
           <CoachPhoto />
           <template v-for="(block, i) in data.blocks" :key="block.stem">
             <div
@@ -41,6 +42,7 @@
 
 <script setup lang="ts">
 const { data } = await useComposedPage("/about");
+const { coachRole } = useRuntimeConfig().public;
 
 useSeoMeta({
   title: () => data.value?.page?.title ?? 'About',
@@ -60,6 +62,15 @@ function textPosition(block: { meta?: { image_position?: string } }): Position {
 </script>
 
 <style scoped>
+.coach-role {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-secondary);
+  margin-top: calc(-1 * var(--space-md));
+  margin-bottom: var(--space-2xl);
+}
+
 .content-block h2 {
   margin-bottom: var(--space-md);
 }

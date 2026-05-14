@@ -16,6 +16,10 @@ export default defineNuxtConfig({
       // Override with NUXT_PUBLIC_COMPANY_URL at build time
       companyUrl:
         "https://find-and-update.company-information.service.gov.uk/company/10892829",
+      // Override with NUXT_PUBLIC_COACH_NAME at build time
+      coachName: "Dan Fox",
+      // Override with NUXT_PUBLIC_COACH_ROLE at build time
+      coachRole: "Executive and Agile Coach",
     },
   },
   app: {

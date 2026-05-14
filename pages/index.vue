@@ -1,16 +1,28 @@
 <template>
   <main>
-    <TrustSignals />
-    <template v-if="page && rawDoc">
-      <h1 class="page-title">{{ page.title }}</h1>
-      <div class="page-body">
-        <ContentRenderer :value="rawDoc" />
+    <section class="section">
+      <div class="container">
+        <TrustSignals />
+        <template v-if="page">
+          <h1>{{ page.title }}</h1>
+        </template>
       </div>
-    </template>
-    <p v-else>Content not found</p>
-    <div class="page-cta">
-      <NuxtLink to="/contact" class="cta-link">Get in touch →</NuxtLink>
-    </div>
+    </section>
+
+    <section class="section section--surface">
+      <div class="container">
+        <template v-if="rawDoc">
+          <ContentRenderer :value="rawDoc" />
+        </template>
+        <p v-else>Content not found</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <NuxtLink to="/contact" class="cta-link">Get in touch →</NuxtLink>
+      </div>
+    </section>
   </main>
 </template>
 
@@ -19,23 +31,14 @@ const { page, rawDoc } = await usePageContent('/home')
 </script>
 
 <style scoped>
-.page-title {
-  margin-bottom: var(--space-xl);
-}
-
-.page-body {
-  margin-bottom: var(--space-2xl);
-}
-
-.page-cta {
-  margin-top: var(--space-xl);
+.section--surface {
+  background-color: var(--color-surface);
 }
 
 .cta-link {
   font-family: var(--font-family-body);
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-medium);
-  line-height: var(--line-height-normal);
   color: var(--color-accent);
 }
 </style>

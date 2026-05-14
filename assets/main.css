@@ -119,4 +119,8 @@ h4 a {
   .content-block--image-right .content-block__image {
     order: -1;
   }
+
+  .content-block__image {
+    max-width: 8rem;
+  }
 }

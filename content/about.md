@@ -10,7 +10,6 @@ blocks:
   - about-career-now
   - about-certifications
   - about-daedalus
-
 # Alternative (Direction A — three-era sweep with images):
 #   - about-approach
 #   - about-era-digital

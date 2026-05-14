@@ -10,3 +10,5 @@ test-results/
 playwright-report/
 .data/
 .claude/
+docs/contentful-export-*.json
+docs/feature/**/.develop-progress.json

@@ -5,4 +5,5 @@ blocks:
   - about-approach
   - about-background
   - about-certifications
+  - about-daedalus
 ---

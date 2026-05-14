@@ -113,10 +113,10 @@ Low-acquisition-channel site, but referral partners checking the URL will share 
 
 ## Analytics
 
-| ID   | Status | Item                                                             | Notes                                                  |
-| ---- | ------ | ---------------------------------------------------------------- | ------------------------------------------------------ |
-| AN-1 | DEFERRED | Analytics tool selection                                       | Plausible too expensive; revisit if budget allows or find alternative |
-| AN-2 | DEFERRED | Define analytics goals (contact form submit, Swoopy load)      | Blocked on AN-1                                                       |
+| ID   | Status   | Item                                                      | Notes                                                                 |
+| ---- | -------- | --------------------------------------------------------- | --------------------------------------------------------------------- |
+| AN-1 | DEFERRED | Analytics tool selection                                  | Plausible too expensive; revisit if budget allows or find alternative |
+| AN-2 | DEFERRED | Define analytics goals (contact form submit, Swoopy load) | Blocked on AN-1                                                       |
 
 ---
 

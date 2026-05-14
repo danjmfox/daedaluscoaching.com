@@ -10,6 +10,8 @@ test("visiting the homepage renders content from the markdown file", async ({
   ).toBeVisible();
   await expect(page.getByText("Leadership is complex.")).toBeVisible();
   await expect(
-    page.getByText("I work with leaders who want to think more clearly"),
+    page.getByText("I work at the intersection of strategic thinking", {
+      exact: false,
+    }),
   ).toBeVisible();
 });

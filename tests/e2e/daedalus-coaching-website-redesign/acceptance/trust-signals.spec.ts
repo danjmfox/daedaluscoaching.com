@@ -23,8 +23,9 @@ test("visitor on the homepage sees the trust signals section", async ({
   // Content is flag-driven — all credentials are aspirational, so the section
   // renders empty. This test asserts the container is wired into the page;
   // individual credential scenarios (2–4) assert visible content once enabled.
+  // aria-label matches TrustSignals.vue: "Certifications and credentials"
   await expect(
-    page.getByRole("region", { name: /trust|credentials|certifications/i }),
+    page.getByRole("region", { name: "Certifications and credentials" }),
   ).toBeAttached();
 });
 

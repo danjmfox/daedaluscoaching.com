@@ -75,8 +75,8 @@ Calibrate to the org evaluator persona — corporate environments often include 
 
 | ID   | Status | Item                                                        | Notes                                                        |
 | ---- | ------ | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| PL-1 | DONE   | Confirm Plausible — cloud vs self-host                      | Cloud — implicit from pre-existing CSP with plausible.io     |
-| PL-2 | NEXT   | Verify iubenda consent banner fires before Plausible loads  | GDPR requires consent-gated analytics                        |
+| PL-1 | DONE   | Confirm analytics tool                                      | No analytics — Plausible too expensive; decision 2026-05-14  |
+| PL-2 | DONE   | Verify iubenda consent banner fires before analytics loads  | N/A — no analytics tool in use                               |
 | PL-3 | LATER  | Cookie policy — confirm iubenda covers it or add standalone | Check iubenda plan covers cookie policy generation           |
 | PL-4 | LATER  | Data retention statement for contact form submissions       | Netlify Forms stores submissions — document retention period |
 
@@ -86,7 +86,7 @@ Calibrate to the org evaluator persona — corporate environments often include 
 
 | ID    | Status | Item                                                       | Notes                                                               |
 | ----- | ------ | ---------------------------------------------------------- | ------------------------------------------------------------------- |
-| SEC-1 | DONE   | CSP: finalise Content-Security-Policy in `public/_headers` | Done 2026-05-14 — iubenda + Plausible domains added                 |
+| SEC-1 | DONE   | CSP: finalise Content-Security-Policy in `public/_headers` | Done 2026-05-14 — iubenda domains; Plausible removed 2026-05-14     |
 | SEC-2 | DONE   | HSTS header: `Strict-Transport-Security: max-age=31536000` | Done 2026-05-14                                                     |
 | SEC-3 | DONE   | Permissions-Policy header                                  | Was already in place                                                |
 | SEC-4 | DONE   | Referrer-Policy header                                     | Was already in place                                                |
@@ -98,16 +98,16 @@ Calibrate to the org evaluator persona — corporate environments often include 
 
 Low-acquisition-channel site, but referral partners checking the URL will share it — OG tags matter for that moment.
 
-| ID    | Status | Item                                                       | Notes                                                               |
-| ----- | ------ | ---------------------------------------------------------- | ------------------------------------------------------------------- |
-| SEO-1 | DONE   | `<meta>` description per page                              | Done 2026-05-14 — useSeoMeta on all 6 pages from frontmatter        |
+| ID    | Status | Item                                                       | Notes                                                                                   |
+| ----- | ------ | ---------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| SEO-1 | DONE   | `<meta>` description per page                              | Done 2026-05-14 — useSeoMeta on all 6 pages from frontmatter                            |
 | SEO-2 | DONE   | Open Graph tags (`og:title`, `og:description`, `og:image`) | Done 2026-05-14 — og:title, og:desc, og:url, og:type on all pages; og:image still LATER |
-| SEO-3 | DONE   | `robots.txt`                                               | Done 2026-05-14                                                     |
-| SEO-4 | DONE   | `sitemap.xml` generation                                   | Done 2026-05-14 — static file, all 6 pages                          |
-| SEO-5 | LATER  | Canonical URLs                                             | Prevent duplicate-content issues if Netlify serves on multiple URLs |
-| SEO-6 | LATER  | Structured data — Person + LocalBusiness schema (JSON-LD)  | Helps Google understand the practitioner context                    |
-| SEO-7 | DONE   | Twitter/X Card meta tags                                   | Done 2026-05-14 — twitter:card summary via global head config       |
-| SEO-8 | LATER  | OG image (social card)                                     | 1200×630px PNG needed; text-only previews until then                |
+| SEO-3 | DONE   | `robots.txt`                                               | Done 2026-05-14                                                                         |
+| SEO-4 | DONE   | `sitemap.xml` generation                                   | Done 2026-05-14 — static file, all 6 pages                                              |
+| SEO-5 | LATER  | Canonical URLs                                             | Prevent duplicate-content issues if Netlify serves on multiple URLs                     |
+| SEO-6 | LATER  | Structured data — Person + LocalBusiness schema (JSON-LD)  | Helps Google understand the practitioner context                                        |
+| SEO-7 | DONE   | Twitter/X Card meta tags                                   | Done 2026-05-14 — twitter:card summary via global head config                           |
+| SEO-8 | LATER  | OG image (social card)                                     | 1200×630px PNG needed; text-only previews until then                                    |
 
 ---
 
@@ -115,8 +115,8 @@ Low-acquisition-channel site, but referral partners checking the URL will share 
 
 | ID   | Status | Item                                                             | Notes                                                  |
 | ---- | ------ | ---------------------------------------------------------------- | ------------------------------------------------------ |
-| AN-1 | NEXT   | Wire up Plausible (cloud confirmed — PL-1 done)                  | Privacy-first; no cookies; consent-gate if EU visitors |
-| AN-2 | LATER  | Define 2–3 goals in Plausible (contact form submit, Swoopy load) | Visitor behaviour signals for owner-editor             |
+| AN-1 | DEFERRED | Analytics tool selection                                       | Plausible too expensive; revisit if budget allows or find alternative |
+| AN-2 | DEFERRED | Define analytics goals (contact form submit, Swoopy load)      | Blocked on AN-1                                                       |
 
 ---
 

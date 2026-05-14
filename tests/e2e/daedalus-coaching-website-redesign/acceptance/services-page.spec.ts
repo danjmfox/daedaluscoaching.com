@@ -24,18 +24,22 @@ test("visitor reaches the services page and sees the page heading", async ({
 });
 
 // Scenario 2: page delivers content from the content file, not a blank page.
+// Page now uses content blocks (useComposedPage) — each mode has its own block.
 test("visitor reads content about how the coach works on the services page", async ({
   page,
 }) => {
   await page.goto("/services");
 
-  // The composable delivers rendered prose from content/services.md.
-  // The exact text is owned by the content file — assert prose is present.
-  const prose = page.locator("main .prose");
-  await expect(prose).toBeVisible();
-
-  const text = await prose.textContent();
-  expect(text?.trim().length).toBeGreaterThan(50);
+  // Content blocks render section headings for each mode.
+  await expect(
+    page.getByRole("heading", { name: /with individuals/i }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: /with teams/i }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: /with organisations/i }),
+  ).toBeVisible();
 });
 
 // Scenario 3 (error path): navigating to an unknown services sub-path does not

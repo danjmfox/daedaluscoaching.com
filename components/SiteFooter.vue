@@ -7,7 +7,13 @@
       <nav aria-label="Footer navigation">
         <ul class="footer-links">
           <li>
-              <NuxtLink to="/privacy" class="footer-link">Privacy policy</NuxtLink>
+            <a :href="linkedinPersonal" class="footer-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </li>
+          <li>
+            <a :href="linkedinCompany" class="footer-link" target="_blank" rel="noopener noreferrer">Daedalus Coaching</a>
+          </li>
+          <li>
+            <NuxtLink to="/privacy" class="footer-link">Privacy policy</NuxtLink>
           </li>
         </ul>
       </nav>
@@ -17,6 +23,7 @@
 
 <script setup lang="ts">
 const year = new Date().getFullYear()
+const { linkedinPersonal, linkedinCompany } = useRuntimeConfig().public
 </script>
 
 <style scoped>

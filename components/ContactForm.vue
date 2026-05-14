@@ -5,6 +5,7 @@
 
   <form
     v-else
+    class="form"
     data-netlify="true"
     name="contact"
     method="POST"
@@ -14,7 +15,7 @@
   >
     <input type="hidden" name="form-name" value="contact" />
 
-    <div>
+    <div class="field">
       <label for="name">Name</label>
       <input
         id="name"
@@ -23,10 +24,10 @@
         name="name"
         autocomplete="name"
       />
-      <p v-if="errors.name" role="alert">{{ errors.name }}</p>
+      <p v-if="errors.name" class="field-error" role="alert">{{ errors.name }}</p>
     </div>
 
-    <div>
+    <div class="field">
       <label for="email">Email</label>
       <input
         id="email"
@@ -35,10 +36,10 @@
         name="email"
         autocomplete="email"
       />
-      <p v-if="errors.email" role="alert">{{ errors.email }}</p>
+      <p v-if="errors.email" class="field-error" role="alert">{{ errors.email }}</p>
     </div>
 
-    <div>
+    <div class="field">
       <label for="message">Message</label>
       <textarea
         id="message"
@@ -46,7 +47,7 @@
         name="message"
         rows="5"
       />
-      <p v-if="errors.message" role="alert">{{ errors.message }}</p>
+      <p v-if="errors.message" class="field-error" role="alert">{{ errors.message }}</p>
     </div>
 
     <button type="submit" :disabled="submitting">
@@ -63,3 +64,70 @@ onMounted(() => {
   mounted.value = true;
 });
 </script>
+
+<style scoped>
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.field label {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  padding: var(--space-sm) var(--space-md);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+  border-radius: 2px;
+  appearance: none;
+}
+
+.field input:focus,
+.field textarea:focus {
+  border-color: var(--color-accent);
+  outline: none;
+}
+
+.field-error {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-sm);
+  color: var(--color-brand-coral);
+}
+
+button[type="submit"] {
+  background-color: var(--color-accent);
+  color: var(--color-background);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  padding: var(--space-sm) var(--space-xl);
+  border: none;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+button[type="submit"]:hover {
+  background-color: var(--color-accent-hover);
+}
+
+button[type="submit"]:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+</style>

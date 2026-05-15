@@ -2,7 +2,7 @@
 
 ```yaml
 maintainer: owner-editor
-last_updated: 2026-05-14
+last_updated: 2026-05-15
 session_2026-05-14: HK-1, HK-2, CN-1, CN-2 completed
 status_values: [NOW, NEXT, LATER, DEFERRED, DONE]
 ```
@@ -46,6 +46,10 @@ Items are ordered by priority within each section.
 | CN-15 | LATER  | FanEdge — 3-way fork/recombine on services page | Needs FanEdge.vue + BlockGroup abstraction in useComposedPage; design session required |
 | CN-13 | LATER  | Credentials "Find out more" expand pattern      | Low-key link/expand to certification bodies from trust signals or about page           |
 | CN-14 | LATER  | Abstract imagery for service personas           | Individual / team / org content blocks on services page (depends on CN-8)              |
+| CN-16 | NEXT   | "Barely sufficient / Last responsible moment" copy | Add to `about-approach.md`; draft agreed 2026-05-15 — pending final approval before write |
+| CN-17 | LATER  | Org design — light touch in services-orgs.md    | Brief mention + "find out more" / contact prompt; not a full expansion                 |
+| CN-18 | NEXT   | Brand voice guidelines doc                      | Generate `.claude/brand-voice-guidelines.md`; ready once CN-16 copy complete           |
+| CN-19 | NEXT   | Confirm typeface name in brand docs             | Humanist serif category locked; specific typeface decided but not recorded in any doc  |
 
 ---
 

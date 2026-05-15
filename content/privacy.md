@@ -11,7 +11,7 @@ Daedalus Coaching Ltd is a coaching and organisational development practice base
 
 **Contact enquiries:** When you submit the contact form, we collect your name, email address, and the content of your message. We use this information solely to respond to your enquiry.
 
-**Website analytics:** This site uses [Plausible Analytics](https://plausible.io), a privacy-first analytics tool. Plausible does not use cookies, does not track you across sites, and does not collect personally identifiable information. No consent banner is required.
+**Website analytics:** This site does not use any analytics tools. No tracking scripts, cookies, or behavioural data are collected when you visit.
 
 ## Lawful basis
 

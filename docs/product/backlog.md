@@ -47,7 +47,7 @@ Items are ordered by priority within each section.
 | CN-13 | LATER  | Credentials "Find out more" expand pattern         | Low-key link/expand to certification bodies from trust signals or about page           |
 | CN-14 | LATER  | Abstract imagery for service personas              | Individual / team / org content blocks on services page (depends on CN-8)              |
 | CN-16 | DONE   | "Barely sufficient / Last responsible moment" copy | Done 2026-05-15 — added to `about-approach.md`                                         |
-| CN-17 | DONE   | Org design — light touch in services-orgs.md       | Done 2026-05-15 — structural design framing + contact prompt added                    |
+| CN-17 | DONE   | Org design — light touch in services-orgs.md       | Done 2026-05-15 — structural design framing + contact prompt added                     |
 | CN-18 | DONE   | Brand voice guidelines doc                         | Done 2026-05-15 — `.claude/brand-voice-guidelines.md`                                  |
 | CN-19 | DONE   | Confirm typeface name in brand docs                | Done 2026-05-15 — Fraunces Variable (heading), Plus Jakarta Sans Variable (body)       |
 

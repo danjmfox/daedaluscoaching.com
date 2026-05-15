@@ -1,10 +1,11 @@
 # Architecture Brief — Daedalus Coaching Website Redesign
 
 feature_id: daedalus-coaching-website-redesign
-wave: DESIGN
-date: 2026-05-12
-status: PEER REVIEWED — APPROVED FOR HANDOFF (iteration 1, 0 critical/high, 1 medium resolved)
+wave: DELIVER
+date: 2026-05-15
+status: DELIVERED — 34/34 acceptance tests green; all DELIVER steps COMMIT/PASS
 architect: Morgan (Solution Architect, nWave DESIGN wave)
+evolution: docs/evolution/2026-05-15-daedalus-coaching-website-redesign.md
 
 ---
 
@@ -186,7 +187,7 @@ Violation = build failure. Architecture is load-bearing, not conventional.
 | Framework              | Nuxt 3                             | ^3.x              | MIT                     | Pre-decided; Vue learning harness; SSG for static hosting |
 | Runtime language       | TypeScript (type-stripped)         | ^5.x              | Apache 2.0              | Owner preference; ESM; no build overhead                  |
 | Validation             | Zod                                | ^3.x              | MIT                     | Pre-decided; central to contact schema in core/           |
-| Content                | @nuxt/content v2                   | ^2.x              | MIT                     | Pre-decided; markdown-in-repo; H3 condition open          |
+| Content                | @nuxt/content v3                   | ^3.x              | MIT                     | Pre-decided; markdown-in-repo; v3.13.0 confirmed by spike |
 | Testing (unit)         | Vitest                             | ^2.x              | MIT                     | Native Vite integration; fast; no config overhead         |
 | Testing (e2e)          | Playwright                         | ^1.x              | Apache 2.0              | Multi-browser; outer TDD loop                             |
 | Mutation testing       | Stryker (stryker-vitest)           | ^8.x              | Apache 2.0              | Core/ purity makes it viable without mocks                |

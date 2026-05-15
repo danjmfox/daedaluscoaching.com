@@ -1,6 +1,11 @@
 {
+  "roadmap": {
+    "project_id": "daedalus-coaching-website-redesign",
+    "created_at": "2026-05-14T00:00:00Z",
+    "total_steps": 5
+  },
   "feature_id": "daedalus-coaching-website-redesign",
-  "goal": "Enable 14 of 18 skipped acceptance tests — 4 remain deferred pending credential confirmation and Swoopy modelId page. Add Vitest unit tests for core/contact schema (DISTILL-05).",
+  "goal": "Verify 14 acceptance scenarios green; add Vitest unit tests for core/contact schema (DISTILL-05). 4 scenarios deferred pending credentials and Swoopy modelId.",
   "validation": {
     "status": "approved",
     "reviewer": "orchestrator",
@@ -8,149 +13,91 @@
   },
   "phases": [
     {
-      "phase": 1,
+      "id": "01",
       "name": "Navigation and routing",
       "steps": [
         {
+          "id": "01-01",
           "step_id": "01-01",
-          "name": "Enable navigation acceptance tests",
-          "description": "Remove test.skip from navigation.spec.ts scenarios 2-8 and verify all pass. All pages and nav links already exist — this step confirms routing works end-to-end from user clicks. The 404 test asserts non-500 status for an unmatched path; adjust assertion if Nuxt dev returns 200 on the error page.",
+          "name": "Verify navigation acceptance tests green",
+          "criteria": "All 8 navigation scenarios pass; nav links reach correct pages; logo returns home; 404 non-500; CTA reaches contact form",
           "test_file": "tests/e2e/daedalus-coaching-website-redesign/acceptance/navigation.spec.ts",
           "scenario_name": "visitor selects About and reaches the about page",
-          "acceptance_criteria": [
-            "Scenarios 2-8 in navigation.spec.ts all enabled and green",
-            "Nav link clicks navigate to correct pages with correct h1",
-            "Logo click returns to homepage",
-            "404 path returns non-500 status",
-            "CTA 'Get in touch' navigates to contact form with Name field visible"
-          ],
           "files_to_modify": [
             "tests/e2e/daedalus-coaching-website-redesign/acceptance/navigation.spec.ts"
-          ],
-          "quality_gates": [
-            "all enabled tests green",
-            "no regressions in other spec files"
-          ],
-          "estimated_hours": 0.5,
-          "deliverables": [
-            "navigation.spec.ts with all 8 scenarios enabled and green"
           ]
         }
       ]
     },
     {
-      "phase": 2,
+      "id": "02",
       "name": "Content page scenarios",
       "steps": [
         {
+          "id": "02-01",
           "step_id": "02-01",
-          "name": "Enable about page skipped scenarios",
-          "description": "Enable about-page.spec.ts scenarios 3-4. Scenario 3 (block order) checks for 'intro' and 'approach' keywords — 'intro' does not appear in any current block, so the test assertion must be fixed to use real content from about-approach.md (e.g. 'clearer thinking' and 'Background' in that order). Scenario 4 (unknown path 404) should return non-500.",
+          "name": "Verify about page scenarios green",
+          "criteria": "All 4 about-page scenarios pass; block order uses real content; unknown path non-500",
           "test_file": "tests/e2e/daedalus-coaching-website-redesign/acceptance/about-page.spec.ts",
-          "scenario_name": "visitor sees all content blocks rendered in the order declared in the page frontmatter",
-          "acceptance_criteria": [
-            "Scenario 3 enabled — asserts blocks render in declared order using real content text",
-            "Scenario 4 enabled — unknown /about/x returns non-500 status",
-            "Existing scenarios 1-2 remain green"
-          ],
+          "scenario_name": "visitor sees content blocks in declared order",
           "files_to_modify": [
             "tests/e2e/daedalus-coaching-website-redesign/acceptance/about-page.spec.ts"
-          ],
-          "quality_gates": ["all 4 about-page scenarios green"],
-          "estimated_hours": 0.5,
-          "deliverables": [
-            "about-page.spec.ts with all 4 scenarios enabled and green"
           ]
         },
         {
+          "id": "02-02",
           "step_id": "02-02",
-          "name": "Enable services page skipped scenarios",
-          "description": "Enable services-page.spec.ts scenarios 2-3. Scenario 2 checks for .prose selector with > 50 chars of text — services.vue uses class='prose' on ContentRenderer, so this should pass. Scenario 3 (unknown services sub-path) should return non-500.",
+          "name": "Verify services page scenarios green",
+          "criteria": "All 3 services-page scenarios pass; prose selector has visible text; unknown path non-500",
           "test_file": "tests/e2e/daedalus-coaching-website-redesign/acceptance/services-page.spec.ts",
-          "scenario_name": "visitor reads content about how the coach works on the services page",
-          "acceptance_criteria": [
-            "Scenario 2 enabled — .prose selector has visible text > 50 chars",
-            "Scenario 3 enabled — unknown /services/x returns non-500 status",
-            "Existing scenario 1 remains green"
-          ],
+          "scenario_name": "visitor reads services page content",
           "files_to_modify": [
             "tests/e2e/daedalus-coaching-website-redesign/acceptance/services-page.spec.ts"
-          ],
-          "quality_gates": ["all 3 services-page scenarios green"],
-          "estimated_hours": 0.25,
-          "deliverables": [
-            "services-page.spec.ts with all 3 scenarios enabled and green"
           ]
         }
       ]
     },
     {
-      "phase": 3,
+      "id": "03",
       "name": "Contact form accessibility scenarios",
       "steps": [
         {
+          "id": "03-01",
           "step_id": "03-01",
-          "name": "Enable contact form a11y scenarios",
-          "description": "Enable contact-page.spec.ts scenarios 8-9. Scenario 8 (role=alert): ContactForm.vue already has role='alert' on error paragraphs — unskip and verify. Scenario 9 (disabled button during send): ContactForm.vue sets :disabled='submitting' and label 'Sending...' — may need Playwright route intercept on /api/contact to delay response so button state is observable. Use page.route() to intercept and delay.",
+          "name": "Verify contact page a11y scenarios green",
+          "criteria": "All 9 contact-page scenarios pass; role=alert visible; button disabled during send; existing 7 remain green",
           "test_file": "tests/e2e/daedalus-coaching-website-redesign/acceptance/contact-page.spec.ts",
-          "scenario_name": "inline validation errors are communicated to visitors using assistive technology",
-          "acceptance_criteria": [
-            "Scenario 8 enabled — role=alert element visible after empty form submit",
-            "Scenario 9 enabled — button shows disabled/Sending state during in-flight request",
-            "Existing scenarios 1-7 remain green"
-          ],
+          "scenario_name": "inline validation errors announced via role=alert",
           "files_to_modify": [
             "tests/e2e/daedalus-coaching-website-redesign/acceptance/contact-page.spec.ts"
-          ],
-          "quality_gates": ["all 9 contact-page scenarios green"],
-          "estimated_hours": 0.5,
-          "deliverables": [
-            "contact-page.spec.ts with all 9 scenarios enabled and green"
           ]
         }
       ]
     },
     {
-      "phase": 4,
+      "id": "04",
       "name": "Core unit tests",
       "steps": [
         {
+          "id": "04-01",
           "step_id": "04-01",
-          "name": "Vitest unit tests for core/contact schema",
-          "description": "DISTILL-05: add Vitest unit tests for core/contact/contact-schema.ts. Pure function tests — no mocking. Cover: valid submission passes, empty name rejected, whitespace-only name rejected (Zod must trim), invalid email rejected, empty message rejected. If whitespace-only name currently passes (no .trim() in schema), add .trim().min(1) to the name field and make the test pass via TDD.",
+          "name": "Add Vitest unit tests for contact schema",
+          "criteria": "5+ test cases green; valid data passes; empty and whitespace names rejected; invalid email rejected",
           "test_file": "core/contact/contact-schema.test.ts",
-          "scenario_name": "whitespace-only name is rejected by the contact schema",
-          "acceptance_criteria": [
-            "contact-schema.test.ts created with 5+ test cases",
-            "Valid data passes validation",
-            "Empty name rejected",
-            "Whitespace-only name rejected (trim applied)",
-            "Invalid email rejected",
-            "Empty message rejected",
-            "Vitest runs green"
-          ],
+          "scenario_name": "whitespace-only name rejected by contact schema",
           "files_to_modify": [
             "core/contact/contact-schema.ts",
             "core/contact/contact-schema.test.ts"
-          ],
-          "quality_gates": [
-            "vitest --run passes with new tests",
-            "no regressions"
-          ],
-          "estimated_hours": 0.5,
-          "deliverables": [
-            "core/contact/contact-schema.test.ts (new)",
-            "core/contact/contact-schema.ts (possibly updated with .trim())"
           ]
         }
       ]
     }
   ],
   "deferred": [
-    "trust-signals: B-Corp — unlock when credential earned and owner confirms display",
-    "trust-signals: 1% for the Planet — same condition",
-    "trust-signals: professional accreditations — same condition",
-    "trust-signals: SSG HTML check — dependent on credential flags enabled",
-    "swoopy-embed: modelId scenario — unlock when a page embeds <SwoopyEmbed modelId='...' />"
+    "trust-signals: B-Corp — unlock when credential earned",
+    "trust-signals: 1% for the Planet — unlock when credential earned",
+    "trust-signals: professional accreditations — unlock when flags enabled",
+    "trust-signals: SSG HTML check — dependent on credential flags",
+    "swoopy-embed: modelId scenario — unlock when page embeds SwoopyEmbed with modelId"
   ]
 }

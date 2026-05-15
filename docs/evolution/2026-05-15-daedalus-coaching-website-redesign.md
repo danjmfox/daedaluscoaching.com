@@ -40,12 +40,12 @@ and committing DES phase logs per step.
 Five scenarios are intentionally skipped with explicit unlock triggers. They are not gaps —
 they are trust signals that do not yet exist or integrations not yet confirmed stable.
 
-| Deferred item | Reason | Unlock trigger |
-|---|---|---|
-| `trust-signals.spec.ts` — B-Corp credential | Owner has not yet earned the certification | Owner earns B-Corp and confirms display flag |
-| `trust-signals.spec.ts` — 1% for the Planet | Same condition | Same |
-| `trust-signals.spec.ts` — professional accreditations | Credential flags not enabled in config | Owner enables each flag as credentials are confirmed |
-| `trust-signals.spec.ts` — SSG HTML check (no-JS) | Dependent on credential flags being enabled first | After at least one credential flag is active |
+| Deferred item                                         | Reason                                                   | Unlock trigger                                          |
+| ----------------------------------------------------- | -------------------------------------------------------- | ------------------------------------------------------- |
+| `trust-signals.spec.ts` — B-Corp credential           | Owner has not yet earned the certification               | Owner earns B-Corp and confirms display flag            |
+| `trust-signals.spec.ts` — 1% for the Planet           | Same condition                                           | Same                                                    |
+| `trust-signals.spec.ts` — professional accreditations | Credential flags not enabled in config                   | Owner enables each flag as credentials are confirmed    |
+| `trust-signals.spec.ts` — SSG HTML check (no-JS)      | Dependent on credential flags being enabled first        | After at least one credential flag is active            |
 | `swoopy-embed.spec.ts` — iframe with explicit modelId | No page currently embeds `<SwoopyEmbed modelId="..." />` | When a content page is added that uses the modelId prop |
 
 When any of these unlock, enable the corresponding skipped spec scenario — no new test
@@ -75,7 +75,7 @@ The spike confirmed it must be in `dependencies`, not `devDependencies`.
 
 All acceptance tests drive the real Nuxt dev server via Playwright. No InMemory doubles
 exist at the acceptance layer. This was the correct call: the only "external" resource is
-the local filesystem (content/*.md), and an InMemory double would test nothing meaningful.
+the local filesystem (content/\*.md), and an InMemory double would test nothing meaningful.
 
 ### 4. `pages/index.vue` uses `queryCollection` directly (not via composable)
 
@@ -126,13 +126,13 @@ revise or remove when a final decision is made (see memory: project_analytics.md
 
 5 steps, all COMMIT/PASS. Completed 2026-05-15.
 
-| Step | Name | Result | Note |
-|---|---|---|---|
-| 01-01 | Navigation acceptance tests | PASS | 8/8 scenarios green; cold-start timing issue resolved without code change |
-| 02-01 | About page acceptance tests | PASS | 4/4 green on first run |
-| 02-02 | Services page acceptance tests | PASS | 3/3 green on first run |
-| 03-01 | Contact page a11y scenarios | PASS | 9/9 green; role=alert and disabled-during-send confirmed |
-| 04-01 | Contact schema unit tests | PASS | 13/13 Vitest green; schema already had .trim().min(1) from prior work |
+| Step  | Name                           | Result | Note                                                                      |
+| ----- | ------------------------------ | ------ | ------------------------------------------------------------------------- |
+| 01-01 | Navigation acceptance tests    | PASS   | 8/8 scenarios green; cold-start timing issue resolved without code change |
+| 02-01 | About page acceptance tests    | PASS   | 4/4 green on first run                                                    |
+| 02-02 | Services page acceptance tests | PASS   | 3/3 green on first run                                                    |
+| 03-01 | Contact page a11y scenarios    | PASS   | 9/9 green; role=alert and disabled-during-send confirmed                  |
+| 04-01 | Contact schema unit tests      | PASS   | 13/13 Vitest green; schema already had .trim().min(1) from prior work     |
 
 Integration gate (Phase 3.5): 34/34 enabled scenarios green. 3 intentional skips (trust
 signals pending credentials). DES integrity verified: all 5 steps have complete traces.
@@ -141,12 +141,12 @@ signals pending credentials). DES integrity verified: all 5 steps have complete 
 
 ## Permanent Artifact Locations
 
-| Artifact | Location |
-|---|---|
-| Architecture brief | `docs/product/architecture/brief.md` |
-| ADRs (001–006) | Referenced in architecture brief ADR index |
-| Acceptance scenarios | `tests/e2e/daedalus-coaching-website-redesign/acceptance/` |
-| Feature file (GWT spec) | `tests/e2e/daedalus-coaching-website-redesign/acceptance/warm-referral-journey.feature` |
-| CI pipeline | `.github/workflows/ci.yml` |
-| Delivery infrastructure | `netlify.toml`, `lefthook.yml`, `public/_headers` |
-| Feature workspace (history) | `docs/feature/daedalus-coaching-website-redesign/` |
+| Artifact                    | Location                                                                                |
+| --------------------------- | --------------------------------------------------------------------------------------- |
+| Architecture brief          | `docs/product/architecture/brief.md`                                                    |
+| ADRs (001–006)              | Referenced in architecture brief ADR index                                              |
+| Acceptance scenarios        | `tests/e2e/daedalus-coaching-website-redesign/acceptance/`                              |
+| Feature file (GWT spec)     | `tests/e2e/daedalus-coaching-website-redesign/acceptance/warm-referral-journey.feature` |
+| CI pipeline                 | `.github/workflows/ci.yml`                                                              |
+| Delivery infrastructure     | `netlify.toml`, `lefthook.yml`, `public/_headers`                                       |
+| Feature workspace (history) | `docs/feature/daedalus-coaching-website-redesign/`                                      |

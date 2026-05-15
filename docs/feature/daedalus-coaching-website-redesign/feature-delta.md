@@ -405,6 +405,7 @@ and committing DES phase logs per step.
 ## Wave: DELIVER / [REF] Files Modified
 
 **Tests (no logic changes — confirmation runs only)**:
+
 - `tests/e2e/daedalus-coaching-website-redesign/acceptance/navigation.spec.ts`
 - `tests/e2e/daedalus-coaching-website-redesign/acceptance/about-page.spec.ts`
 - `tests/e2e/daedalus-coaching-website-redesign/acceptance/services-page.spec.ts`
@@ -412,6 +413,7 @@ and committing DES phase logs per step.
 - `core/contact/contact-schema.test.ts` (already present with 5 test cases; confirmed green)
 
 **Docs**:
+
 - `docs/feature/daedalus-coaching-website-redesign/deliver/roadmap.json` — corrected to DES schema v3 format
 - `docs/feature/daedalus-coaching-website-redesign/deliver/execution-log.json` — DES phase logs for all 5 steps
 
@@ -422,15 +424,15 @@ and committing DES phase logs per step.
 34 of 34 enabled scenarios green (2026-05-15).
 3 intentionally skipped (trust-signals B-Corp, 1%FTP — deferred per roadmap).
 
-| Spec file               | Enabled | Skipped | Result |
-| ----------------------- | ------- | ------- | ------ |
-| `walking-skeleton.spec.ts` | 1    | 0       | ✓ PASS |
-| `navigation.spec.ts`    | 8       | 0       | ✓ PASS |
-| `about-page.spec.ts`    | 4       | 0       | ✓ PASS |
-| `services-page.spec.ts` | 3       | 0       | ✓ PASS |
-| `contact-page.spec.ts`  | 9       | 0       | ✓ PASS |
-| `trust-signals.spec.ts` | 3       | 2       | ✓ PASS |
-| `swoopy-embed.spec.ts`  | 4       | 1       | ✓ PASS |
+| Spec file                  | Enabled | Skipped | Result |
+| -------------------------- | ------- | ------- | ------ |
+| `walking-skeleton.spec.ts` | 1       | 0       | ✓ PASS |
+| `navigation.spec.ts`       | 8       | 0       | ✓ PASS |
+| `about-page.spec.ts`       | 4       | 0       | ✓ PASS |
+| `services-page.spec.ts`    | 3       | 0       | ✓ PASS |
+| `contact-page.spec.ts`     | 9       | 0       | ✓ PASS |
+| `trust-signals.spec.ts`    | 3       | 2       | ✓ PASS |
+| `swoopy-embed.spec.ts`     | 4       | 1       | ✓ PASS |
 
 Vitest unit tests: 13/13 green (includes 5 contact-schema tests from DISTILL-05).
 
@@ -438,36 +440,36 @@ Vitest unit tests: 13/13 green (includes 5 contact-schema tests from DISTILL-05)
 
 ## Wave: DELIVER / [REF] DoD Check
 
-| Item                                            | Status |
-| ----------------------------------------------- | ------ |
-| All in-scope acceptance scenarios green         | PASS   |
-| No regressions in any other spec file           | PASS   |
-| DISTILL-05 unit tests present and green         | PASS   |
-| Dep-cruiser boundary enforcement clean          | PASS   |
-| All commits include Step-ID DES trailer         | PASS   |
-| Deferred items documented with unlock triggers  | PASS   |
+| Item                                           | Status |
+| ---------------------------------------------- | ------ |
+| All in-scope acceptance scenarios green        | PASS   |
+| No regressions in any other spec file          | PASS   |
+| DISTILL-05 unit tests present and green        | PASS   |
+| Dep-cruiser boundary enforcement clean         | PASS   |
+| All commits include Step-ID DES trailer        | PASS   |
+| Deferred items documented with unlock triggers | PASS   |
 
 ---
 
 ## Wave: DELIVER / [REF] Quality Gates
 
-| Gate                         | Result                          |
-| ---------------------------- | ------------------------------- |
-| Phase 2: All steps COMMIT/PASS | ✓ 5/5 steps                   |
-| Phase 3.5: Integration gate  | ✓ 34 passed, 3 intentional skips |
-| Phase 6: DES integrity verify | ✓ All 5 steps have complete traces |
-| Phase 3 (refactor)           | SKIPPED — on-demand per project CLAUDE.md |
-| Phase 4 (adversarial review) | SKIPPED — on-demand per project CLAUDE.md |
-| Phase 5 (mutation testing)   | SKIPPED — on-demand per project CLAUDE.md |
+| Gate                           | Result                                    |
+| ------------------------------ | ----------------------------------------- |
+| Phase 2: All steps COMMIT/PASS | ✓ 5/5 steps                               |
+| Phase 3.5: Integration gate    | ✓ 34 passed, 3 intentional skips          |
+| Phase 6: DES integrity verify  | ✓ All 5 steps have complete traces        |
+| Phase 3 (refactor)             | SKIPPED — on-demand per project CLAUDE.md |
+| Phase 4 (adversarial review)   | SKIPPED — on-demand per project CLAUDE.md |
+| Phase 5 (mutation testing)     | SKIPPED — on-demand per project CLAUDE.md |
 
 ---
 
 ## Wave: DELIVER / [REF] Deferred Items
 
-| Item                          | Unlock trigger                              |
-| ----------------------------- | ------------------------------------------- |
-| trust-signals: B-Corp         | Owner earns credential and confirms display |
-| trust-signals: 1%FTP          | Same condition                              |
-| trust-signals: accreditations | Credential flags enabled in config          |
-| trust-signals: SSG HTML check | After credential flags enabled              |
+| Item                           | Unlock trigger                                |
+| ------------------------------ | --------------------------------------------- |
+| trust-signals: B-Corp          | Owner earns credential and confirms display   |
+| trust-signals: 1%FTP           | Same condition                                |
+| trust-signals: accreditations  | Credential flags enabled in config            |
+| trust-signals: SSG HTML check  | After credential flags enabled                |
 | swoopy-embed: modelId scenario | A page embeds `<SwoopyEmbed modelId='...' />` |

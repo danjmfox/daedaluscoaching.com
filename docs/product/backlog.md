@@ -29,27 +29,27 @@ Items are ordered by priority within each section.
 
 ## Content (pages not yet written)
 
-| ID    | Status | Item                                            | Notes                                                                                  |
-| ----- | ------ | ----------------------------------------------- | -------------------------------------------------------------------------------------- |
-| CN-1  | DONE   | Contact page prose                              | Done 2026-05-14                                                                        |
-| CN-2  | DONE   | Services page — full build                      | Done 2026-05-14 — three-mode structure (individuals/teams/orgs)                        |
-| CN-3  | NEXT   | Replace placeholder CLD SVGs                    | `public/images/diagrams/approach.svg`, `background.svg` — hardcoded hex                |
-| CN-4  | LATER  | About page — deepen narrative                   | Skeleton exists; may need expansion after stability test verdict                       |
-| CN-5  | LATER  | 404 page                                        | No custom error page yet; Nuxt fallback only                                           |
-| CN-6  | LATER  | Privacy policy page                             | Required for GDPR; iubenda may supply but needs a dedicated URL                        |
-| CN-7  | LATER  | Accessibility statement                         | Legal requirement in many jurisdictions; brief + contact details                       |
-| CN-8  | DONE   | Services page — content block redesign          | Done 2026-05-14 — 5 blocks + sequential NarrativeEdge; FanEdge fan-out/fan-in → CN-15  |
-| CN-9  | DONE   | Coach identity — LinkedIn links                 | Done 2026-05-14 — footer via runtimeConfig; bio on about page via existing narrative   |
-| CN-10 | DONE   | Coach photo — placeholder + enable/disable flag | Done 2026-05-14 — flip enabled=true + drop headshot.jpg when ready                     |
-| CN-11 | DONE   | Location / geography                            | Done 2026-05-14 — contact page: "Hampshire, UK and remote"                             |
-| CN-12 | DONE   | Engagement scales on services page              | Done 2026-05-14 — services-engagement.md block                                         |
-| CN-15 | LATER  | FanEdge — 3-way fork/recombine on services page | Needs FanEdge.vue + BlockGroup abstraction in useComposedPage; design session required |
-| CN-13 | LATER  | Credentials "Find out more" expand pattern      | Low-key link/expand to certification bodies from trust signals or about page           |
-| CN-14 | LATER  | Abstract imagery for service personas           | Individual / team / org content blocks on services page (depends on CN-8)              |
-| CN-16 | NEXT   | "Barely sufficient / Last responsible moment" copy | Add to `about-approach.md`; draft agreed 2026-05-15 — pending final approval before write |
-| CN-17 | LATER  | Org design — light touch in services-orgs.md    | Brief mention + "find out more" / contact prompt; not a full expansion                 |
-| CN-18 | NEXT   | Brand voice guidelines doc                      | Generate `.claude/brand-voice-guidelines.md`; ready once CN-16 copy complete           |
-| CN-19 | NEXT   | Confirm typeface name in brand docs             | Humanist serif category locked; specific typeface decided but not recorded in any doc  |
+| ID    | Status | Item                                               | Notes                                                                                     |
+| ----- | ------ | -------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| CN-1  | DONE   | Contact page prose                                 | Done 2026-05-14                                                                           |
+| CN-2  | DONE   | Services page — full build                         | Done 2026-05-14 — three-mode structure (individuals/teams/orgs)                           |
+| CN-3  | NEXT   | Replace placeholder CLD SVGs                       | `public/images/diagrams/approach.svg`, `background.svg` — hardcoded hex                   |
+| CN-4  | LATER  | About page — deepen narrative                      | Skeleton exists; may need expansion after stability test verdict                          |
+| CN-5  | LATER  | 404 page                                           | No custom error page yet; Nuxt fallback only                                              |
+| CN-6  | LATER  | Privacy policy page                                | Required for GDPR; iubenda may supply but needs a dedicated URL                           |
+| CN-7  | LATER  | Accessibility statement                            | Legal requirement in many jurisdictions; brief + contact details                          |
+| CN-8  | DONE   | Services page — content block redesign             | Done 2026-05-14 — 5 blocks + sequential NarrativeEdge; FanEdge fan-out/fan-in → CN-15     |
+| CN-9  | DONE   | Coach identity — LinkedIn links                    | Done 2026-05-14 — footer via runtimeConfig; bio on about page via existing narrative      |
+| CN-10 | DONE   | Coach photo — placeholder + enable/disable flag    | Done 2026-05-14 — flip enabled=true + drop headshot.jpg when ready                        |
+| CN-11 | DONE   | Location / geography                               | Done 2026-05-14 — contact page: "Hampshire, UK and remote"                                |
+| CN-12 | DONE   | Engagement scales on services page                 | Done 2026-05-14 — services-engagement.md block                                            |
+| CN-15 | LATER  | FanEdge — 3-way fork/recombine on services page    | Needs FanEdge.vue + BlockGroup abstraction in useComposedPage; design session required    |
+| CN-13 | LATER  | Credentials "Find out more" expand pattern         | Low-key link/expand to certification bodies from trust signals or about page              |
+| CN-14 | LATER  | Abstract imagery for service personas              | Individual / team / org content blocks on services page (depends on CN-8)                 |
+| CN-16 | DONE   | "Barely sufficient / Last responsible moment" copy | Done 2026-05-15 — added to `about-approach.md`                                           |
+| CN-17 | LATER  | Org design — light touch in services-orgs.md       | Brief mention + "find out more" / contact prompt; not a full expansion                    |
+| CN-18 | DONE   | Brand voice guidelines doc                         | Done 2026-05-15 — `.claude/brand-voice-guidelines.md`                                    |
+| CN-19 | DONE   | Confirm typeface name in brand docs                | Done 2026-05-15 — Fraunces Variable (heading), Plus Jakarta Sans Variable (body)         |
 
 ---
 

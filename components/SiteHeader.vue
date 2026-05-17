@@ -76,4 +76,23 @@
 .nav-link:hover {
   color: var(--color-accent);
 }
+
+@media (max-width: 600px) {
+  .header-inner {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+  }
+
+  .nav-list {
+    justify-content: center;
+    gap: var(--space-md);
+  }
+
+  .nav-link {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+}
 </style>

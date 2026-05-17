@@ -32,7 +32,18 @@ export function useContact() {
     if (!validate()) return;
     submitting.value = true;
     try {
-      await $fetch("/api/contact", { method: "POST", body: { ...fields } });
+      const body = new URLSearchParams({
+        "form-name": "contact",
+        name: fields.name,
+        email: fields.email,
+        message: fields.message,
+      });
+      const res = await fetch("/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: body.toString(),
+      });
+      if (!res.ok) throw new Error(`Form submission failed: ${res.status}`);
       submitted.value = true;
     } finally {
       submitting.value = false;

@@ -147,11 +147,18 @@ test("inline validation errors are communicated to visitors using assistive tech
 test("the send button is unavailable while the enquiry is being sent", async ({
   page,
 }) => {
-  // Delay the /api/contact response so the submitting state is observable.
-  await page.route("**/api/contact", async (route) => {
-    await new Promise((r) => setTimeout(r, 500));
-    await route.continue();
-  });
+  // Delay the Netlify Forms POST so the submitting state is observable.
+  await page.route(
+    (url) => url.pathname === "/contact",
+    async (route) => {
+      if (route.request().method() === "POST") {
+        await new Promise((r) => setTimeout(r, 500));
+        await route.fulfill({ status: 200, body: "" });
+      } else {
+        await route.continue();
+      }
+    },
+  );
 
   await page.goto("/contact");
   await waitForForm(page);
@@ -162,4 +169,61 @@ test("the send button is unavailable while the enquiry is being sent", async ({
 
   await page.getByRole("button", { name: /send|submit/i }).click();
   await expect(page.getByRole("button", { name: /sending/i })).toBeDisabled();
+});
+
+// Scenario 10 (regression): the JS-enhanced submission path must use Netlify
+// Forms AJAX protocol — urlencoded POST with form-name — not a server route.
+// /api/contact is a Nuxt server route that does not exist in the static build;
+// calling it in production produces a 404.
+test("JS-enhanced form submission uses Netlify Forms AJAX protocol, not /api/contact", async ({
+  page,
+}) => {
+  let apiContactCalled = false;
+  let netlifyFormsPost: { contentType: string; body: string } | null = null;
+
+  await page.route(
+    (url) => url.pathname === "/api/contact",
+    async (route) => {
+      apiContactCalled = true;
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: '{"ok":true}',
+      });
+    },
+  );
+
+  await page.route(
+    (url) => url.pathname === "/contact",
+    async (route) => {
+      if (route.request().method() === "POST") {
+        netlifyFormsPost = {
+          contentType: route.request().headers()["content-type"] ?? "",
+          body: route.request().postData() ?? "",
+        };
+        await route.fulfill({ status: 200, body: "" });
+      } else {
+        await route.continue();
+      }
+    },
+  );
+
+  await page.goto("/contact");
+  await waitForForm(page);
+
+  await page.getByLabel("Name").fill("Alex Rivera");
+  await page.getByLabel("Email").fill("alex@example.com");
+  await page.getByLabel("Message").fill("I would like to discuss coaching.");
+  await page.getByRole("button", { name: /send|submit/i }).click();
+
+  await expect(
+    page.getByText(/thank you|message sent|we.ll be in touch/i),
+  ).toBeVisible();
+
+  expect(apiContactCalled).toBe(false);
+  expect(netlifyFormsPost).not.toBeNull();
+  expect(netlifyFormsPost!.contentType).toContain(
+    "application/x-www-form-urlencoded",
+  );
+  expect(netlifyFormsPost!.body).toContain("form-name=contact");
 });

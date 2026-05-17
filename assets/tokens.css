@@ -42,6 +42,9 @@
   /* Colour — coral reserved for logo mark only */
   --color-brand-coral: #ff795a;
 
+  /* Colour — accessible error red (6.54:1 on background, AA pass) */
+  --color-error: #a93226;
+
   /* Spacing scale (4px base, 8 steps) */
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;

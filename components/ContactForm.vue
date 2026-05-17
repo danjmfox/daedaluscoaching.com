@@ -108,7 +108,7 @@ onMounted(() => {
 .field-error {
   font-family: var(--font-family-body);
   font-size: var(--font-size-sm);
-  color: var(--color-brand-coral);
+  color: var(--color-error);
 }
 
 button[type="submit"] {

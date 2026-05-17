@@ -36,7 +36,7 @@ Items are ordered by priority within each section.
 | CN-3  | NEXT   | Replace placeholder CLD SVGs                       | `public/images/diagrams/approach.svg`, `background.svg` — hardcoded hex                |
 | CN-4  | LATER  | About page — deepen narrative                      | Skeleton exists; may need expansion after stability test verdict                       |
 | CN-5  | DONE   | 404 page                                           | Done 2026-05-17 — error.vue + Netlify 404 redirect                                     |
-| CN-6  | DONE   | Privacy policy page                                | Done 2026-05-17 — pages/privacy.vue + content/privacy.md (custom GDPR policy)         |
+| CN-6  | DONE   | Privacy policy page                                | Done 2026-05-17 — pages/privacy.vue + content/privacy.md (custom GDPR policy)          |
 | CN-7  | LATER  | Accessibility statement                            | Legal requirement in many jurisdictions; brief + contact details                       |
 | CN-8  | DONE   | Services page — content block redesign             | Done 2026-05-14 — 5 blocks + sequential NarrativeEdge; FanEdge fan-out/fan-in → CN-15  |
 | CN-9  | DONE   | Coach identity — LinkedIn links                    | Done 2026-05-14 — footer via runtimeConfig; bio on about page via existing narrative   |

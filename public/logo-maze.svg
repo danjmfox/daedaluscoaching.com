@@ -126,7 +126,7 @@
             240,80  280,80
             280,120 280,160 280,200
             320,200 370,200"
-    fill="none" stroke="#ff795a" stroke-width="8"
+    fill="none" stroke="#ffaa8c" stroke-width="8"
     stroke-linecap="round" stroke-linejoin="round"/>
 
   <!-- ── Layer 2: original wings + arc, scaled to canvas ──────────────── -->

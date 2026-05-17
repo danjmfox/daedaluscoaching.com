@@ -1,0 +1,95 @@
+{
+  "feature_id": "launch-readiness",
+  "goal": "Ship 404 page, CookieNotice, and OG meta — all three launch-readiness gaps",
+  "validation": {
+    "status": "approved",
+    "reviewer": "orchestrator",
+    "date": "2026-05-17"
+  },
+  "steps": [
+    {
+      "step_id": "01-01",
+      "name": "CookieNotice.vue component",
+      "slice": "slice-02",
+      "description": "Build CookieNotice.vue — first-visit dismissible banner, localStorage persistence, links to /privacy. Mount in app.vue.",
+      "files_to_modify": ["components/CookieNotice.vue", "app.vue"],
+      "test_file": "tests/e2e/launch-readiness/acceptance/cookie-notice.spec.ts",
+      "scenario_name": "cookie notice is visible on first visit",
+      "acceptance_criteria": [
+        "CookieNotice.vue renders on first visit with data-testid='cookie-notice'",
+        "Contains text matching /no cookies/i",
+        "Has dismiss button with data-testid='cookie-notice-dismiss'",
+        "Has link to /privacy",
+        "Dismiss sets localStorage flag, hides notice",
+        "Dismissed state persists across navigation and reload"
+      ],
+      "estimated_hours": 1
+    },
+    {
+      "step_id": "01-02",
+      "name": "Strip iubenda from CSP",
+      "slice": "slice-02",
+      "description": "Remove iubenda domains from Content-Security-Policy in public/_headers. Update architecture brief note.",
+      "files_to_modify": ["public/_headers"],
+      "test_file": "tests/e2e/launch-readiness/acceptance/cookie-notice.spec.ts",
+      "scenario_name": "response headers do not contain iubenda domains in CSP",
+      "acceptance_criteria": [
+        "public/_headers CSP does not contain iubenda.com or cdn.iubenda.com",
+        "CSP remains valid (script-src, style-src, img-src, connect-src, frame-src updated)"
+      ],
+      "estimated_hours": 0.25
+    },
+    {
+      "step_id": "02-01",
+      "name": "Custom error.vue — 404 page",
+      "slice": "slice-01",
+      "description": "Create error.vue at project root. Must include SiteHeader and SiteFooter (bypasses app.vue). Shows heading + homepage link. Configure Netlify 404 redirect.",
+      "files_to_modify": ["error.vue", "netlify.toml"],
+      "test_file": "tests/e2e/launch-readiness/acceptance/walking-skeleton.spec.ts",
+      "scenario_name": "visiting a non-existent path shows a branded error page",
+      "acceptance_criteria": [
+        "error.vue renders with site navigation visible",
+        "Has heading matching /not found/i",
+        "Has link matching /home/i",
+        "netlify.toml has [[redirects]] from='/*' to='/200.html' status=404"
+      ],
+      "estimated_hours": 2
+    },
+    {
+      "step_id": "02-02",
+      "name": "404 page full scenario set",
+      "slice": "slice-01",
+      "description": "Enable and verify remaining 404-page.spec.ts scenarios: header/footer, homepage link navigation, document title, deep path.",
+      "files_to_modify": [
+        "error.vue",
+        "tests/e2e/launch-readiness/acceptance/404-page.spec.ts"
+      ],
+      "test_file": "tests/e2e/launch-readiness/acceptance/404-page.spec.ts",
+      "scenario_name": "404 page renders with site header and footer",
+      "acceptance_criteria": [
+        "All 5 scenarios in 404-page.spec.ts pass",
+        "Page title is 'Page not found | Daedalus Coaching'",
+        "Footer visible",
+        "Homepage link navigates to /"
+      ],
+      "estimated_hours": 0.5
+    },
+    {
+      "step_id": "03-01",
+      "name": "OG meta tags in nuxt.config.ts",
+      "slice": "slice-03",
+      "description": "Extend app.head.meta in nuxt.config.ts with og:image, og:image:width, og:image:height, twitter:image. Image path: /images/og-card.png. Note: og-card.png asset is an owner action — wired config ships first.",
+      "files_to_modify": ["nuxt.config.ts"],
+      "test_file": "tests/e2e/launch-readiness/acceptance/og-image.spec.ts",
+      "scenario_name": "homepage head contains an og:image meta tag",
+      "acceptance_criteria": [
+        "og:image meta tag present on homepage pointing to /images/og-card.png",
+        "og:image:width = 1200, og:image:height = 630",
+        "twitter:image present",
+        "WS-03 passes (skipped until asset exists — config step ships independently)"
+      ],
+      "estimated_hours": 0.5,
+      "notes": "og-card.png asset creation is an owner action. This step wires the config. WS-03 scenario remains skipped until the image asset is created."
+    }
+  ]
+}

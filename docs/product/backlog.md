@@ -144,13 +144,14 @@ Low-acquisition-channel site, but referral partners checking the URL will share 
 
 ## UX & Interaction
 
-| ID   | Status | Item                                                   | Notes                                                          |
-| ---- | ------ | ------------------------------------------------------ | -------------------------------------------------------------- |
-| UX-1 | DONE   | Contact form success and error states                  | Done — v-if="submitted" confirmation state in ContactForm.vue  |
-| UX-2 | NEXT   | Email confirmation to enquirer on form submit          | Basic trust signal; Netlify Forms can trigger via notification |
-| UX-3 | LATER  | Mobile nav — verify usability at 375px                 | Keyboard + touch; current nav not tested at phone breakpoints  |
-| UX-4 | LATER  | Print stylesheet                                       | Low priority but some org evaluators print pages               |
-| UX-5 | LATER  | Testimonials / social proof (beyond credential badges) | Quota-blocked until practitioner has explicit client consent   |
+| ID   | Status | Item                                                     | Notes                                                                                                                                                                                                                                                                           |
+| ---- | ------ | -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| UX-1 | DONE   | Contact form success and error states                    | Done — v-if="submitted" confirmation state in ContactForm.vue                                                                                                                                                                                                                   |
+| UX-2 | NEXT   | Email confirmation to enquirer on form submit            | Basic trust signal; Netlify Forms can trigger via notification                                                                                                                                                                                                                  |
+| UX-3 | LATER  | Mobile nav — verify usability at 375px                   | Keyboard + touch; current nav not tested at phone breakpoints                                                                                                                                                                                                                   |
+| UX-4 | LATER  | Print stylesheet                                         | Low priority but some org evaluators print pages                                                                                                                                                                                                                                |
+| UX-5 | LATER  | Testimonials / social proof (beyond credential badges)   | Quota-blocked until practitioner has explicit client consent                                                                                                                                                                                                                    |
+| UX-6 | LATER  | Zcal booking integration — persona-aware engagement CTAs | Different booking paths per engagement type (1-to-1, team, org, workshop, contract/perm). Link-out vs embed TBD. Replaces or supplements contact form. Linked from services pages. Run DISCUSS wave before design — involves persona routing and hiring vs coaching separation. |
 
 ---
 

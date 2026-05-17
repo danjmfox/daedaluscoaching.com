@@ -25,8 +25,8 @@ discovery call. It is not an acquisition channel — it is a trust gate.
 
 - Netlify: static site hosting, form submission handling, proxy routing to Swoopy
 - Swoopy: React/Vite causal loop diagram app at `~/projects/swoopy`, deployed separately
-- iubenda: GDPR consent banner (third-party script)
-- Plausible (or equivalent privacy-first analytics): visitor behaviour signals
+- CookieNotice.vue: first-visit dismissible trust signal (built-in component, no third-party)
+- Analytics: deferred — no tool installed. When added, a consent-exempt privacy-first tool (Fathom, Plausible, Umami) is the stated direction.
 
 ---
 
@@ -61,7 +61,7 @@ C4Context
 
   System_Ext(swoopy, "Swoopy", "React/Vite causal loop diagram simulator (separate Netlify site)")
   System_Ext(netlify_forms, "Netlify Forms", "Receives and stores contact form submissions")
-  System_Ext(iubenda, "iubenda", "GDPR consent banner and privacy policy hosting")
+  System_Ext(cookie_notice, "Cookie Notice", "First-visit dismissible banner (built-in CookieNotice.vue — no third-party)")
   System_Ext(analytics, "Plausible Analytics", "Privacy-first visitor event tracking")
 
   Rel(client, site, "Visits to assess credibility via")
@@ -70,7 +70,7 @@ C4Context
 
   Rel(site, swoopy, "Embeds diagram app at /swoopy/ via")
   Rel(site, netlify_forms, "Submits contact enquiries to")
-  Rel(site, iubenda, "Loads consent banner from")
+  Rel(site, cookie_notice, "Renders on first visit via")
   Rel(site, analytics, "Sends anonymised visit events to")
 ```
 
@@ -182,28 +182,26 @@ Violation = build failure. Architecture is load-bearing, not conventional.
 
 ## Technology Stack
 
-| Component              | Technology                         | Version           | Licence                 | Rationale                                                 |
-| ---------------------- | ---------------------------------- | ----------------- | ----------------------- | --------------------------------------------------------- |
-| Framework              | Nuxt 3                             | ^3.x              | MIT                     | Pre-decided; Vue learning harness; SSG for static hosting |
-| Runtime language       | TypeScript (type-stripped)         | ^5.x              | Apache 2.0              | Owner preference; ESM; no build overhead                  |
-| Validation             | Zod                                | ^3.x              | MIT                     | Pre-decided; central to contact schema in core/           |
-| Content                | @nuxt/content v3                   | ^3.x              | MIT                     | Pre-decided; markdown-in-repo; v3.13.0 confirmed by spike |
-| Testing (unit)         | Vitest                             | ^2.x              | MIT                     | Native Vite integration; fast; no config overhead         |
-| Testing (e2e)          | Playwright                         | ^1.x              | Apache 2.0              | Multi-browser; outer TDD loop                             |
-| Mutation testing       | Stryker (stryker-vitest)           | ^8.x              | Apache 2.0              | Core/ purity makes it viable without mocks                |
-| Component testing      | Vue Test Utils                     | ^2.x              | MIT                     | Official Vue testing library                              |
-| CSS tokens             | CSS Custom Properties + Stylelint  | — / ^16.x         | MIT                     | Zero-dependency token system; lint-enforced               |
-| Token lint plugin      | stylelint-declaration-strict-value | ^1.x              | MIT                     | Enforces var(--token-\*) requirement                      |
-| Dependency enforcement | dependency-cruiser                 | ^16.x             | MIT                     | CI enforcement of core/shell boundary                     |
-| Pre-commit             | lefthook                           | ^1.x              | MIT                     | Hooks: pnpm test --run + stylelint                        |
-| Deployment             | Netlify                            | Free tier         | Proprietary (hosting)   | Pre-decided; Netlify Forms included                       |
-| Swoopy proxy           | Netlify redirect rules             | —                 | —                       | Same-origin iframe via netlify.toml                       |
-| GDPR consent           | iubenda                            | —                 | Proprietary (SaaS)      | Pre-existing; legal requirement                           |
-| Analytics              | Plausible                          | Cloud / self-host | AGPL (self-host) / SaaS | Privacy-first; GDPR-compatible                            |
+| Component              | Technology                         | Version   | Licence               | Rationale                                                                      |
+| ---------------------- | ---------------------------------- | --------- | --------------------- | ------------------------------------------------------------------------------ |
+| Framework              | Nuxt 3                             | ^3.x      | MIT                   | Pre-decided; Vue learning harness; SSG for static hosting                      |
+| Runtime language       | TypeScript (type-stripped)         | ^5.x      | Apache 2.0            | Owner preference; ESM; no build overhead                                       |
+| Validation             | Zod                                | ^3.x      | MIT                   | Pre-decided; central to contact schema in core/                                |
+| Content                | @nuxt/content v3                   | ^3.x      | MIT                   | Pre-decided; markdown-in-repo; v3.13.0 confirmed by spike                      |
+| Testing (unit)         | Vitest                             | ^2.x      | MIT                   | Native Vite integration; fast; no config overhead                              |
+| Testing (e2e)          | Playwright                         | ^1.x      | Apache 2.0            | Multi-browser; outer TDD loop                                                  |
+| Mutation testing       | Stryker (stryker-vitest)           | ^8.x      | Apache 2.0            | Core/ purity makes it viable without mocks                                     |
+| Component testing      | Vue Test Utils                     | ^2.x      | MIT                   | Official Vue testing library                                                   |
+| CSS tokens             | CSS Custom Properties + Stylelint  | — / ^16.x | MIT                   | Zero-dependency token system; lint-enforced                                    |
+| Token lint plugin      | stylelint-declaration-strict-value | ^1.x      | MIT                   | Enforces var(--token-\*) requirement                                           |
+| Dependency enforcement | dependency-cruiser                 | ^16.x     | MIT                   | CI enforcement of core/shell boundary                                          |
+| Pre-commit             | lefthook                           | ^1.x      | MIT                   | Hooks: pnpm test --run + stylelint                                             |
+| Deployment             | Netlify                            | Free tier | Proprietary (hosting) | Pre-decided; Netlify Forms included                                            |
+| Swoopy proxy           | Netlify redirect rules             | —         | —                     | Same-origin iframe via netlify.toml                                            |
+| Cookie notice          | CookieNotice.vue (built-in)        | —         | MIT (own code)        | Custom dismissible banner; no third-party dependency; localStorage persistence |
+| Analytics              | None (deferred)                    | —         | —                     | Consent-exempt privacy-first tool intended when added; no tool installed       |
 
-No unjustified proprietary dependencies. Netlify and iubenda are pre-existing decisions
-with legal/operational rationale. Plausible's AGPL licence applies only to self-hosted
-deployment; cloud usage is SaaS subscription (owner's choice).
+No unjustified proprietary dependencies. Netlify is a pre-existing decision with operational rationale.
 
 ---
 
@@ -232,16 +230,16 @@ deployment; cloud usage is SaaS subscription (owner's choice).
 
 - SSG: all pages pre-rendered, served from CDN edge
 - No client-side data fetching on initial load (content is build-time)
-- iubenda and Plausible load asynchronously (non-blocking)
+- CookieNotice.vue renders client-side after first paint (non-blocking)
 
 ### Security
 
 - No user authentication — not in scope for v1
 - Contact form: server-side Zod validation prevents malformed submissions reaching Netlify Forms
-- iubenda GDPR banner: consent before analytics load (existing implementation)
+- CookieNotice.vue: informs visitors of no-tracking policy; no consent flow needed (no non-essential cookies)
 - CSP baseline (architectural constraint — full configuration at Sprint 1):
   - `default-src 'self'`
-  - `script-src 'self' [iubenda domains] [plausible domain]`
+  - `script-src 'self'` (no third-party scripts; iubenda removed 2026-05-17)
   - `frame-src 'self'` — Swoopy iframe is same-origin via proxy, no external frame-src needed
   - `img-src 'self' data:`
   - Netlify `_headers` file is the delivery mechanism; no server runtime required (SSG)
@@ -322,6 +320,20 @@ because there is no server process to manage.
 
 ---
 
+## launch-readiness Addendum (2026-05-17)
+
+Three presentation-layer additions. No new architectural layers, no new ports, no core/ changes.
+
+| Item                | Implementation                                                                       | Pattern                                                                                                            |
+| ------------------- | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| Custom 404 page     | `error.vue` (project root) + Netlify `[[redirects]]` `status = 404`                  | Nuxt standard error hook; `error.vue` must explicitly include `<SiteHeader>` + `<SiteFooter>` (bypasses `app.vue`) |
+| Privacy policy page | `pages/privacy.vue` + `content/privacy.md`                                           | Already complete — custom GDPR policy.                                                                             |
+| OG social card      | Static `public/images/og-card.png` + 4 meta tags in `nuxt.config.ts` `app.head.meta` | Extends existing head config; global propagation to all SSG pages                                                  |
+
+Note: `pages/privacy.vue` and `content/privacy.md` were found already implemented. iubenda removed from stack — replaced by `CookieNotice.vue`.
+
+---
+
 ## Open Items
 
 | ID        | Item                                              | Owner     | Trigger                                                         |
@@ -369,11 +381,8 @@ signatures. Dependency injection via parameter passing.
 
 - Netlify Forms: form submission storage. Not a third-party API contract — behaviour validated
   by CI check for `data-netlify` attribute presence in generated HTML.
-- iubenda: GDPR consent banner loaded as third-party script. CSP configuration must whitelist
-  iubenda domains. No programmatic API — script tag only.
-- Plausible Analytics: privacy-first analytics. CSP must whitelist Plausible domain. GDPR
-  compliant by default (no cookies, no personal data). No consumer-driven contract test
-  required at this scale.
+- CookieNotice.vue: built-in component, no third-party script. No CSP changes needed.
+- Analytics: deferred. When added, a consent-exempt privacy-first tool is the stated direction (no ads, no data selling).
 - Swoopy (Netlify proxy): internal project, not a third-party API. No Pact test required.
   If SPIKE-01 elevates to npm package publication, revisit.
 

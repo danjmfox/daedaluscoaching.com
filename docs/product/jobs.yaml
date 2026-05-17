@@ -125,3 +125,80 @@ jobs:
       habit: Check the site before sharing → decide whether it needs prefacing → share with or without caveat.
     status: tertiary
     stories: [S-VI-005]
+
+  - id: JOB-NAV-001
+    name: Mobile navigation usability
+    feature_id: header-mobile-nav
+    persona: persona-prospective-client (mobile visitor)
+    opportunity_score: 8
+    job_story: >
+      When visiting the site on a phone,
+      I want the navigation to present clearly without zooming or horizontal scrolling,
+      so I can move to the section I need without friction undermining my first impression
+      of the practice.
+    dimensions:
+      functional: >
+        Read all four nav links without zooming. Tap a link and reach the target page.
+        Not encounter horizontal overflow or clipped content in the header area.
+      emotional: >
+        Feel that the site is polished and deliberate from the first scroll — not that
+        it was designed only for desktop and the mobile experience was an afterthought.
+        The calm professional register should hold at every viewport width.
+      social: >
+        Arrive via a referral link on a phone and form the same first impression as a
+        desktop visitor — the site should not require explanation or caveating because
+        it looks broken on mobile.
+    four_forces:
+      push: >
+        Nav links cramped into a single horizontal row with no responsive breakpoint.
+        On phones narrower than the flex row, links either overflow, wrap awkwardly,
+        or become too small to tap confidently. The mismatch between the site's calm
+        professional register and a broken mobile layout creates cognitive dissonance.
+      pull: >
+        A header that stacks naturally on narrow screens — logo on top, links below,
+        all legible and tappable. No zooming, no horizontal scroll. The visitor's
+        attention goes to the content, not to correcting a layout problem.
+      anxiety: >
+        Will the stacked layout look considered, or will it look like a fallback?
+        Will the wordmark and logo fit well side by side in the top row at narrow widths?
+      habit: >
+        Arrive via URL → glance at header for orientation → tap a nav link or scroll.
+        On desktop this works; on mobile the habit is interrupted by the layout failure.
+    status: primary
+    stories: [US-NAV-001, US-NAV-002]
+
+  - id: JOB-LR-001
+    name: Uncaveated sharing
+    feature_id: launch-readiness
+    persona: owner-editor
+    opportunity_score: 12
+    job_story: >
+      When I share the site URL with a referral partner or potential client,
+      I want every page and social preview to represent the practice professionally,
+      so I can share it without mental reservations or explanatory context.
+    dimensions:
+      functional: >
+        404 → branded dead-end recovery; privacy policy → legal baseline met;
+        OG image → social previews render correctly with brand identity.
+      emotional: >
+        No hesitation before sharing a link. The site feels finished without asterisks.
+        Confidence that the URL will land well regardless of how or where it is shared.
+      social: >
+        Referral partners forward the URL and it reflects well — no broken previews,
+        no bare error pages, no missing legal page that would signal an incomplete site.
+    four_forces:
+      push: >
+        CN-5: broken links return a bare Nuxt fallback with no branding or navigation.
+        CN-6: GDPR exposure — iubenda cookie banner has no policy URL to link to.
+        SEO-8: sharing on LinkedIn/Slack shows a text-only preview with Nuxt default title.
+      pull: >
+        A site that can be shared without prefacing or caveating. OG preview shows brand.
+        Broken links recover gracefully. Legal baseline is clean and visibly so.
+      anxiety: >
+        OG image requires design effort — is a text-only card acceptable for now?
+        404 is rarely hit pre-launch — is the effort proportionate?
+      habit: >
+        Owner checks the site before sharing → notices gaps → adds mental caveats →
+        shares with reservation. This cycle erodes confidence in the site as a business asset.
+    status: primary
+    stories: [S-LR-001, S-LR-002, S-LR-003]

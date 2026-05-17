@@ -29,7 +29,11 @@ export default defineNuxtConfig({
       meta: [
         { property: "og:site_name", content: "Daedalus Coaching" },
         { property: "og:type", content: "website" },
-        { name: "twitter:card", content: "summary" },
+        { property: "og:image", content: "/images/og-card.png" },
+        { property: "og:image:width", content: "1200" },
+        { property: "og:image:height", content: "630" },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:image", content: "/images/og-card.png" },
       ],
     },
   },

@@ -5,6 +5,7 @@
       <NuxtPage />
     </div>
     <SiteFooter />
+    <CookieNotice />
   </div>
 </template>
 

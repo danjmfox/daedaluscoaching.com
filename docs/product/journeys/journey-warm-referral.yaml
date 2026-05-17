@@ -69,3 +69,27 @@ measurement:
   target: Establish baseline; improve in subsequent iterations
 
 evidence_source: persona-prospective-client, OPP-01, OPP-02, OPP-04, coaching sector norms
+
+# Gap points identified in launch-readiness DISCUSS wave (2026-05-17)
+# These are pre-step and off-happy-path gaps that erode trust before step 2 completes.
+off_path_gaps:
+  - gap: broken-link-recovery
+    touch_point: pre-step-1
+    current_state: Nuxt bare error fallback — no branding, no navigation
+    desired_state: Branded error.vue with header, footer, and homepage link
+    story: S-LR-001
+    feature: launch-readiness
+
+  - gap: social-share-preview
+    touch_point: pre-step-1 (shared URL in Slack/LinkedIn/email)
+    current_state: Text-only preview with Nuxt default title; no image
+    desired_state: 1200×630 branded OG card shows practice identity before click-through
+    story: S-LR-003
+    feature: launch-readiness
+
+  - gap: legal-due-diligence
+    touch_point: post-step-5 (or during org evaluator background check)
+    current_state: No /privacy page; iubenda cookie banner links nowhere
+    desired_state: /privacy resolves with iubenda-generated policy; cookie banner links correctly
+    story: S-LR-002
+    feature: launch-readiness

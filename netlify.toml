@@ -13,3 +13,10 @@ from = "/swoopy/*"
 to = "https://swoopy.netlify.app/:splat"
 status = 200
 force = true
+
+# Serve custom 404 page for any unmatched path.
+# Nuxt SSG generates 200.html as the SPA fallback; Netlify serves it with 404 status.
+[[redirects]]
+from = "/*"
+to = "/200.html"
+status = 404

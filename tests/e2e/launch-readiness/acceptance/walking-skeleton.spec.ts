@@ -24,19 +24,19 @@ test("visiting a non-existent path shows a branded error page", async ({
   await expect(page.getByRole("link", { name: "Back to home" })).toBeVisible();
 });
 
-// WS-02 (skip): privacy page resolves and shows policy content. [S-LR-002]
-test.skip("visiting /privacy shows the privacy policy", async ({ page }) => {
+// WS-02: privacy page resolves and shows policy content. [S-LR-002]
+test("visiting /privacy shows the privacy policy", async ({ page }) => {
   await page.goto("/privacy");
 
   await expect(
     page.getByRole("navigation", { name: "Main navigation" }),
   ).toBeVisible();
   await expect(page.getByRole("heading", { name: /privacy/i })).toBeVisible();
-  await expect(page.getByText(/Daedalus Coaching Ltd/)).toBeVisible();
+  await expect(page.getByText(/Daedalus Coaching Ltd is a/)).toBeVisible();
 });
 
-// WS-03 (skip): homepage has og:image meta tag. [S-LR-003]
-test.skip("homepage head contains an og:image meta tag", async ({ page }) => {
+// WS-03: homepage has og:image meta tag. [S-LR-003]
+test("homepage head contains an og:image meta tag", async ({ page }) => {
   await page.goto("/");
 
   const ogImage = page.locator('meta[property="og:image"]');

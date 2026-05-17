@@ -77,7 +77,7 @@
   color: var(--color-accent);
 }
 
-@media (max-width: 600px) {
+@media (width <= 600px) {
   .header-inner {
     flex-direction: column;
     align-items: center;

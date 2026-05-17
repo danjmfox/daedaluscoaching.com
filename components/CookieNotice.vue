@@ -76,10 +76,10 @@ function dismiss() {
 }
 
 .cookie-notice__dismiss:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgb(255 255 255 / 10%);
 }
 
-@media (max-width: 480px) {
+@media (width <= 480px) {
   .cookie-notice {
     flex-direction: column;
     align-items: flex-start;

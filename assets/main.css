@@ -59,6 +59,14 @@ a {
   text-decoration: none;
 }
 
+h1 a,
+h2 a,
+h3 a,
+h4 a {
+  color: inherit;
+  text-decoration: none;
+}
+
 a:hover {
   text-decoration: underline;
 }
@@ -85,14 +93,6 @@ a:hover {
 
 .skip-link:focus {
   top: var(--space-sm);
-}
-
-h1 a,
-h2 a,
-h3 a,
-h4 a {
-  color: inherit;
-  text-decoration: none;
 }
 
 .container {
@@ -140,17 +140,17 @@ h4 a {
 }
 
 /* Mobile: stack image above text regardless of placement */
-@media (max-width: 48rem) {
+@media (width <= 48rem) {
   .content-block--image-left,
   .content-block--image-right {
     grid-template-columns: 1fr;
   }
 
-  .content-block--image-right .content-block__image {
-    order: -1;
-  }
-
   .content-block__image {
     max-width: 8rem;
+  }
+
+  .content-block--image-right .content-block__image {
+    order: -1;
   }
 }

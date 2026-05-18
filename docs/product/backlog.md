@@ -29,30 +29,30 @@ Items are ordered by priority within each section.
 
 ## Content (pages not yet written)
 
-| ID    | Status | Item                                               | Notes                                                                                  |
-| ----- | ------ | -------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| CN-1  | DONE   | Contact page prose                                 | Done 2026-05-14                                                                        |
-| CN-2  | DONE   | Services page — full build                         | Done 2026-05-14 — three-mode structure (individuals/teams/orgs)                        |
-| CN-3  | NEXT   | Replace placeholder CLD SVGs                       | `public/images/diagrams/approach.svg`, `background.svg` — hardcoded hex                |
-| CN-4  | LATER  | About page — deepen narrative                      | Skeleton exists; may need expansion after stability test verdict                       |
-| CN-5  | DONE   | 404 page                                           | Done 2026-05-17 — error.vue + Netlify 404 redirect                                     |
-| CN-6  | DONE   | Privacy policy page                                | Done 2026-05-17 — pages/privacy.vue + content/privacy.md (custom GDPR policy)          |
-| CN-7  | LATER  | Accessibility statement                            | Legal requirement in many jurisdictions; brief + contact details                       |
-| CN-8  | DONE   | Services page — content block redesign             | Done 2026-05-14 — 5 blocks + sequential NarrativeEdge; FanEdge fan-out/fan-in → CN-15  |
-| CN-9  | DONE   | Coach identity — LinkedIn links                    | Done 2026-05-14 — footer via runtimeConfig; bio on about page via existing narrative   |
-| CN-10 | DONE   | Coach photo — placeholder + enable/disable flag    | Done 2026-05-14 — flip enabled=true + drop headshot.jpg when ready                     |
-| CN-11 | DONE   | Location / geography                               | Done 2026-05-14 — contact page: "Hampshire, UK and remote"                             |
-| CN-12 | DONE   | Engagement scales on services page                 | Done 2026-05-14 — services-engagement.md block                                         |
-| CN-15 | LATER  | FanEdge — 3-way fork/recombine on services page    | Needs FanEdge.vue + BlockGroup abstraction in useComposedPage; design session required |
-| CN-13 | LATER  | Credentials "Find out more" expand pattern         | Low-key link/expand to certification bodies from trust signals or about page           |
-| CN-14 | LATER  | Abstract imagery for service personas              | Individual / team / org content blocks on services page (depends on CN-8)              |
+| ID    | Status | Item                                               | Notes                                                                                                                                                                          |
+| ----- | ------ | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| CN-1  | DONE   | Contact page prose                                 | Done 2026-05-14                                                                                                                                                                |
+| CN-2  | DONE   | Services page — full build                         | Done 2026-05-14 — three-mode structure (individuals/teams/orgs)                                                                                                                |
+| CN-3  | NEXT   | Replace placeholder CLD SVGs                       | `public/images/diagrams/approach.svg`, `background.svg` — hardcoded hex                                                                                                        |
+| CN-4  | LATER  | About page — deepen narrative                      | Skeleton exists; may need expansion after stability test verdict                                                                                                               |
+| CN-5  | DONE   | 404 page                                           | Done 2026-05-17 — error.vue + Netlify 404 redirect                                                                                                                             |
+| CN-6  | DONE   | Privacy policy page                                | Done 2026-05-17 — pages/privacy.vue + content/privacy.md (custom GDPR policy)                                                                                                  |
+| CN-7  | LATER  | Accessibility statement                            | Legal requirement in many jurisdictions; brief + contact details                                                                                                               |
+| CN-8  | DONE   | Services page — content block redesign             | Done 2026-05-14 — 5 blocks + sequential NarrativeEdge; FanEdge fan-out/fan-in → CN-15                                                                                          |
+| CN-9  | DONE   | Coach identity — LinkedIn links                    | Done 2026-05-14 — footer via runtimeConfig; bio on about page via existing narrative                                                                                           |
+| CN-10 | DONE   | Coach photo — placeholder + enable/disable flag    | Done 2026-05-14 — flip enabled=true + drop headshot.jpg when ready                                                                                                             |
+| CN-11 | DONE   | Location / geography                               | Done 2026-05-14 — contact page: "Hampshire, UK and remote"                                                                                                                     |
+| CN-12 | DONE   | Engagement scales on services page                 | Done 2026-05-14 — services-engagement.md block                                                                                                                                 |
+| CN-15 | LATER  | FanEdge — 3-way fork/recombine on services page    | Needs FanEdge.vue + BlockGroup abstraction in useComposedPage; design session required                                                                                         |
+| CN-13 | LATER  | Credentials "Find out more" expand pattern         | Low-key link/expand to certification bodies from trust signals or about page                                                                                                   |
+| CN-14 | LATER  | Abstract imagery for service personas              | Individual / team / org content blocks on services page (depends on CN-8)                                                                                                      |
 | CN-20 | LATER  | Transformation narrative section                   | Outcomes/case studies for recruiter/hiring-manager persona. Anonymised archetypes ("mid-size EdTech," "enterprise team"). Makes invisible coaching work visible. See IDEAS.md. |
-| CN-21 | LATER  | "What I'm actually working on" signal               | Current focus areas, patterns seen across clients, what isn't in scope. Social currency for referrers; differentiates from static service list. See IDEAS.md.                 |
-| CN-22 | LATER  | "Common starting points" recognition copy           | Problem-first framing for IC/team lead persona: "your team is shipping less and nobody knows why." Recognition over prescription. May belong on services page or homepage.     |
-| CN-16 | DONE   | "Barely sufficient / Last responsible moment" copy | Done 2026-05-15 — added to `about-approach.md`                                         |
-| CN-17 | DONE   | Org design — light touch in services-orgs.md       | Done 2026-05-15 — structural design framing + contact prompt added                     |
-| CN-18 | DONE   | Brand voice guidelines doc                         | Done 2026-05-15 — `.claude/brand-voice-guidelines.md`                                  |
-| CN-19 | DONE   | Confirm typeface name in brand docs                | Done 2026-05-15 — Fraunces Variable (heading), Plus Jakarta Sans Variable (body)       |
+| CN-21 | LATER  | "What I'm actually working on" signal              | Current focus areas, patterns seen across clients, what isn't in scope. Social currency for referrers; differentiates from static service list. See IDEAS.md.                  |
+| CN-22 | LATER  | "Common starting points" recognition copy          | Problem-first framing for IC/team lead persona: "your team is shipping less and nobody knows why." Recognition over prescription. May belong on services page or homepage.     |
+| CN-16 | DONE   | "Barely sufficient / Last responsible moment" copy | Done 2026-05-15 — added to `about-approach.md`                                                                                                                                 |
+| CN-17 | DONE   | Org design — light touch in services-orgs.md       | Done 2026-05-15 — structural design framing + contact prompt added                                                                                                             |
+| CN-18 | DONE   | Brand voice guidelines doc                         | Done 2026-05-15 — `.claude/brand-voice-guidelines.md`                                                                                                                          |
+| CN-19 | DONE   | Confirm typeface name in brand docs                | Done 2026-05-15 — Fraunces Variable (heading), Plus Jakarta Sans Variable (body)                                                                                               |
 
 ---
 
@@ -171,21 +171,21 @@ Low-acquisition-channel site, but referral partners checking the URL will share 
 
 ## Content Strategy (requires DISCOVER before build)
 
-| ID    | Status | Item                                                              | Notes                                                                                                                                                        |
-| ----- | ------ | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| STR-1 | LATER  | DISCOVER: who actually finds you and how                          | Answer before building CN-20/21/22. Questions: organic vs referral breakdown; conversion moment (call? content? contact?); what you know that others don't. |
-| STR-2 | LATER  | Reconsider DEF-1/2/3 with proof-of-practice framing              | IDEAS.md argues thought leadership on dysfunction patterns is a discovery mechanism, not content-for-content's-sake. Run STR-1 first.                        |
+| ID    | Status | Item                                                | Notes                                                                                                                                                       |
+| ----- | ------ | --------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| STR-1 | LATER  | DISCOVER: who actually finds you and how            | Answer before building CN-20/21/22. Questions: organic vs referral breakdown; conversion moment (call? content? contact?); what you know that others don't. |
+| STR-2 | LATER  | Reconsider DEF-1/2/3 with proof-of-practice framing | IDEAS.md argues thought leadership on dysfunction patterns is a discovery mechanism, not content-for-content's-sake. Run STR-1 first.                       |
 
 ---
 
 ## Deferred (deliberate — revisit at 6-month review)
 
-| ID    | Item                            | Decision record                                                                 |
-| ----- | ------------------------------- | ------------------------------------------------------------------------------- |
-| DEF-1 | Blog                            | No client demand evidence; scope inflation pattern confirmed. See STR-2.        |
-| DEF-2 | Bookshelf                       | Same rationale as blog. See STR-2.                                              |
-| DEF-3 | `/resources/` sub-directory     | No evidence; revisit if referral partners request it. See STR-2.               |
-| DEF-4 | Nuxt Layers architecture        | Wrong tool; Swoopy is React not Nuxt                         |
-| DEF-5 | Swoopy web component (SPIKE-01) | Deferred per ADR-003; trigger: SPIKE-01 trigger conditions   |
-| DEF-6 | Client portal                   | Revisit if practice grows to multiple concurrent clients     |
-| DEF-7 | Booking system integration      | Out of scope; discovery call scheduling is currently manual  |
+| ID    | Item                            | Decision record                                                          |
+| ----- | ------------------------------- | ------------------------------------------------------------------------ |
+| DEF-1 | Blog                            | No client demand evidence; scope inflation pattern confirmed. See STR-2. |
+| DEF-2 | Bookshelf                       | Same rationale as blog. See STR-2.                                       |
+| DEF-3 | `/resources/` sub-directory     | No evidence; revisit if referral partners request it. See STR-2.         |
+| DEF-4 | Nuxt Layers architecture        | Wrong tool; Swoopy is React not Nuxt                                     |
+| DEF-5 | Swoopy web component (SPIKE-01) | Deferred per ADR-003; trigger: SPIKE-01 trigger conditions               |
+| DEF-6 | Client portal                   | Revisit if practice grows to multiple concurrent clients                 |
+| DEF-7 | Booking system integration      | Out of scope; discovery call scheduling is currently manual              |

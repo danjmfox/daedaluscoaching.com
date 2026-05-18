@@ -139,7 +139,7 @@ Low-acquisition-channel site, but referral partners checking the URL will share 
 
 | ID    | Status      | Item                                                          | Notes                                                                      |
 | ----- | ----------- | ------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| INF-1 | IN-PROGRESS | Deploy Swoopy to Netlify + update proxy URL in `netlify.toml` | DISCUSS complete (inf-1-swoopy-url); target: `swoopy.daedaluscoaching.com` |
+| INF-1 | BLOCKED | Deploy Swoopy to Netlify + update proxy URL in `netlify.toml` | DISCUSS complete; netlify.toml updated on branch; blocked: Netlify free credits exhausted for the month. Resume when credits reset or plan upgraded. |
 | INF-2 | LATER       | Netlify deploy previews — verify branch deploys work          | Useful for reviewing content changes before merging                        |
 | INF-3 | LATER       | DEVOPS wave artifact for website-redesign feature             | Feature is at DESIGN approved; no DEVOPS artifact exists yet               |
 

@@ -11,6 +11,7 @@ blocks:
   - about-certifications
   - about-daedalus
   - about-working-with-me
+  - about-site
 # Alternative (Direction A — three-era sweep with images):
 #   - about-approach
 #   - about-era-digital

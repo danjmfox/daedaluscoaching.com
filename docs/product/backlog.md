@@ -137,11 +137,11 @@ Low-acquisition-channel site, but referral partners checking the URL will share 
 
 ## Infrastructure & Deployment
 
-| ID    | Status | Item                                                           | Notes                                                        |
-| ----- | ------ | -------------------------------------------------------------- | ------------------------------------------------------------ |
-| INF-1 | NEXT   | Update Swoopy proxy URL in `netlify.toml` once Swoopy deployed | CLAUDE.md open item; current `to` value is a placeholder     |
-| INF-2 | LATER  | Netlify deploy previews — verify branch deploys work           | Useful for reviewing content changes before merging          |
-| INF-3 | LATER  | DEVOPS wave artifact for website-redesign feature              | Feature is at DESIGN approved; no DEVOPS artifact exists yet |
+| ID    | Status      | Item                                                          | Notes                                                                      |
+| ----- | ----------- | ------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| INF-1 | IN-PROGRESS | Deploy Swoopy to Netlify + update proxy URL in `netlify.toml` | DISCUSS complete (inf-1-swoopy-url); target: `swoopy.daedaluscoaching.com` |
+| INF-2 | LATER       | Netlify deploy previews — verify branch deploys work          | Useful for reviewing content changes before merging                        |
+| INF-3 | LATER       | DEVOPS wave artifact for website-redesign feature             | Feature is at DESIGN approved; no DEVOPS artifact exists yet               |
 
 ---
 
@@ -160,12 +160,12 @@ Low-acquisition-channel site, but referral partners checking the URL will share 
 
 ## Testing
 
-| ID    | Status | Item                                                       | Notes                                                          |
-| ----- | ------ | ---------------------------------------------------------- | -------------------------------------------------------------- |
-| TST-1 | DONE   | Contact form acceptance tests                              | Done 2026-05-14 — 9 scenarios in contact-page.spec.ts          |
-| TST-2 | DONE   | Swoopy embed acceptance tests                              | Done 2026-05-14 — 4 enabled; modelId scenario skipped (INF-1)  |
-| TST-3 | LATER  | Visual regression baseline                                 | After stability test passes; snapshot before any token changes |
-| TST-4 | LATER  | Playwright e2e smoke test — contact form submit on Netlify | Requires staging environment or branch deploy                  |
+| ID    | Status | Item                                                       | Notes                                                                                                                                         |
+| ----- | ------ | ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| TST-1 | DONE   | Contact form acceptance tests                              | Done 2026-05-14 — 9 scenarios in contact-page.spec.ts                                                                                         |
+| TST-2 | DONE   | Swoopy embed acceptance tests                              | Done 2026-05-14 — 4 enabled; modelId scenario (Scenario 2) skipped until a page embeds `<SwoopyEmbed modelId="..." />` — NOT blocked by INF-1 |
+| TST-3 | LATER  | Visual regression baseline                                 | After stability test passes; snapshot before any token changes                                                                                |
+| TST-4 | LATER  | Playwright e2e smoke test — contact form submit on Netlify | Requires staging environment or branch deploy                                                                                                 |
 
 ---
 

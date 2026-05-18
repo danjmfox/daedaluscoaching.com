@@ -19,7 +19,7 @@ Items are ordered by priority within each section.
 | ---- | ------ | ------------------------------------------------------------------- | ------------------------------------------------------------- |
 | HK-1 | DONE   | Commit modified docs (`execution-log.json`, `feature-delta.md`)     | Done 2026-05-14                                               |
 | HK-2 | DONE   | Decide on `.develop-progress.json` — commit or add to `.gitignore`  | Gitignored 2026-05-14                                         |
-| HK-3 | NEXT   | Fix DES CLI — `ModuleNotFoundError: No module named des`            | Required before any future tracked delivery work              |
+| HK-3 | DONE   | Fix DES CLI — `ModuleNotFoundError: No module named des`            | Already resolved via des.pth — all tools verified working 2026-05-18 |
 | HK-4 | DONE   | Register lefthook: `pnpm dlx lefthook install`                      | Done 2026-05-17                                               |
 | HK-5 | DONE   | Add stylelint: `.stylelintrc.cjs` + `pnpm lint` script              | Done 2026-05-17 — BEM pattern configured, 31 errors resolved  |
 | HK-6 | NEXT   | Close out DISCUSS DoD unchecked items or mark as acknowledged skips | JTBD analysis, peer review (LD-08), DoR validation still open |
@@ -57,18 +57,18 @@ Items are ordered by priority within each section.
 
 Calibrate to the org evaluator persona — corporate environments often include users with access needs. AA compliance is the floor; it also signals professional credibility.
 
-| ID     | Status | Item                                                              | Notes                                                                  |
-| ------ | ------ | ----------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| A11-1  | DONE   | Audit keyboard navigation throughout                              | Done 2026-05-18 — manual pass; skip link bug found and fixed           |
-| A11-2  | DONE   | Add skip navigation link (`<a href="#main">Skip to content</a>`)  | Done 2026-05-14; focus bug fixed 2026-05-18 (tabindex="-1" on main)    |
-| A11-3  | DONE   | Verify colour contrast — all text and interactive elements        | Done 2026-05-18 — one failure fixed: coral error text → --color-error  |
-| A11-4  | DONE   | Audit focus indicators                                            | Done 2026-05-14 — global :focus-visible + form scoped override         |
-| A11-5  | DONE   | Add `prefers-reduced-motion` guards to NarrativeEdge animations   | N/A — NarrativeEdge is a static SVG, no animation                      |
-| A11-6  | DONE   | Alt text audit — all images                                       | Done 2026-05-18 — logo decorative, diagrams use image_alt frontmatter  |
-| A11-7  | DONE   | ARIA landmarks — verify `<main>`, `<nav>`, `<header>`, `<footer>` | Done 2026-05-18 — all present and labelled; regression test added      |
-| A11-8  | LATER  | Screen reader test (VoiceOver + NVDA)                             | Manual pass; catch issues automated tools miss                         |
-| A11-9  | LATER  | High-contrast mode support                                        | Verify `forced-colors: active` doesn't break layout or icons           |
-| A11-10 | LATER  | Touch target size audit                                           | Min 44×44px (WCAG 2.5.5); check mobile nav and contact CTA             |
+| ID     | Status | Item                                                              | Notes                                                                 |
+| ------ | ------ | ----------------------------------------------------------------- | --------------------------------------------------------------------- |
+| A11-1  | DONE   | Audit keyboard navigation throughout                              | Done 2026-05-18 — manual pass; skip link bug found and fixed          |
+| A11-2  | DONE   | Add skip navigation link (`<a href="#main">Skip to content</a>`)  | Done 2026-05-14; focus bug fixed 2026-05-18 (tabindex="-1" on main)   |
+| A11-3  | DONE   | Verify colour contrast — all text and interactive elements        | Done 2026-05-18 — one failure fixed: coral error text → --color-error |
+| A11-4  | DONE   | Audit focus indicators                                            | Done 2026-05-14 — global :focus-visible + form scoped override        |
+| A11-5  | DONE   | Add `prefers-reduced-motion` guards to NarrativeEdge animations   | N/A — NarrativeEdge is a static SVG, no animation                     |
+| A11-6  | DONE   | Alt text audit — all images                                       | Done 2026-05-18 — logo decorative, diagrams use image_alt frontmatter |
+| A11-7  | DONE   | ARIA landmarks — verify `<main>`, `<nav>`, `<header>`, `<footer>` | Done 2026-05-18 — all present and labelled; regression test added     |
+| A11-8  | LATER  | Screen reader test (VoiceOver + NVDA)                             | Manual pass; catch issues automated tools miss                        |
+| A11-9  | LATER  | High-contrast mode support                                        | Verify `forced-colors: active` doesn't break layout or icons          |
+| A11-10 | LATER  | Touch target size audit                                           | Min 44×44px (WCAG 2.5.5); check mobile nav and contact CTA            |
 
 ---
 

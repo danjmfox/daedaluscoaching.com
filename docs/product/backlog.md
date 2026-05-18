@@ -46,6 +46,9 @@ Items are ordered by priority within each section.
 | CN-15 | LATER  | FanEdge — 3-way fork/recombine on services page    | Needs FanEdge.vue + BlockGroup abstraction in useComposedPage; design session required |
 | CN-13 | LATER  | Credentials "Find out more" expand pattern         | Low-key link/expand to certification bodies from trust signals or about page           |
 | CN-14 | LATER  | Abstract imagery for service personas              | Individual / team / org content blocks on services page (depends on CN-8)              |
+| CN-20 | LATER  | Transformation narrative section                   | Outcomes/case studies for recruiter/hiring-manager persona. Anonymised archetypes ("mid-size EdTech," "enterprise team"). Makes invisible coaching work visible. See IDEAS.md. |
+| CN-21 | LATER  | "What I'm actually working on" signal               | Current focus areas, patterns seen across clients, what isn't in scope. Social currency for referrers; differentiates from static service list. See IDEAS.md.                 |
+| CN-22 | LATER  | "Common starting points" recognition copy           | Problem-first framing for IC/team lead persona: "your team is shipping less and nobody knows why." Recognition over prescription. May belong on services page or homepage.     |
 | CN-16 | DONE   | "Barely sufficient / Last responsible moment" copy | Done 2026-05-15 — added to `about-approach.md`                                         |
 | CN-17 | DONE   | Org design — light touch in services-orgs.md       | Done 2026-05-15 — structural design framing + contact prompt added                     |
 | CN-18 | DONE   | Brand voice guidelines doc                         | Done 2026-05-15 — `.claude/brand-voice-guidelines.md`                                  |
@@ -166,13 +169,22 @@ Low-acquisition-channel site, but referral partners checking the URL will share 
 
 ---
 
+## Content Strategy (requires DISCOVER before build)
+
+| ID    | Status | Item                                                              | Notes                                                                                                                                                        |
+| ----- | ------ | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| STR-1 | LATER  | DISCOVER: who actually finds you and how                          | Answer before building CN-20/21/22. Questions: organic vs referral breakdown; conversion moment (call? content? contact?); what you know that others don't. |
+| STR-2 | LATER  | Reconsider DEF-1/2/3 with proof-of-practice framing              | IDEAS.md argues thought leadership on dysfunction patterns is a discovery mechanism, not content-for-content's-sake. Run STR-1 first.                        |
+
+---
+
 ## Deferred (deliberate — revisit at 6-month review)
 
-| ID    | Item                            | Decision record                                              |
-| ----- | ------------------------------- | ------------------------------------------------------------ |
-| DEF-1 | Blog                            | No client demand evidence; scope inflation pattern confirmed |
-| DEF-2 | Bookshelf                       | Same rationale as blog                                       |
-| DEF-3 | `/resources/` sub-directory     | No evidence; revisit if referral partners request it         |
+| ID    | Item                            | Decision record                                                                 |
+| ----- | ------------------------------- | ------------------------------------------------------------------------------- |
+| DEF-1 | Blog                            | No client demand evidence; scope inflation pattern confirmed. See STR-2.        |
+| DEF-2 | Bookshelf                       | Same rationale as blog. See STR-2.                                              |
+| DEF-3 | `/resources/` sub-directory     | No evidence; revisit if referral partners request it. See STR-2.               |
 | DEF-4 | Nuxt Layers architecture        | Wrong tool; Swoopy is React not Nuxt                         |
 | DEF-5 | Swoopy web component (SPIKE-01) | Deferred per ADR-003; trigger: SPIKE-01 trigger conditions   |
 | DEF-6 | Client portal                   | Revisit if practice grows to multiple concurrent clients     |

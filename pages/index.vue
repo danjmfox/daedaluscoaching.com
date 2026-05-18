@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main id="main" tabindex="-1">
     <section class="section">
       <div class="container">
         <TrustSignals />

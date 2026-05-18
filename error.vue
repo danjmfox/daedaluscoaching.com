@@ -1,8 +1,8 @@
 <template>
   <div class="site">
     <SiteHeader />
-    <div id="main" class="site-content">
-      <main>
+    <div class="site-content">
+      <main id="main" tabindex="-1">
         <section class="section">
           <div class="container error-page">
             <h1>Page not found</h1>

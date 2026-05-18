@@ -19,8 +19,8 @@ for (const path of ["/", "/about", "/services", "/contact", "/privacy"]) {
     await page.keyboard.press("Enter");
 
     // Focus must be on the <main> element itself, not just scrolled there
-    const focusedTag = await page.evaluate(
-      () => document.activeElement?.tagName.toLowerCase(),
+    const focusedTag = await page.evaluate(() =>
+      document.activeElement?.tagName.toLowerCase(),
     );
     expect(focusedTag).toBe("main");
   });

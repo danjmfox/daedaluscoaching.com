@@ -23,27 +23,28 @@ text-only social previews when sharing the URL on LinkedIn or Slack.
 
 ## Key Decisions
 
-| Decision | Outcome |
-|---|---|
+| Decision                   | Outcome                                                                                                                                                                                         |
+| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | iubenda removed from stack | Custom `CookieNotice.vue` replaced it. iubenda was consent-management infrastructure for ad-tech; the site has no non-essential cookies. Trust signal delivered without third-party dependency. |
-| Future analytics direction | Consent-exempt privacy-first tools only (Fathom, Plausible, Umami). No ads, no data selling. iubenda remains unnecessary even when analytics is added. |
-| OG image scope | Single global static PNG for v1. Per-page images deferred (requires Nuxt OG Image / Satori infrastructure). LRM. |
-| 404 HTTP status mechanism | Netlify redirect `from = "/*" to = "/200.html" status = 404`. Nuxt SSG pre-renders `200.html` as SPA fallback; Netlify serves it with 404 status at CDN edge. |
-| Privacy policy | `pages/privacy.vue` + `content/privacy.md` already existed with a complete custom GDPR policy — discovered during DESIGN wave. iubenda embed approach superseded. |
+| Future analytics direction | Consent-exempt privacy-first tools only (Fathom, Plausible, Umami). No ads, no data selling. iubenda remains unnecessary even when analytics is added.                                          |
+| OG image scope             | Single global static PNG for v1. Per-page images deferred (requires Nuxt OG Image / Satori infrastructure). LRM.                                                                                |
+| 404 HTTP status mechanism  | Netlify redirect `from = "/*" to = "/200.html" status = 404`. Nuxt SSG pre-renders `200.html` as SPA fallback; Netlify serves it with 404 status at CDN edge.                                   |
+| Privacy policy             | `pages/privacy.vue` + `content/privacy.md` already existed with a complete custom GDPR policy — discovered during DESIGN wave. iubenda embed approach superseded.                               |
 
 ## Steps Completed
 
-| Step | Description | Verification |
-|---|---|---|
-| 01-01 | `CookieNotice.vue` + mounted in `app.vue` | 7 cookie-notice scenarios green |
-| 01-02 | Strip iubenda from `public/_headers` CSP | CSP header test green |
-| 02-01 | `error.vue` + Netlify 404 redirect in `netlify.toml` | WS-01 + 404 scenarios green |
-| 02-02 | Full 404 scenario set enabled | 5 404-page scenarios green |
-| 03-01 | OG meta tags in `nuxt.config.ts` | Config wired; 9 OG scenarios skip pending `og-card.png` |
+| Step  | Description                                          | Verification                                            |
+| ----- | ---------------------------------------------------- | ------------------------------------------------------- |
+| 01-01 | `CookieNotice.vue` + mounted in `app.vue`            | 7 cookie-notice scenarios green                         |
+| 01-02 | Strip iubenda from `public/_headers` CSP             | CSP header test green                                   |
+| 02-01 | `error.vue` + Netlify 404 redirect in `netlify.toml` | WS-01 + 404 scenarios green                             |
+| 02-02 | Full 404 scenario set enabled                        | 5 404-page scenarios green                              |
+| 03-01 | OG meta tags in `nuxt.config.ts`                     | Config wired; 9 OG scenarios skip pending `og-card.png` |
 
 ## Files Shipped
 
 **Production:**
+
 - `components/CookieNotice.vue` (new)
 - `error.vue` (new)
 - `app.vue` (mount CookieNotice)
@@ -52,12 +53,14 @@ text-only social previews when sharing the URL on LinkedIn or Slack.
 - `public/_headers` (CSP cleaned)
 
 **Tests:**
+
 - `tests/e2e/launch-readiness/acceptance/walking-skeleton.spec.ts`
 - `tests/e2e/launch-readiness/acceptance/404-page.spec.ts`
 - `tests/e2e/launch-readiness/acceptance/cookie-notice.spec.ts`
 - `tests/e2e/launch-readiness/acceptance/og-image.spec.ts`
 
 **SSOT:**
+
 - `docs/product/jobs.yaml` (JOB-LR-001 added)
 - `docs/product/journeys/journey-warm-referral.yaml` (off-path gaps documented)
 - `docs/product/architecture/brief.md` (iubenda removed, CookieNotice added)

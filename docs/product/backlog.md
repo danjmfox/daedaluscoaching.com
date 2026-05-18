@@ -15,15 +15,15 @@ Items are ordered by priority within each section.
 
 ## Housekeeping (tooling & repo hygiene)
 
-| ID   | Status | Item                                                                | Notes                                                                |
-| ---- | ------ | ------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| HK-1 | DONE   | Commit modified docs (`execution-log.json`, `feature-delta.md`)     | Done 2026-05-14                                                      |
-| HK-2 | DONE   | Decide on `.develop-progress.json` — commit or add to `.gitignore`  | Gitignored 2026-05-14                                                |
-| HK-3 | DONE   | Fix DES CLI — `ModuleNotFoundError: No module named des`            | Already resolved via des.pth — all tools verified working 2026-05-18 |
-| HK-4 | DONE   | Register lefthook: `pnpm dlx lefthook install`                      | Done 2026-05-17                                                      |
-| HK-5 | DONE   | Add stylelint: `.stylelintrc.cjs` + `pnpm lint` script              | Done 2026-05-17 — BEM pattern configured, 31 errors resolved         |
+| ID   | Status | Item                                                                | Notes                                                                                                                     |
+| ---- | ------ | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| HK-1 | DONE   | Commit modified docs (`execution-log.json`, `feature-delta.md`)     | Done 2026-05-14                                                                                                           |
+| HK-2 | DONE   | Decide on `.develop-progress.json` — commit or add to `.gitignore`  | Gitignored 2026-05-14                                                                                                     |
+| HK-3 | DONE   | Fix DES CLI — `ModuleNotFoundError: No module named des`            | Already resolved via des.pth — all tools verified working 2026-05-18                                                      |
+| HK-4 | DONE   | Register lefthook: `pnpm dlx lefthook install`                      | Done 2026-05-17                                                                                                           |
+| HK-5 | DONE   | Add stylelint: `.stylelintrc.cjs` + `pnpm lint` script              | Done 2026-05-17 — BEM pattern configured, 31 errors resolved                                                              |
 | HK-6 | DONE   | Close out DISCUSS DoD unchecked items or mark as acknowledged skips | Done 2026-05-18 — JTBD/jobs verified done; LD-08 peer review acknowledged skip (owner decision; stability test validates) |
-| HK-7 | LATER  | Sync `.develop-progress.json` — register Phase 04's 4 emerged steps | Prevents false "all done" when resuming DES tracking                 |
+| HK-7 | LATER  | Sync `.develop-progress.json` — register Phase 04's 4 emerged steps | Prevents false "all done" when resuming DES tracking                                                                      |
 
 ---
 

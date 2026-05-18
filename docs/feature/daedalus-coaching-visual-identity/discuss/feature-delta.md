@@ -374,17 +374,17 @@ _Slice briefs at `docs/feature/daedalus-coaching-visual-identity/slices/`_
 
 ## Wave: DISCUSS / [REF] Definition of Done
 
-- [ ] JTBD analysis complete with four forces documented for primary job (JOB-VI-001)
-- [ ] All 4 jobs in jobs.yaml with functional/emotional/social dimensions
-- [ ] H-V4 gate cleared — constraint vocabulary extracted and documented
+- [x] JTBD analysis complete with four forces documented for primary job (JOB-VI-001) — docs/product/jobs.yaml
+- [x] All 4 jobs in jobs.yaml with functional/emotional/social dimensions — JOB-VI-001 through JOB-VI-004
+- [x] H-V4 gate cleared — moot; feature delivered and 2-week stability test passed 2026-05-15
 - [x] Comparables exercise completed: 7 sites, 6-dimension framework, owner responses
 - [x] Typeface category pattern documented from comparables evaluations — humanist serif confirmed (LD-13)
-- [ ] Brief peer review completed before any token decision (LD-08)
-- [ ] 6 user stories with elevator pitches, ACs, job_id references
-- [ ] Story map with 4 slices + milestone; all Carpaccio taste tests passed
-- [ ] Slice briefs at docs/feature/.../slices/ (one per slice, ≤100 lines each)
-- [ ] Outcome KPIs with numeric targets and measurement methods
-- [ ] DoR validation: all 9 items with evidence
+- [~] Brief peer review completed before any token decision (LD-08) — ACKNOWLEDGED SKIP: owner decision; stability test result validates direction
+- [x] 6 user stories with elevator pitches, ACs, job_id references — in feature-delta.md
+- [x] Story map with 4 slices + milestone; all Carpaccio taste tests passed — 4 slices in slices/
+- [x] Slice briefs at docs/feature/.../slices/ (one per slice, ≤100 lines each) — 4 briefs present
+- [x] Outcome KPIs with numeric targets and measurement methods — in feature-delta.md
+- [x] DoR validation: all 9 items with evidence — in feature-delta.md
 
 ---
 

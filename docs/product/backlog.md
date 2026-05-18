@@ -22,7 +22,7 @@ Items are ordered by priority within each section.
 | HK-3 | DONE   | Fix DES CLI — `ModuleNotFoundError: No module named des`            | Already resolved via des.pth — all tools verified working 2026-05-18 |
 | HK-4 | DONE   | Register lefthook: `pnpm dlx lefthook install`                      | Done 2026-05-17                                                      |
 | HK-5 | DONE   | Add stylelint: `.stylelintrc.cjs` + `pnpm lint` script              | Done 2026-05-17 — BEM pattern configured, 31 errors resolved         |
-| HK-6 | NEXT   | Close out DISCUSS DoD unchecked items or mark as acknowledged skips | JTBD analysis, peer review (LD-08), DoR validation still open        |
+| HK-6 | DONE   | Close out DISCUSS DoD unchecked items or mark as acknowledged skips | Done 2026-05-18 — JTBD/jobs verified done; LD-08 peer review acknowledged skip (owner decision; stability test validates) |
 | HK-7 | LATER  | Sync `.develop-progress.json` — register Phase 04's 4 emerged steps | Prevents false "all done" when resuming DES tracking                 |
 
 ---
@@ -74,12 +74,12 @@ Calibrate to the org evaluator persona — corporate environments often include 
 
 ## Performance (Core Web Vitals)
 
-| ID   | Status | Item                                                | Notes                                                 |
-| ---- | ------ | --------------------------------------------------- | ----------------------------------------------------- |
-| PF-1 | NEXT   | Image optimisation — WebP + `srcset` + lazy loading | Any non-SVG images; Nuxt Image module candidate       |
+| ID   | Status | Item                                                | Notes                                                                                                        |
+| ---- | ------ | --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| PF-1 | NEXT   | Image optimisation — WebP + `srcset` + lazy loading | Any non-SVG images; Nuxt Image module candidate                                                              |
 | PF-2 | DONE   | Font strategy — `font-display: swap` + subsetting   | Done 2026-05-18 — swap already in @fontsource; preload added for latin fonts; stable font filenames in build |
-| PF-3 | LATER  | Core Web Vitals baseline — run PageSpeed Insights   | LCP, CLS, INP targets: all green before launch        |
-| PF-4 | LATER  | Audit third-party script impact (iubenda)           | iubenda consent banner; measure actual render cost    |
+| PF-3 | LATER  | Core Web Vitals baseline — run PageSpeed Insights   | LCP, CLS, INP targets: all green before launch                                                               |
+| PF-4 | LATER  | Audit third-party script impact (iubenda)           | iubenda consent banner; measure actual render cost                                                           |
 
 ---
 

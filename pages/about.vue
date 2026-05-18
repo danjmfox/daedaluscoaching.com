@@ -33,13 +33,6 @@
               :to="textPosition(data.blocks[i + 1])"
             />
           </template>
-          <p class="about-site-note">
-            About this site: statically generated with
-            <a href="https://nuxt.com" class="about-site-link" target="_blank" rel="noopener noreferrer">Nuxt</a>
-            — a full-circle nod to the AppleScript pipelines of 1995. Built with
-            <a href="https://nwave.ai" class="about-site-link" target="_blank" rel="noopener noreferrer">NWave</a>
-            and Claude.
-          </p>
         </template>
         <p v-else>Content not found</p>
       </div>
@@ -80,21 +73,5 @@ function textPosition(block: { meta?: { image_position?: string } }): Position {
 
 .content-block h2 {
   margin-bottom: var(--space-md);
-}
-
-.about-site-note {
-  margin-top: var(--space-2xl);
-  font-family: var(--font-family-body);
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
-}
-
-.about-site-link {
-  color: var(--color-text-secondary);
-  text-decoration: underline;
-}
-
-.about-site-link:hover {
-  color: var(--color-accent);
 }
 </style>

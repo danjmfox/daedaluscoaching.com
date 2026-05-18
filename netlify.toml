@@ -10,7 +10,7 @@ NODE_VERSION = "22"
 # which means the SwoopyEmbed.vue <iframe> needs no frame-src CSP exception.
 [[redirects]]
 from = "/swoopy/*"
-to = "https://swoopy.netlify.app/:splat"
+to = "https://swoopy.daedaluscoaching.com/:splat"
 status = 200
 force = true
 

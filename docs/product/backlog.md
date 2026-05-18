@@ -59,13 +59,13 @@ Calibrate to the org evaluator persona — corporate environments often include 
 
 | ID     | Status | Item                                                              | Notes                                                                  |
 | ------ | ------ | ----------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| A11-1  | NEXT   | Audit keyboard navigation throughout                              | Tab order, focus traps — manual keyboard pass needed                   |
-| A11-2  | DONE   | Add skip navigation link (`<a href="#main">Skip to content</a>`)  | Done 2026-05-14                                                        |
-| A11-3  | NEXT   | Verify colour contrast — all text and interactive elements        | 4.5:1 normal text, 3:1 large text; check against committed tokens      |
+| A11-1  | DONE   | Audit keyboard navigation throughout                              | Done 2026-05-18 — manual pass; skip link bug found and fixed           |
+| A11-2  | DONE   | Add skip navigation link (`<a href="#main">Skip to content</a>`)  | Done 2026-05-14; focus bug fixed 2026-05-18 (tabindex="-1" on main)    |
+| A11-3  | DONE   | Verify colour contrast — all text and interactive elements        | Done 2026-05-18 — one failure fixed: coral error text → --color-error  |
 | A11-4  | DONE   | Audit focus indicators                                            | Done 2026-05-14 — global :focus-visible + form scoped override         |
 | A11-5  | DONE   | Add `prefers-reduced-motion` guards to NarrativeEdge animations   | N/A — NarrativeEdge is a static SVG, no animation                      |
-| A11-6  | NEXT   | Alt text audit — all images                                       | Decorative images get `alt=""`; informative images get descriptive alt |
-| A11-7  | NEXT   | ARIA landmarks — verify `<main>`, `<nav>`, `<header>`, `<footer>` | Landmarks verified in snapshot; nav labels present                     |
+| A11-6  | DONE   | Alt text audit — all images                                       | Done 2026-05-18 — logo decorative, diagrams use image_alt frontmatter  |
+| A11-7  | DONE   | ARIA landmarks — verify `<main>`, `<nav>`, `<header>`, `<footer>` | Done 2026-05-18 — all present and labelled; regression test added      |
 | A11-8  | LATER  | Screen reader test (VoiceOver + NVDA)                             | Manual pass; catch issues automated tools miss                         |
 | A11-9  | LATER  | High-contrast mode support                                        | Verify `forced-colors: active` doesn't break layout or icons           |
 | A11-10 | LATER  | Touch target size audit                                           | Min 44×44px (WCAG 2.5.5); check mobile nav and contact CTA             |

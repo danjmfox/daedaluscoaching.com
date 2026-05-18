@@ -18,6 +18,13 @@
           </li>
         </ul>
       </nav>
+      <p class="footer-about">
+        About this site: statically generated with
+        <a href="https://nuxt.com" class="footer-link" target="_blank" rel="noopener noreferrer">Nuxt</a>
+        — a full-circle nod to the AppleScript pipelines of 1995. Built with
+        <a href="https://nwave.ai" class="footer-link" target="_blank" rel="noopener noreferrer">NWave</a>
+        and Claude.
+      </p>
     </div>
   </footer>
 </template>
@@ -39,8 +46,19 @@ const { linkedinPersonal, linkedinCompany, companyNumber, companyUrl } = useRunt
   padding-inline: var(--space-xl);
   padding-block: var(--space-xl);
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.footer-about {
+  width: 100%;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-secondary);
 }
 
 .footer-copy {

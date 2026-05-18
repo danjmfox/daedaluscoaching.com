@@ -15,15 +15,15 @@ Items are ordered by priority within each section.
 
 ## Housekeeping (tooling & repo hygiene)
 
-| ID   | Status | Item                                                                | Notes                                                         |
-| ---- | ------ | ------------------------------------------------------------------- | ------------------------------------------------------------- |
-| HK-1 | DONE   | Commit modified docs (`execution-log.json`, `feature-delta.md`)     | Done 2026-05-14                                               |
-| HK-2 | DONE   | Decide on `.develop-progress.json` — commit or add to `.gitignore`  | Gitignored 2026-05-14                                         |
+| ID   | Status | Item                                                                | Notes                                                                |
+| ---- | ------ | ------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| HK-1 | DONE   | Commit modified docs (`execution-log.json`, `feature-delta.md`)     | Done 2026-05-14                                                      |
+| HK-2 | DONE   | Decide on `.develop-progress.json` — commit or add to `.gitignore`  | Gitignored 2026-05-14                                                |
 | HK-3 | DONE   | Fix DES CLI — `ModuleNotFoundError: No module named des`            | Already resolved via des.pth — all tools verified working 2026-05-18 |
-| HK-4 | DONE   | Register lefthook: `pnpm dlx lefthook install`                      | Done 2026-05-17                                               |
-| HK-5 | DONE   | Add stylelint: `.stylelintrc.cjs` + `pnpm lint` script              | Done 2026-05-17 — BEM pattern configured, 31 errors resolved  |
-| HK-6 | NEXT   | Close out DISCUSS DoD unchecked items or mark as acknowledged skips | JTBD analysis, peer review (LD-08), DoR validation still open |
-| HK-7 | LATER  | Sync `.develop-progress.json` — register Phase 04's 4 emerged steps | Prevents false "all done" when resuming DES tracking          |
+| HK-4 | DONE   | Register lefthook: `pnpm dlx lefthook install`                      | Done 2026-05-17                                                      |
+| HK-5 | DONE   | Add stylelint: `.stylelintrc.cjs` + `pnpm lint` script              | Done 2026-05-17 — BEM pattern configured, 31 errors resolved         |
+| HK-6 | NEXT   | Close out DISCUSS DoD unchecked items or mark as acknowledged skips | JTBD analysis, peer review (LD-08), DoR validation still open        |
+| HK-7 | LATER  | Sync `.develop-progress.json` — register Phase 04's 4 emerged steps | Prevents false "all done" when resuming DES tracking                 |
 
 ---
 
@@ -77,7 +77,7 @@ Calibrate to the org evaluator persona — corporate environments often include 
 | ID   | Status | Item                                                | Notes                                                 |
 | ---- | ------ | --------------------------------------------------- | ----------------------------------------------------- |
 | PF-1 | NEXT   | Image optimisation — WebP + `srcset` + lazy loading | Any non-SVG images; Nuxt Image module candidate       |
-| PF-2 | NEXT   | Font strategy — `font-display: swap` + subsetting   | Check current font loading; subset to used characters |
+| PF-2 | DONE   | Font strategy — `font-display: swap` + subsetting   | Done 2026-05-18 — swap already in @fontsource; preload added for latin fonts; stable font filenames in build |
 | PF-3 | LATER  | Core Web Vitals baseline — run PageSpeed Insights   | LCP, CLS, INP targets: all green before launch        |
 | PF-4 | LATER  | Audit third-party script impact (iubenda)           | iubenda consent banner; measure actual render cost    |
 

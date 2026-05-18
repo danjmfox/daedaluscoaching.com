@@ -35,6 +35,41 @@ export default defineNuxtConfig({
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:image", content: "/images/og-card.png" },
       ],
+      // Preload critical font files to reduce FOUT window.
+      // Font filenames are stable (no hash) — see vite.build config below.
+      link: [
+        {
+          rel: "preload",
+          as: "font",
+          type: "font/woff2",
+          href: "/_nuxt/fraunces-latin-wght-normal.woff2",
+          crossorigin: "anonymous",
+        },
+        {
+          rel: "preload",
+          as: "font",
+          type: "font/woff2",
+          href: "/_nuxt/plus-jakarta-sans-latin-wght-normal.woff2",
+          crossorigin: "anonymous",
+        },
+      ],
+    },
+  },
+  vite: {
+    build: {
+      rollupOptions: {
+        output: {
+          // Stable (non-hashed) filenames for WOFF2 fonts so preload hrefs don't
+          // break on rebuild. Trade-off: bump @fontsource versions to bust cache.
+          assetFileNames: (assetInfo) => {
+            const name = assetInfo.names?.[0] ?? assetInfo.name ?? "";
+            if (/\.woff2?$/.test(name)) {
+              return "_nuxt/[name][extname]";
+            }
+            return "_nuxt/[name].[hash][extname]";
+          },
+        },
+      },
     },
   },
 });

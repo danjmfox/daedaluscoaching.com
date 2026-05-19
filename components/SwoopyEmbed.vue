@@ -5,6 +5,8 @@
     width="100%"
     height="600"
     style="border: none"
+    loading="lazy"
+    sandbox="allow-scripts allow-same-origin"
   />
 </template>
 

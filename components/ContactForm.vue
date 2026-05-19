@@ -23,6 +23,7 @@
         type="text"
         name="name"
         autocomplete="name"
+        required
       />
       <p v-if="errors.name" class="field-error" role="alert">{{ errors.name }}</p>
     </div>
@@ -35,6 +36,7 @@
         type="email"
         name="email"
         autocomplete="email"
+        required
       />
       <p v-if="errors.email" class="field-error" role="alert">{{ errors.email }}</p>
     </div>
@@ -46,6 +48,7 @@
         v-model="fields.message"
         name="message"
         rows="5"
+        required
       />
       <p v-if="errors.message" class="field-error" role="alert">{{ errors.message }}</p>
     </div>

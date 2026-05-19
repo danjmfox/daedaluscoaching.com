@@ -76,6 +76,9 @@
   line-height: var(--line-height-normal);
   color: var(--color-text-secondary);
   text-decoration: none;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .nav-link:hover {

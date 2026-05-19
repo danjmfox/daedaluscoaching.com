@@ -39,10 +39,11 @@ const { grouped } = useCredentials();
 
 <style scoped>
 .credly-badge-strip {
+  margin-top: var(--space-xl);
   margin-bottom: var(--space-2xl);
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-xl);
+  flex-direction: column;
+  gap: var(--space-lg);
 }
 
 .credly-badge-strip__group {

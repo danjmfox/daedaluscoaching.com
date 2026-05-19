@@ -1,5 +1,5 @@
 <template>
-  <section class="credly-badge-strip" aria-label="Professional certifications">
+  <section class="credly-badge-strip content-block" aria-label="Professional certifications">
     <div
       v-for="group in grouped"
       :key="group.issuer"
@@ -23,8 +23,8 @@
               :src="badge.imageUrl"
               :alt="`${badge.name} badge`"
               class="credly-badge-strip__image"
-              width="64"
-              height="64"
+              width="80"
+              height="80"
             />
           </a>
         </li>
@@ -39,14 +39,12 @@ const { grouped } = useCredentials();
 
 <style scoped>
 .credly-badge-strip {
-  background-color: var(--color-surface);
-  padding: var(--space-xl);
   margin-top: var(--space-xl);
   margin-bottom: var(--space-2xl);
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-lg);
+  flex-direction: row;
+  justify-content: center;
+  gap: var(--space-2xl);
 }
 
 .credly-badge-strip__group {
@@ -54,6 +52,7 @@ const { grouped } = useCredentials();
   flex-direction: column;
   align-items: center;
   gap: var(--space-sm);
+  flex: 1;
 }
 
 .credly-badge-strip__issuer {
@@ -97,7 +96,18 @@ const { grouped } = useCredentials();
 
 .credly-badge-strip__image {
   display: block;
-  width: 64px;
-  height: 64px;
+  width: 80px;
+  height: 80px;
+}
+
+@media (width <= 48rem) {
+  .credly-badge-strip {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .credly-badge-strip__group {
+    width: 100%;
+  }
 }
 </style>

@@ -3,7 +3,12 @@
     <a href="#main" class="skip-link">Skip to content</a>
     <div class="header-inner">
       <NuxtLink to="/" class="logo-link" aria-label="Daedalus Coaching — home">
-        <img src="/logo.svg" alt="" aria-hidden="true" class="logo-mark" width="48" height="32" />
+        <ClientOnly>
+          <MazeLogo class="logo-mark" />
+          <template #fallback>
+            <img src="/logo.svg" alt="" aria-hidden="true" class="logo-mark" width="32" height="32" />
+          </template>
+        </ClientOnly>
         <span class="logo-wordmark">Daedalus Coaching</span>
       </NuxtLink>
       <nav aria-label="Main navigation">
@@ -45,7 +50,7 @@
 .logo-mark {
   display: block;
   height: 2rem;
-  width: auto;
+  width: 2rem;  /* square for maze */
 }
 
 .logo-wordmark {

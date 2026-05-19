@@ -202,3 +202,46 @@ jobs:
         shares with reservation. This cycle erodes confidence in the site as a business asset.
     status: primary
     stories: [S-LR-001, S-LR-002, S-LR-003]
+
+  - id: JOB-MZ-001
+    name: Owner maze curation
+    feature_id: seed-maze-generator
+    persona: owner-editor
+    opportunity_score: 8
+    job_story: >
+      When I find a maze that feels right for the practice,
+      I want the URL to carry the seed so I can share it, bookmark it, and make it permanent
+      without hand-coding SVG,
+      so I can curate the visual narrative of the site over time.
+    dimensions:
+      functional: Read URL seed; generate random seed + write to URL; reload same URL = same maze.
+      emotional: Feel creative control over a generative visual without needing to touch code.
+      social: Share a URL that always shows the chosen maze — the curation is invisible, the result is deliberate.
+    four_forces:
+      push: Hand-coded SVG maze cannot be changed without editing source. No way to explore alternatives.
+      pull: Browse, reload, copy URL. The good ones persist. The bad ones disappear.
+      anxiety: Will the generated mazes look as considered as the hand-crafted one?
+      habit: Open site → see maze → reload if uninteresting → copy URL when satisfied.
+    status: primary
+    stories: [S-MZ-001, S-MZ-002]
+
+  - id: JOB-MZ-002
+    name: Visitor first-impression depth
+    feature_id: seed-maze-generator
+    persona: persona-prospective-client
+    opportunity_score: 6
+    job_story: >
+      When I land on the homepage,
+      I want the animated logo to reward a second look,
+      so I feel the practice has depth and intentionality before I read a word.
+    dimensions:
+      functional: Animated thread draws on load; maze is unique (different from a remembered previous visit).
+      emotional: Feel that someone thought carefully about this — not a template, not a stock animation.
+      social: If I mention the site to a colleague, I have something specific to point to beyond the copy.
+    four_forces:
+      push: Static logos are forgettable. Generic animation (fade-in, slide) signals template thinking.
+      pull: An animation that tells a story — the thread navigating, backtracking, nearly finding its way.
+      anxiety: Will I notice it on a mobile device? Does it distract from the copy?
+      habit: Land → glance at logo → read headline. The maze earns that glance without demanding more.
+    status: secondary
+    stories: [S-MZ-005, S-MZ-006]

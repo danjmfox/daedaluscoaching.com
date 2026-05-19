@@ -118,12 +118,19 @@ C4Container
 │   │   └── contact-port.ts      # SubmissionPort type signature
 │   ├── content/
 │   │   └── content-port.ts      # ContentPort type signature (swappable adapter)
-│   └── swoopy/
-│       └── swoopy-url.ts        # Pure: modelId/graph → URL string
+│   ├── swoopy/
+│   │   └── swoopy-url.ts        # Pure: modelId/graph → URL string
+│   └── maze/                    # seed-maze-generator — pure functions only
+│       ├── types.ts             # MazeGraph, Cell, Wall, ThreadPath
+│       ├── prng.ts              # mulberry32 PRNG + djb2 hash
+│       ├── generator.ts         # seed → MazeGraph (recursive backtracking)
+│       ├── solver.ts            # MazeGraph → ThreadPath + visible backtracks
+│       └── renderer.ts          # ThreadPath → polyline points + strokeDashTotal
 │
 ├── composables/                 # Shell: Vue reactivity + port adapters (driving)
 │   ├── useContact.ts            # Calls core schema, submits via SubmissionPort adapter
-│   └── usePageContent.ts        # Calls @nuxt/content, maps to ContentPort shape
+│   ├── usePageContent.ts        # Calls @nuxt/content, maps to ContentPort shape
+│   └── useMazeSeed.ts           # Reads ?maze= param; generates seed; replaceState; runs core/maze/ pipeline
 │
 ├── server/
 │   └── api/
@@ -133,6 +140,8 @@ C4Container
 │   ├── TrustSignals.vue         # B-Corp, 1%FTP, accreditations — above fold
 │   ├── ContactForm.vue          # Single CTA component — uses useContact composable
 │   ├── SwoopyEmbed.vue          # iframe wrapper — src from core/swoopy/swoopy-url.ts
+│   ├── MazeLogo.vue             # seed-maze-generator — animated maze SVG (replaces static logo)
+│   ├── MazeHero.vue             # seed-maze-generator — responsive homepage hero maze
 │   └── ...                      # Remaining layout and presentation components
 │
 ├── pages/

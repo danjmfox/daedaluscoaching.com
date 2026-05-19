@@ -1,0 +1,243 @@
+{
+  "schema_version": "3.0",
+  "project_id": "seed-maze-generator",
+  "feature_id": "seed-maze-generator",
+  "created_at": "2026-05-18T20:15:00Z",
+  "total_steps": 7,
+  "goal": "Add a seed-based maze generator to the coaching website logo and homepage hero",
+  "methodology": "tdd-outside-in",
+  "paradigm": "pure-core-imperative-shell",
+  "validation": { "status": "approved" },
+  "phases": [
+    {
+      "id": "01",
+      "phase_id": "01",
+      "name": "Core pure functions",
+      "description": "Implement all pure functions in core/maze/ with zero framework imports. Walking skeleton goes GREEN at the end of this phase.",
+      "steps": [
+        {
+          "id": "01-01",
+          "step_id": "01-01",
+          "name": "PRNG — hashString and mulberry32",
+          "description": "Implement the djb2 hash function and mulberry32 PRNG factory in core/maze/prng.ts. These are the seeding primitives on which generator, solver, and renderer all depend.",
+          "test_file": "tests/unit/maze/prng.test.ts",
+          "scenarios": [
+            "hashString > returns a non-negative integer (uint32 range)",
+            "hashString > is deterministic",
+            "hashString > produces different values for different inputs",
+            "hashString > handles empty string",
+            "mulberry32 > returns a callable",
+            "mulberry32 > produces values in [0, 1)",
+            "mulberry32 > is deterministic — same seed reproduces same sequence",
+            "mulberry32 > different seeds produce different sequences"
+          ],
+          "files_to_modify": ["core/maze/prng.ts"],
+          "criteria": [],
+          "acceptance_criteria": [
+            "hashString('labyrinth') returns a non-negative integer on every call",
+            "hashString('same') === hashString('same') for any input",
+            "hashString('abc') !== hashString('xyz') and hashString('abc') !== hashString('ABC')",
+            "hashString('') does not throw and returns a non-negative integer",
+            "mulberry32(seed) returns a function",
+            "Every value returned by mulberry32(42)() satisfies 0 <= value < 1 over 50 consecutive calls",
+            "mulberry32(99) and a second mulberry32(99) produce identical sequences over 20 calls",
+            "First 5 values from mulberry32(1) differ from first 5 values from mulberry32(2)"
+          ],
+          "dependency-cruiser-rule": "core/maze/prng.ts must not import from Vue, Nuxt, or any browser API — enforced by dep-cruiser in CI",
+          "validation": {
+            "status": "approved",
+            "note": "Self-approved per hobby project nWave rigor profile"
+          }
+        },
+        {
+          "id": "01-02",
+          "step_id": "01-02",
+          "name": "Generator — generateMaze with recursive backtracking and D-C boundary constraint",
+          "description": "Implement generateMaze in core/maze/generator.ts. Uses recursive backtracking seeded by prng. Must enforce: entry at {row:1,col:9}, exit at {row:9,col:9}, D-C boundary (col 4 <-> col 5) with at most 2 crossings, 10x10 grid, cell size 40px canvas 440x440.",
+          "test_file": "tests/unit/maze/generator.test.ts",
+          "scenarios": [
+            "generateMaze > is deterministic — same seed produces identical passage structure",
+            "generateMaze > different seeds produce different mazes",
+            "generateMaze > is solvable — BFS finds a path from entry to exit",
+            "generateMaze > entry is at right wall row 1 (C top arm)",
+            "generateMaze > exit is at right wall row 9 (C bottom arm)",
+            "generateMaze > D-C boundary has at most 2 crossings",
+            "generateMaze > reports correct grid dimensions"
+          ],
+          "files_to_modify": ["core/maze/generator.ts"],
+          "criteria": [],
+          "acceptance_criteria": [
+            "generateMaze('labyrinth') called twice produces structurally identical passage sets",
+            "generateMaze('seed-alpha') and generateMaze('seed-beta') differ in at least one passage",
+            "BFS from entry to exit on generateMaze('daedalus') returns a non-null path of length > 0",
+            "graph.entry === {row:1, col:9} for any seed",
+            "graph.exit === {row:9, col:9} for any seed",
+            "Passage count across col4-col5 boundary is <= 2 for seeds: alpha, beta, gamma, delta, epsilon",
+            "graph.rows === 10 and graph.cols === 10"
+          ],
+          "dependency-cruiser-rule": "core/maze/generator.ts must not import from Vue, Nuxt, or any browser API — enforced by dep-cruiser in CI",
+          "validation": {
+            "status": "approved",
+            "note": "Self-approved per hobby project nWave rigor profile"
+          }
+        },
+        {
+          "id": "01-03",
+          "step_id": "01-03",
+          "name": "Solver — solveMaze with BFS, visible-zone backtrack picker, and strokeDashTotal",
+          "description": "Implement solveMaze in core/maze/solver.ts. BFS finds shortest path entry->exit. Exactly 2 backtrack excursions, each >= 2 steps, originating from visible-zone cells (rows 0-2, 8-9, or col 0). Computes strokeDashTotal in pixels (40px per cell step, 20px for initial wall-to-cell entry segment).",
+          "test_file": "tests/unit/maze/solver.test.ts",
+          "scenarios": [
+            "solveMaze > solution starts at entry and ends at exit",
+            "solveMaze > solution is a valid sequence of adjacent cells",
+            "solveMaze > returns exactly 2 backtrack excursions",
+            "solveMaze > each backtrack is at least 2 steps (>=3 cells including origin)",
+            "solveMaze > each backtrack originates from a visible-zone cell",
+            "solveMaze > backtrack paths are valid sequences of adjacent cells",
+            "solveMaze > strokeDashTotal is positive and matches pixel distance",
+            "solveMaze > is deterministic — same seed produces same path"
+          ],
+          "files_to_modify": ["core/maze/solver.ts"],
+          "criteria": [],
+          "acceptance_criteria": [
+            "path.solution[0] equals graph.entry and path.solution[last] equals graph.exit",
+            "Every consecutive pair in path.solution is orthogonally adjacent (distance == 1 in exactly one axis)",
+            "path.backtracks.length === 2",
+            "Each backtrack.path.length >= 2",
+            "Each backtrack.origin satisfies row in {0,1,2,8,9} OR col === 0",
+            "Each [backtrack.origin, ...backtrack.path] is a valid adjacent sequence",
+            "path.strokeDashTotal > 0 and >= path.solution.length * 40",
+            "solveMaze(generateMaze('coaching')) called twice produces identical solution arrays and strokeDashTotal"
+          ],
+          "dependency-cruiser-rule": "core/maze/solver.ts must not import from Vue, Nuxt, or any browser API — enforced by dep-cruiser in CI",
+          "validation": {
+            "status": "approved",
+            "note": "Self-approved per hobby project nWave rigor profile"
+          }
+        },
+        {
+          "id": "01-04",
+          "step_id": "01-04",
+          "name": "Renderer — renderPath producing SVG polyline points string",
+          "description": "Implement renderPath in core/maze/renderer.ts. Converts ThreadPath cells to an SVG polyline points string. First point must be (420,80) — right wall row 1 at 40px cell size. This step also completes the walking-skeleton pipeline test (pipeline.test.ts goes GREEN here).",
+          "test_file": "tests/unit/maze/renderer.test.ts",
+          "walking_skeleton_test_file": "tests/unit/maze/pipeline.test.ts",
+          "scenarios": [
+            "renderPath > returns a non-empty string",
+            "renderPath > each point is a valid 'x,y' pair",
+            "renderPath > starts at the entry point (420, 80 — right wall row 1)",
+            "renderPath > is deterministic — same path produces same points",
+            "seed-maze pipeline (walking skeleton) > produces SVG polyline points from a seed string",
+            "seed-maze pipeline (walking skeleton) > same seed always produces same SVG output",
+            "seed-maze pipeline (walking skeleton) > different seeds produce different SVG output"
+          ],
+          "files_to_modify": ["core/maze/renderer.ts"],
+          "criteria": [],
+          "acceptance_criteria": [
+            "renderPath returns a non-empty string with no leading/trailing whitespace issues",
+            "Every space-separated token in the output matches the pattern 'number,number' with both values finite and >= 0",
+            "The first token of the output is exactly '420,80'",
+            "renderPath called twice with identical ThreadPath input returns identical strings",
+            "generateMaze('daedalus') -> solveMaze -> renderPath produces a truthy non-empty string with strokeDashTotal > 0",
+            "The full pipeline is deterministic: two runs with 'labyrinth' produce identical output",
+            "Two runs with different seeds ('alpha', 'beta') produce different output strings"
+          ],
+          "dependency-cruiser-rule": "core/maze/renderer.ts must not import from Vue, Nuxt, or any browser API — enforced by dep-cruiser in CI",
+          "validation": {
+            "status": "approved",
+            "note": "Self-approved per hobby project nWave rigor profile. Walking skeleton completes here — all 3 pipeline scenarios green."
+          }
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "phase_id": "02",
+      "name": "Shell — composable and Vue components",
+      "description": "Wire the pure core into the Nuxt shell: URL-seed composable, MazeLogo, MazeHero, and homepage integration. No unit tests for Vue components — browser behaviour verified by visual inspection and Playwright e2e (post-v1).",
+      "steps": [
+        {
+          "id": "02-01",
+          "step_id": "02-01",
+          "name": "Seed composable — useMazeSeed",
+          "description": "Implement composables/useMazeSeed.ts. Reads 'seed' from URL query param. If absent, generates a 6-character base36 seed from Math.random(). Writes the seed back via history.replaceState so the URL is shareable. Exposes the reactive seed ref. No unit test — composable is imperative shell; behaviour verified in 02-02 integration.",
+          "test_file": null,
+          "scenarios": [],
+          "files_to_modify": ["composables/useMazeSeed.ts"],
+          "criteria": [],
+          "acceptance_criteria": [
+            "When URL contains ?seed=daedalus the composable returns 'daedalus' without generating a new seed",
+            "When URL has no seed param the composable generates a 6-character base36 string and writes it to the URL via history.replaceState",
+            "The returned seed ref is reactive — changes propagate to any consumer",
+            "The composable does not import from core/maze/ directly — it returns the seed string only; pipeline invocation is the component's responsibility"
+          ],
+          "validation": {
+            "status": "approved",
+            "note": "Self-approved per hobby project nWave rigor profile. No unit test — shell layer; visual inspection in 02-02."
+          }
+        },
+        {
+          "id": "02-02",
+          "step_id": "02-02",
+          "name": "MazeLogo component — maze walls, SVG thread, C-mouth shape, animation",
+          "description": "Implement components/MazeLogo.vue. Calls useMazeSeed, pipes seed through generateMaze -> solveMaze -> renderPath, renders: maze wall grid (SVG lines), thread polyline (SVG polyline using renderPath output), C-mouth shape (static SVG path), stroke-dasharray animation on the thread. Animation: thread draws once on mount, C-mouth appears once thread reaches exit.",
+          "test_file": null,
+          "scenarios": [],
+          "files_to_modify": ["components/MazeLogo.vue"],
+          "criteria": [],
+          "acceptance_criteria": [
+            "The SVG viewBox is '0 0 440 440'",
+            "The thread polyline points attribute equals the output of renderPath(solveMaze(generateMaze(seed)))",
+            "The stroke-dasharray and stroke-dashoffset attributes on the thread polyline are set from path.strokeDashTotal",
+            "On mount the thread animates from fully hidden (dashoffset == dashTotal) to fully visible (dashoffset == 0)",
+            "The C-mouth SVG element is hidden (opacity 0 or display none) until the thread animation completes, then becomes visible",
+            "Changing the seed prop re-runs the pipeline and re-renders without page reload",
+            "MazeLogo imports generateMaze, solveMaze, renderPath from core/maze/* — never from Vue-internal or Nuxt internals"
+          ],
+          "validation": {
+            "status": "approved",
+            "note": "Self-approved per hobby project nWave rigor profile."
+          }
+        },
+        {
+          "id": "02-03",
+          "step_id": "02-03",
+          "name": "MazeHero + homepage wire-up — same seed as logo, staggered animation",
+          "description": "Implement components/MazeHero.vue and extend pages/index.vue. MazeHero wraps MazeLogo in the homepage hero section with heading and CTA. Both MazeHero and MazeLogo must share the same seed (from useMazeSeed) so the maze in the logo and hero are identical. Staggered animation: hero text appears after thread animation completes.",
+          "test_file": null,
+          "scenarios": [],
+          "files_to_modify": ["components/MazeHero.vue", "pages/index.vue"],
+          "criteria": [],
+          "acceptance_criteria": [
+            "MazeHero renders MazeLogo with the seed from useMazeSeed",
+            "The seed in MazeHero and MazeLogo is the same value — both components receive it from the same composable call, not two independent calls",
+            "The hero heading and CTA text are visible after the thread animation completes (staggered reveal)",
+            "The homepage URL contains ?seed=<6-char-base36> after first render when no seed was present in the original URL",
+            "Navigating to /?seed=labyrinth renders a consistent maze that matches what any other user sees with the same URL",
+            "The feature passes dep-cruiser boundary check: no component or composable imports directly from core/ (imports go through composables only)"
+          ],
+          "validation": {
+            "status": "approved",
+            "note": "Self-approved per hobby project nWave rigor profile. Final integration step — feature complete when this step merges."
+          }
+        }
+      ]
+    }
+  ],
+  "quality_gates": {
+    "dependency_cruiser": "core/maze/* must have zero framework imports — enforced in CI; violation = build failure",
+    "test_scope": "Vitest unit tests cover all pure functions in core/maze/ (steps 01-01 through 01-04). Shell layer (02-*) verified by visual inspection and future Playwright e2e.",
+    "walking_skeleton_invariant": "Step 01-04 is the walking skeleton completion point. pipeline.test.ts must be GREEN before any 02-* step begins.",
+    "tdd_rhythm": "Each 01-* step follows red->green->refactor. One scenario at a time. Never relax a failing test.",
+    "decomposition_ratio": "7 production files, 7 steps. Ratio 1.0 — well within the 2.5 ceiling.",
+    "external_integrations": "None. No contract test annotation required."
+  },
+  "architecture_constraints": [
+    "core/maze/ files have zero imports from Vue, Nuxt, or browser APIs — dep-cruiser enforces at CI",
+    "Cell size 40px, canvas 440x440, grid 10x10",
+    "Entry: right wall row 1 = cell {row:1, col:9}, SVG coordinate (420, 80)",
+    "Exit: right wall row 9 = cell {row:9, col:9}, SVG coordinate (420, 400)",
+    "D-C boundary (col 4 <-> col 5): max 2 crossings across all 10 rows",
+    "Backtrack excursions: exactly 2, each >= 2 steps, origins must be in visible zone (rows 0-2 or 8-9 or col 0)"
+  ]
+}

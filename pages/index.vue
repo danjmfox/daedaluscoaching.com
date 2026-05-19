@@ -1,5 +1,11 @@
 <template>
   <main id="main" tabindex="-1">
+    <section class="section section--hero" aria-hidden="true">
+      <ClientOnly>
+        <MazeHero default-seed="23fc3a" />
+      </ClientOnly>
+    </section>
+
     <section class="section">
       <div class="container">
         <TrustSignals />
@@ -41,6 +47,14 @@ useSeoMeta({
 </script>
 
 <style scoped>
+.section--hero {
+  display: flex;
+  justify-content: center;
+  padding-block: var(--space-xl);
+  max-width: 440px;
+  margin-inline: auto;
+}
+
 .section--surface {
   background-color: var(--color-surface);
 }

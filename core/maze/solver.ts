@@ -142,8 +142,17 @@ function computeStrokeDashTotal(
   backtracks: BacktrackExcursion[],
 ): number {
   const solutionSegments = solution.length - 1;
-  const backtrackSegments = backtracks.reduce((sum, bt) => sum + bt.path.length, 0);
-  return (solutionSegments + backtrackSegments) * CELL_SIZE + ENTRY_WALL_SEGMENT;
+  // Each backtrack renders out-and-back: 2× path length
+  const backtrackSegments = backtracks.reduce(
+    (sum, bt) => sum + 2 * bt.path.length,
+    0,
+  );
+  // Entry wall gap (20px) + solution + backtracks + exit wall gap (20px)
+  return (
+    ENTRY_WALL_SEGMENT +
+    (solutionSegments + backtrackSegments) * CELL_SIZE +
+    ENTRY_WALL_SEGMENT
+  );
 }
 
 export function solveMaze(graph: MazeGraph): ThreadPath {

@@ -9,8 +9,8 @@ blocks:
   - about-career-scale
   - about-career-now
   - about-certifications
-  - about-daedalus
   - about-working-with-me
+  - about-daedalus
   - about-site
 # Alternative (Direction A — three-era sweep with images):
 #   - about-approach

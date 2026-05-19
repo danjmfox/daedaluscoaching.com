@@ -1,5 +1,5 @@
 ---
-title: The name
+title: About Daedalus
 ---
 
 The name is deliberate. Daedalus is the craftsman — the maker who built the Labyrinth, designed the wings, and understood the conditions of flight before he flew. He survived not because he was more gifted than Icarus, but because he tested incrementally: survivable experiments, smaller recoverable bets that built understanding of the conditions before full commitment.

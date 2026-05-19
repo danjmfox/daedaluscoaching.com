@@ -6,7 +6,6 @@
           <h1>{{ data.page.title }}</h1>
           <p class="coach-role">{{ coachRole }}</p>
           <CoachPhoto />
-          <CredlyBadgeStrip />
           <template v-for="(block, i) in data.blocks" :key="block.stem">
             <div
               :class="[
@@ -28,6 +27,7 @@
                 <img :src="`/images/diagrams/${block.meta.image}.svg`" :alt="block.meta.image_alt || ''" :aria-hidden="!block.meta.image_alt" />
               </div>
             </div>
+            <CredlyBadgeStrip v-if="block.stem?.endsWith('about-certifications')" />
             <NarrativeEdge
               v-if="i < data.blocks.length - 1"
               :from="textPosition(block)"

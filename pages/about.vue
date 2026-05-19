@@ -6,6 +6,7 @@
           <h1>{{ data.page.title }}</h1>
           <p class="coach-role">{{ coachRole }}</p>
           <CoachPhoto />
+          <CredlyBadgeStrip />
           <template v-for="(block, i) in data.blocks" :key="block.stem">
             <div
               :class="[

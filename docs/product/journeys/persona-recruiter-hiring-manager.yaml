@@ -1,0 +1,46 @@
+id: persona-recruiter-hiring-manager
+name: The Recruiter / Hiring Manager
+type: primary
+feature_id: str-1-acquisition-discovery
+created: 2026-05-19
+
+jtbd: >
+  When I encounter this candidate's CV or LinkedIn profile and need to validate
+  their credibility before progressing them, I hire the site to confirm that
+  their credentials, seniority level, and practice philosophy match what they
+  claim — quickly enough that I can progress or disqualify within 60 seconds.
+
+arrival_mode: CV or LinkedIn profile → site (dominant); LinkedIn posts (secondary)
+
+context:
+  - Has already seen the CV or LinkedIn profile — arrives with prior context, not cold
+  - Looking for credential validation, not coaching philosophy
+  - Time-pressured; 10-second credential scan before any prose is read
+  - Covers both agency recruiters (keyword/badge pattern-matching) and internal hiring
+    managers (assessing practice coherence and seniority fit)
+  - Covers permie roles and contract/interim engagements
+
+what_they_need_to_confirm:
+  - Credentials are real and current (ICF, PSM, SAFe, etc.) — visible without scrolling
+  - Seniority level matches the role being filled
+  - Practice philosophy is coherent, not generic — confirms the CV narrative holds
+  - Evidence of actual transformation work in recognisable org contexts (not just individual coaching)
+
+what_they_do_not_need:
+  - Service pricing or engagement model breakdowns
+  - A contact form (they will use LinkedIn or CV email)
+  - Blog content, reading lists, or resources pages
+
+desired_outcome: >
+  Leave the site having confirmed or disqualified the candidate. If confirmed:
+  feel confident progressing them to the next stage without needing to caveat
+  the referral to a hiring panel or senior stakeholder.
+
+signals_of_failure:
+  - Credentials not visible above the fold or require hunting
+  - Site reads as a coaching practice storefront rather than a practitioner profile
+  - No evidence of org-level transformation work — looks like individual coaching only
+  - Visual register does not match the seniority level claimed on the CV
+  - Generic coaching copy indistinguishable from any other practitioner
+
+evidence_source: STR-1 discovery (2026-05-19), owner self-knowledge, recruiter sector norms

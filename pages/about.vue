@@ -28,6 +28,7 @@
               </div>
             </div>
             <CredlyBadgeStrip v-if="block.stem?.endsWith('about-certifications')" />
+            <TransformationNarrative v-if="block.stem?.endsWith('about-transformation')" />
             <NarrativeEdge
               v-if="i < data.blocks.length - 1"
               :from="textPosition(block)"

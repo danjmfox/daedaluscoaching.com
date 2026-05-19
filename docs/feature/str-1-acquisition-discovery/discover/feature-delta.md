@@ -36,7 +36,7 @@ The site's dominant job is professional portfolio validation for recruiters and 
 ## Wave: DISCOVER / [REF] Invalidated Assumptions
 
 - **The site is primarily a coaching practice storefront** — invalidated. The economic model is permie/contract Agile Coach employment with professional coaching supplementary. The site serves recruitment validation first.
-- **Warm referral is the dominant *overall* arrival channel** — invalidated for the full picture. Warm referral dominates coaching enquiries; overall arrival is dominated by recruiter/hiring-manager via CV or LinkedIn.
+- **Warm referral is the dominant _overall_ arrival channel** — invalidated for the full picture. Warm referral dominates coaching enquiries; overall arrival is dominated by recruiter/hiring-manager via CV or LinkedIn.
 
 ---
 
@@ -49,12 +49,12 @@ The site's dominant job is professional portfolio validation for recruiters and 
 
 ## Wave: DISCOVER / [REF] Decision Gate
 
-| Gate | Status | Evidence |
-|---|---|---|
-| G1 Problem validated | Pass | Clear acquisition pattern identified from owner self-knowledge |
-| G2 Persona validated | Pass | Recruiter/Hiring Manager formalised as first-class persona; existing coaching prospect persona retained as secondary |
-| G3 Opportunity sized | Pass | Credential icons and transformation evidence (case studies) are highest-ROI; service sub-pages deprioritised |
-| G4 Build/defer decision | Pass | CN-20, CN-23 unblocked; service sub-pages remain LATER; STR-2 remains LATER |
+| Gate                    | Status | Evidence                                                                                                             |
+| ----------------------- | ------ | -------------------------------------------------------------------------------------------------------------------- |
+| G1 Problem validated    | Pass   | Clear acquisition pattern identified from owner self-knowledge                                                       |
+| G2 Persona validated    | Pass   | Recruiter/Hiring Manager formalised as first-class persona; existing coaching prospect persona retained as secondary |
+| G3 Opportunity sized    | Pass   | Credential icons and transformation evidence (case studies) are highest-ROI; service sub-pages deprioritised         |
+| G4 Build/defer decision | Pass   | CN-20, CN-23 unblocked; service sub-pages remain LATER; STR-2 remains LATER                                          |
 
 ---
 

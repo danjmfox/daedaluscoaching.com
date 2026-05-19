@@ -264,7 +264,8 @@ jobs:
         proceed to the next candidate or progress this one. This is the established pattern
         on platforms like LinkedIn; the site should support the same habit.
     status: primary
-    stories: [slice-01-badge-data-and-about-page, slice-02-homepage-trust-signals]
+    stories:
+      [slice-01-badge-data-and-about-page, slice-02-homepage-trust-signals]
 
   - id: JOB-MZ-002
     name: Visitor first-impression depth

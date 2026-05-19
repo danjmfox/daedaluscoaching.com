@@ -38,9 +38,9 @@ const { page, rawDoc } = await usePageContent('/home')
 const { coachName, coachRole } = useRuntimeConfig().public
 
 useSeoMeta({
-  title: () => page.value?.title ?? 'Daedalus Coaching',
+  title: 'Coaching for leaders navigating complexity',
   description: () => page.value?.description ?? '',
-  ogTitle: () => page.value?.title ?? 'Daedalus Coaching',
+  ogTitle: 'Coaching for leaders navigating complexity',
   ogDescription: () => page.value?.description ?? '',
   ogUrl: 'https://daedaluscoaching.com/',
 })
@@ -73,5 +73,11 @@ useSeoMeta({
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-medium);
   color: var(--color-accent);
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-sm) var(--space-lg);
+  min-height: 44px;
+  border: 1.5px solid currentColor;
+  border-radius: 999px;
 }
 </style>

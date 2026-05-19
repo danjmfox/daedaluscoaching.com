@@ -13,6 +13,22 @@ interface BadgeGroup {
 const CREDLY_BADGES: CredlyBadge[] = [
   {
     issuer: "ICAgile",
+    name: "Enterprise Agile Coaching",
+    imageUrl:
+      "https://images.credly.com/size/128x128/images/5df071ef-1f25-4375-9790-5cb925e4470f/image.png",
+    shareUrl:
+      "https://www.credly.com/earner/earned/share/13326838-2128-4b0b-8de1-1efe9dcc75c7",
+  },
+  {
+    issuer: "ICAgile",
+    name: "Coaching Agile Transformations",
+    imageUrl:
+      "https://images.credly.com/size/128x128/images/a53c6eee-4ec1-4481-99a8-ae75ef88c67a/image.png",
+    shareUrl:
+      "https://www.credly.com/earner/earned/share/c373b985-a6ca-42d6-a6aa-6059a1e50c35",
+  },
+  {
+    issuer: "ICAgile",
     name: "Agile Coaching",
     imageUrl:
       "https://images.credly.com/size/128x128/images/5c50a643-ef0f-4bea-9c90-6fe2e785a1c8/image.png",
@@ -26,22 +42,6 @@ const CREDLY_BADGES: CredlyBadge[] = [
       "https://images.credly.com/size/128x128/images/a0094e49-3070-4c3b-b538-452320be93c1/image.png",
     shareUrl:
       "https://www.credly.com/earner/earned/share/06741e48-254f-4ba0-a830-8475a34d6d95",
-  },
-  {
-    issuer: "ICAgile",
-    name: "Coaching Agile Transformations",
-    imageUrl:
-      "https://images.credly.com/size/128x128/images/a53c6eee-4ec1-4481-99a8-ae75ef88c67a/image.png",
-    shareUrl:
-      "https://www.credly.com/earner/earned/share/c373b985-a6ca-42d6-a6aa-6059a1e50c35",
-  },
-  {
-    issuer: "ICAgile",
-    name: "Enterprise Agile Coaching",
-    imageUrl:
-      "https://images.credly.com/size/128x128/images/5df071ef-1f25-4375-9790-5cb925e4470f/image.png",
-    shareUrl:
-      "https://www.credly.com/earner/earned/share/13326838-2128-4b0b-8de1-1efe9dcc75c7",
   },
   {
     issuer: "Scrum.org",

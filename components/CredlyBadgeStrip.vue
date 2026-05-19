@@ -1,0 +1,97 @@
+<template>
+  <section class="credly-badge-strip" aria-label="Professional certifications">
+    <div
+      v-for="group in grouped"
+      :key="group.issuer"
+      class="credly-badge-strip__group"
+    >
+      <p class="credly-badge-strip__issuer">{{ group.issuer }}</p>
+      <ul class="credly-badge-strip__badges">
+        <li
+          v-for="badge in group.badges"
+          :key="badge.name"
+          class="credly-badge-strip__item"
+        >
+          <a
+            :href="badge.shareUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            :aria-label="`Verify ${badge.name} certification on Credly (opens in new tab)`"
+            class="credly-badge-strip__link"
+          >
+            <img
+              :src="badge.imageUrl"
+              :alt="`${badge.name} badge`"
+              class="credly-badge-strip__image"
+              width="64"
+              height="64"
+            />
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+</template>
+
+<script setup lang="ts">
+const { grouped } = useCredentials();
+</script>
+
+<style scoped>
+.credly-badge-strip {
+  margin-bottom: var(--space-2xl);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xl);
+}
+
+.credly-badge-strip__group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.credly-badge-strip__issuer {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0;
+}
+
+.credly-badge-strip__badges {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.credly-badge-strip__item {
+  display: contents;
+}
+
+.credly-badge-strip__link {
+  display: inline-block;
+  border-radius: var(--radius-sm, 4px);
+  transition: opacity 0.15s ease;
+}
+
+.credly-badge-strip__link:hover {
+  opacity: 0.8;
+}
+
+.credly-badge-strip__link:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.credly-badge-strip__image {
+  display: block;
+  width: 64px;
+  height: 64px;
+}
+</style>

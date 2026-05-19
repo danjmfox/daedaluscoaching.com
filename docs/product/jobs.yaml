@@ -225,6 +225,47 @@ jobs:
     status: primary
     stories: [S-MZ-001, S-MZ-002]
 
+  - id: JOB-CB-001
+    name: Recruiter credential scan
+    feature_id: credly-credential-badges
+    persona: persona-recruiter-hiring-manager
+    opportunity_score: 16 # high importance for recruiter persona; currently zero satisfaction — no badges on site
+    job_story: >
+      When I arrive at a candidate's website from their CV or LinkedIn profile,
+      I want to see their professional certifications displayed as recognisable badge icons
+      within the first scroll,
+      so I can validate their credential claims without reading any prose and decide whether
+      to progress them.
+    dimensions:
+      functional: >
+        Scan badge icons without scrolling. Identify issuer body (ICAgile, Scrum.org) from
+        badge shape alone. Click through to Credly evidence page to verify authenticity
+        (earner name, issue date, credential level). Complete scan in under 10 seconds.
+      emotional: >
+        Feel confident the credentials are real and at the claimed seniority level.
+        No anxiety about whether the badge links are current or the certifications are active.
+      social: >
+        Progress a candidate I can defend to a hiring panel without caveating.
+        The Credly evidence page does the verification work — I don't have to explain or interpret.
+    four_forces:
+      push: >
+        Text-only credential lists on CVs and websites require reading and cannot be verified
+        at a glance. Generic "certified agile coach" copy is ubiquitous and unverifiable.
+        Sites without badges create extra verification steps that most recruiters skip.
+      pull: >
+        Recognisable Credly badge icons (format widely known in the sector) that link to
+        tamper-proof Credly evidence pages. One click confirms issuer, earner name, date, and level.
+      anxiety: >
+        What if the badges are outdated or the links don't work? What if I can't distinguish
+        ICAgile from Scrum.org at a glance? What if clicking through reveals an expired or
+        revoked credential?
+      habit: >
+        Scan for familiar logo shapes → click one badge to verify → feel satisfied →
+        proceed to the next candidate or progress this one. This is the established pattern
+        on platforms like LinkedIn; the site should support the same habit.
+    status: primary
+    stories: [slice-01-badge-data-and-about-page, slice-02-homepage-trust-signals]
+
   - id: JOB-MZ-002
     name: Visitor first-impression depth
     feature_id: seed-maze-generator

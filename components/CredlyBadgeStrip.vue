@@ -69,18 +69,14 @@ const { grouped } = useCredentials();
   list-style: none;
   padding: 0;
   margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--space-sm);
-}
-
-.credly-badge-strip__item {
-  display: contents;
+  width: 100%;
 }
 
 .credly-badge-strip__link {
-  display: inline-block;
+  display: block;
   border-radius: var(--radius-sm, 4px);
   transition: opacity 0.15s ease;
 }
@@ -96,8 +92,8 @@ const { grouped } = useCredentials();
 
 .credly-badge-strip__image {
   display: block;
-  width: 80px;
-  height: 80px;
+  width: 100%;
+  height: auto;
 }
 
 @media (width <= 48rem) {

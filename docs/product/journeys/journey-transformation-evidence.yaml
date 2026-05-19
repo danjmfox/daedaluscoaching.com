@@ -1,0 +1,109 @@
+id: journey-transformation-evidence
+name: Transformation Evidence — Credential Scan to Practice Confirmation
+feature_id: transformation-narrative-case-studies
+cn_id: CN-20
+created: 2026-05-19
+
+description: >
+  Two personas arrive at the site needing transformation evidence for different reasons
+  and at different scan speeds. The Recruiter / Hiring Manager needs to confirm org-level
+  transformation work within 10 seconds. The Evaluating Leader needs to corroborate
+  the coach's philosophy with evidence of practice within 60 seconds.
+  This journey maps both paths through the same content surface.
+
+personas:
+  - id: persona-recruiter-hiring-manager
+    arrival_mode: CV or LinkedIn profile → site
+    time_budget: 60 seconds total; 10-second credential scan first
+    primary_job: confirm or disqualify the candidate based on transformation evidence
+  - id: persona-prospective-client
+    arrival_mode: warm referral → site
+    time_budget: 60–90 seconds
+    primary_job: corroborate coach philosophy with evidence of actual practice
+
+steps:
+  - step: 1
+    name: Arrive with prior context
+    trigger_recruiter: CV or LinkedIn profile cites coaching practice; recruiter visits site to validate
+    trigger_leader: Referral colleague says "look at the site before you call him"
+    user_action: Opens site — homepage or about page
+    site_responsibility: Credential signals visible without scroll; page loads in <2s
+    current_state: Credentials present but no transformation evidence exists
+    desired_state: Transformation evidence accessible from the credential display surface; no additional navigation required
+    opportunity: CN-20
+
+  - step: 2
+    name: Credential scan (recruiter-first)
+    trigger: Page has loaded
+    user_action_recruiter: Scans for accreditations, org-level indicators, seniority signals — 10 seconds
+    user_action_leader: Scans for whether the practitioner is credible — 5–10 seconds
+    site_responsibility: ICF, ICAgile, and other credentials visible above fold; transformation evidence immediately adjacent or one visual unit below
+    current_state: No transformation evidence exists; recruiter cannot confirm org-level work
+    desired_state: 3–5 transformation vignettes visible or reachable from credential surface without sub-page navigation
+    opportunity: CN-20
+    failure_signal: Recruiter sees credentials but no evidence of transformation work — cannot confirm the CV narrative
+
+  - step: 3
+    name: Scan transformation evidence
+    trigger: Credentials cleared the first filter
+    user_action_recruiter: Reads enough of each vignette to confirm sector, scale, and org-level scope — approximately 10–20 seconds per item, scanning not reading
+    user_action_leader: Reads 1–2 vignettes fully to assess whether the approach matches what the referral described
+    site_responsibility: Each vignette signals org context (sector + scale) in the first line; structural condition named; outcome qualitative but specific; brand voice maintained
+    current_state: Nothing to read
+    desired_state: >
+      3–5 anonymised vignettes, each 80–120 words, structured as:
+      context (org type, scale, presenting condition) → what the work addressed → what shifted.
+      No named clients. No quantified metrics. Org-type and scale signalled without identification.
+    opportunity: CN-20
+    failure_signal_recruiter: Vignettes read as individual coaching, not org transformation; or vignettes too vague to confirm scope
+    failure_signal_leader: Vignettes feel like marketing copy, not genuine account of practice
+
+  - step: 4
+    name: Confirm or disqualify
+    trigger: Transformation evidence scanned
+    user_action_recruiter: Makes proceed/disqualify decision; if proceed, moves to contact via CV or LinkedIn (not site CTA)
+    user_action_leader: Decides whether to make contact; uses site CTA (contact form) if yes
+    site_responsibility_recruiter: No action required — recruiter will not use the contact form
+    site_responsibility_leader: Single CTA visible from the transformation evidence surface; low-friction form
+    current_state: Recruiter has no basis to proceed; leader has prose philosophy only
+    desired_state: Recruiter has enough evidence to progress candidate; leader has corroboration signal sufficient to justify enquiry
+    opportunity: CN-20, OPP-04
+
+exit_conditions:
+  recruiter_success: Recruiter confirms candidate has org-level transformation evidence; progresses to next hiring stage
+  recruiter_abandon_reasons:
+    - No transformation evidence visible — cannot distinguish Agile Coach scope from individual coaching
+    - Vignettes too generic to confirm sector or scale fit
+    - Visual register does not match seniority level claimed on CV
+  leader_success: Leader submits enquiry or agrees to a call with confidence they can justify the decision
+  leader_abandon_reasons:
+    - Transformation evidence reads as marketing, not practice account
+    - No corroboration for the philosophy the referral described
+    - CTA unclear or requires too many steps from the evidence surface
+
+content_requirements:
+  vignette_count: 3–5 at v1
+  vignette_length: 80–120 words each
+  vignette_structure:
+    - line_1: org type + scale + presenting condition (signals recognisable context without identification)
+    - body: what the work addressed at structural level; what the coach's role was
+    - close: what shifted — qualitative, specific, not metric-framed
+  anonymisation: No named clients; no named organisations; sector and scale may be included
+  label: transformation narrative preferred — case studies off-brand (imports formal consulting expectations)
+  placement: adjacent to or within the credential display surface; no dedicated sub-page at v1
+  voice: precise, grounded, systemic, restrained — per brand voice guidelines
+
+constraints:
+  - ICF ethics framework: all content anonymised; no named clients at v1 without explicit opt-in
+  - No quantified outcomes: no analytics baseline; nature of the work resists short-window quantification
+  - Org context must be signalled without identification: sufficient for recruiter pattern-matching
+  - Dual-dimension coverage: vignettes must span org transformation (Agile Coach) and leadership coaching dimensions
+
+measurement:
+  proxy_metric: Contact form submissions from recruiter and leader paths (Netlify)
+  baseline: To be established post-launch
+  qualitative_signal: Owner can ask early enquirers "what on the site confirmed this was the right fit?"
+
+evidence_source: >
+  STR-1 discovery (2026-05-19); persona-recruiter-hiring-manager; persona-prospective-client;
+  journey-warm-referral; CN-20 DISCOVER wave (2026-05-19); brand-voice-guidelines.md

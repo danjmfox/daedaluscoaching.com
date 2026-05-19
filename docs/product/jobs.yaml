@@ -287,3 +287,49 @@ jobs:
       habit: Land → glance at logo → read headline. The maze earns that glance without demanding more.
     status: secondary
     stories: [S-MZ-005, S-MZ-006]
+
+  - id: JOB-TN-001
+    name: Credential-surface transformation scope assessment
+    feature_id: transformation-narrative-case-studies
+    persona: persona-recruiter-hiring-manager (primary); persona-prospective-client (secondary)
+    opportunity_score: 17 # from DISCOVER — Importance 9/10, Satisfaction 1/10
+    job_story: >
+      When I arrive at a coaching credential surface (About page),
+      I want to see evidence of org-level transformation scope at a glance,
+      so I can decide whether to investigate further without committing to a full read.
+    dimensions:
+      functional: >
+        Scan all five vignette titles and first sentences in one pass without scrolling past the credential section.
+        Identify org type (sector, scale) from the first sentence of each vignette.
+        Expand any vignette to read the full body without navigating away.
+        Complete the scan in under 10 seconds (recruiter) or 60 seconds (evaluating leader).
+      emotional: >
+        Feel that the evidence is real, specific, and at the expected seniority level —
+        without having to search for it or work for it.
+        The recruiter: enough confidence to progress the candidate.
+        The evaluating leader: enough approach-texture to feel confident making an enquiry.
+      social: >
+        Recruiter: form an assessment defensible to a hiring panel.
+        Evaluating leader: confirm that the coach's approach is coherent enough to justify a first conversation.
+    four_forces:
+      push: >
+        No transformation evidence exists on site before this feature.
+        Credentials alone (ICF, ICAgile) confirm qualification but do not signal org scope or complexity.
+        The recruiter persona names this as an explicit failure signal.
+      pull: >
+        Scan-speed-compatible evidence on the credential surface.
+        All five vignette first sentences visible simultaneously — no click required to see org context.
+        Body text available on expand for the evaluating leader who wants more.
+      anxiety: >
+        The vignettes add page height — the About page is already long.
+        The h3 tier introduced by vignette titles has no global styling and conflicts with the existing h1/h2 hierarchy.
+        A carousel (owner's initial preference) hides content past slide 1.
+      habit: >
+        Recruiter: scan credential display → assess org scope → progress or disqualify.
+        Evaluating leader: read biography → check evidence → decide whether to enquire.
+        Both habits are broken when the evidence section is too long to reach in the available attention window.
+    status: primary
+    stories: []
+    diverge_recommendation: >
+      Option 1 — Editorial expand using details/summary (score 4.68).
+      See docs/feature/transformation-narrative-case-studies/recommendation.md.

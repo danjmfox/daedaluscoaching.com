@@ -9,6 +9,7 @@ blocks:
   - about-career-scale
   - about-career-now
   - about-certifications
+  - about-transformation
   - about-working-with-me
   - about-daedalus
   - about-site

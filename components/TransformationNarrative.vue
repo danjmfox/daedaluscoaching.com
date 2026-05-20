@@ -41,6 +41,11 @@ const vignettes = [
     lead: 'A software engineering manager, new to a team carrying a high-profile deliverable with director-level sponsorship, had defaulted under pressure to directive control.',
     body: 'The team expected autonomy. Relationships were strained, and someone was at risk of a performance plan. A series of confidential coaching sessions created space for the manager to examine his leadership stance and clarify how he wanted to show up. Relationship alignment work with the team followed. Communication opened, tension dropped, and the manager built tools to navigate similar conditions independently — without the coach in the room.',
   },
+  {
+    title: 'Before the rollout arrived',
+    lead: 'A technology organisation of several thousand people was mandating AI tooling adoption across thirty-plus teams. The convention was that coaches engage after rollout — after decisions about training, tooling, and ways of working had already been made.',
+    body: 'The work was to enter before the handoff point — using an available opening at a poorly-organised onsite — and earn a seat at the table by building practical scaffolding: a tool that replaced a fragile Google doc and got sixty-six people through installation without a wasted training window, a shared calendar that protected attendance, and a defined AI Champion role that had previously been a job title with no content. The "coaches engage post-rollout" convention was effectively overturned. When the first cohort arrived, the training started on time and the coaches were already in the room.',
+  },
 ]
 </script>
 

@@ -1,4 +1,5 @@
 <!-- markdownlint-disable MD024 -->
+
 # Feature Delta — Transformation Narrative Elevation
 
 ```yaml
@@ -45,12 +46,12 @@ and decide whether to proceed — without navigating away or reading the full ca
 
 Four options were mapped against both personas. Full analysis in `discuss/wave-decisions.md`.
 
-| Option | Recruiter fit | Leader fit | Effort | Verdict |
-|---|---|---|---|---|
-| A: About page reorder (transformation after certifications) | STRONG | STRONG | 0.5 days | RECOMMENDED |
-| B: New top-level "Work" page + nav item | WEAK | NEUTRAL | 1–2 days | ELIMINATED |
-| C: Services page integration | VERY WEAK | WEAK | 0.5 days | ELIMINATED |
-| D: Direction A era sweep (standalone) | NEUTRAL | NEUTRAL | 0 days (built) | PREREQUISITE only |
+| Option                                                      | Recruiter fit | Leader fit | Effort         | Verdict           |
+| ----------------------------------------------------------- | ------------- | ---------- | -------------- | ----------------- |
+| A: About page reorder (transformation after certifications) | STRONG        | STRONG     | 0.5 days       | RECOMMENDED       |
+| B: New top-level "Work" page + nav item                     | WEAK          | NEUTRAL    | 1–2 days       | ELIMINATED        |
+| C: Services page integration                                | VERY WEAK     | WEAK       | 0.5 days       | ELIMINATED        |
+| D: Direction A era sweep (standalone)                       | NEUTRAL       | NEUTRAL    | 0 days (built) | PREREQUISITE only |
 
 **Options B and C are eliminated** on persona grounds.
 
@@ -432,8 +433,8 @@ Scenario: about-site block is accessible elsewhere if retained (if relocated)
 
 ### Backbone (About page visitor journey)
 
-| Arrive | Credential scan | Transformation scan | Enquiry decision |
-|---|---|---|---|
+| Arrive          | Credential scan            | Transformation scan      | Enquiry decision                |
+| --------------- | -------------------------- | ------------------------ | ------------------------------- |
 | Open About page | Certifications badge strip | Transformation vignettes | Contact form or external action |
 
 ### Walking Skeleton
@@ -491,13 +492,13 @@ indefinitely without affecting the core problem statement.
 
 ## Wave: DISCUSS / [REF] Pre-requisites
 
-| ID | Pre-requisite | Owner action? | Blocks |
-|---|---|---|---|
-| PRE-01 | D-01 decision confirmed (IA direction) | Yes | US-TNE-01 DESIGN |
-| PRE-02 | CN-20 `TransformationNarrative.vue` merged (vignettes exist on page) | No (engineering) | US-TNE-01 full value |
-| PRE-03 | D-02 decision confirmed (Direction A vs B) | Yes | US-TNE-02 DESIGN |
-| PRE-04 | D-03 decision confirmed (`about-site` disposition) | Yes | US-TNE-03 DESIGN |
-| PRE-05 | Direction A era block content verified as current and accurate | Yes | US-TNE-02 implementation |
+| ID     | Pre-requisite                                                        | Owner action?    | Blocks                   |
+| ------ | -------------------------------------------------------------------- | ---------------- | ------------------------ |
+| PRE-01 | D-01 decision confirmed (IA direction)                               | Yes              | US-TNE-01 DESIGN         |
+| PRE-02 | CN-20 `TransformationNarrative.vue` merged (vignettes exist on page) | No (engineering) | US-TNE-01 full value     |
+| PRE-03 | D-02 decision confirmed (Direction A vs B)                           | Yes              | US-TNE-02 DESIGN         |
+| PRE-04 | D-03 decision confirmed (`about-site` disposition)                   | Yes              | US-TNE-03 DESIGN         |
+| PRE-05 | Direction A era block content verified as current and accurate       | Yes              | US-TNE-02 implementation |
 
 ---
 
@@ -505,46 +506,46 @@ indefinitely without affecting the core problem statement.
 
 ### US-TNE-01
 
-| DoR Item | Status | Evidence |
-|---|---|---|
-| Problem statement clear, domain language | PASS | Recruiter scan speed / buried transformation evidence articulated |
-| User/persona with specific characteristics | PASS | Recruiter (10s scan) and Evaluating Leader (60s) — established in STR-1, CN-20 |
-| 3+ domain examples with real data | PASS | Sarah, Marcus, Priya — real scan behaviours and org contexts |
-| UAT in Given/When/Then (3–7 scenarios) | PASS | 4 scenarios |
-| AC derived from UAT | PASS | 6 AC items traceable to scenarios |
-| Right-sized (1–3 days, 3–7 scenarios) | PASS | 0.5 days; 4 scenarios; single YAML edit |
-| Technical notes: constraints/dependencies | PASS | CN-20 dependency noted; SSG build implications noted |
-| Dependencies resolved or tracked | PASS | CN-20 as PRE-02; D-01 owner decision as PRE-01 |
+| DoR Item                                   | Status | Evidence                                                                       |
+| ------------------------------------------ | ------ | ------------------------------------------------------------------------------ |
+| Problem statement clear, domain language   | PASS   | Recruiter scan speed / buried transformation evidence articulated              |
+| User/persona with specific characteristics | PASS   | Recruiter (10s scan) and Evaluating Leader (60s) — established in STR-1, CN-20 |
+| 3+ domain examples with real data          | PASS   | Sarah, Marcus, Priya — real scan behaviours and org contexts                   |
+| UAT in Given/When/Then (3–7 scenarios)     | PASS   | 4 scenarios                                                                    |
+| AC derived from UAT                        | PASS   | 6 AC items traceable to scenarios                                              |
+| Right-sized (1–3 days, 3–7 scenarios)      | PASS   | 0.5 days; 4 scenarios; single YAML edit                                        |
+| Technical notes: constraints/dependencies  | PASS   | CN-20 dependency noted; SSG build implications noted                           |
+| Dependencies resolved or tracked           | PASS   | CN-20 as PRE-02; D-01 owner decision as PRE-01                                 |
 
 **DoR Status: PASSED** — pending D-01 owner decision before DESIGN handoff.
 
 ### US-TNE-02
 
-| DoR Item | Status | Evidence |
-|---|---|---|
-| Problem statement clear, domain language | PASS | Four prose blocks at scan speed = indistinguishable noise |
-| User/persona with specific characteristics | PASS | Recruiter (scan speed) and Evaluating Leader (shorter page) |
-| 3+ domain examples with real data | PASS | James, Alicia, owner regression check |
-| UAT in Given/When/Then (3–7 scenarios) | PASS | 4 scenarios |
-| AC derived from UAT | PASS | 5 AC items |
-| Right-sized (1–3 days, 3–7 scenarios) | PASS | 0.5 days; 4 scenarios; one YAML edit |
-| Technical notes: constraints/dependencies | PASS | D-02 dependency noted; no new files required |
-| Dependencies resolved or tracked | CONDITIONAL | D-02 owner decision is PRE-03 — blocked until confirmed |
+| DoR Item                                   | Status      | Evidence                                                    |
+| ------------------------------------------ | ----------- | ----------------------------------------------------------- |
+| Problem statement clear, domain language   | PASS        | Four prose blocks at scan speed = indistinguishable noise   |
+| User/persona with specific characteristics | PASS        | Recruiter (scan speed) and Evaluating Leader (shorter page) |
+| 3+ domain examples with real data          | PASS        | James, Alicia, owner regression check                       |
+| UAT in Given/When/Then (3–7 scenarios)     | PASS        | 4 scenarios                                                 |
+| AC derived from UAT                        | PASS        | 5 AC items                                                  |
+| Right-sized (1–3 days, 3–7 scenarios)      | PASS        | 0.5 days; 4 scenarios; one YAML edit                        |
+| Technical notes: constraints/dependencies  | PASS        | D-02 dependency noted; no new files required                |
+| Dependencies resolved or tracked           | CONDITIONAL | D-02 owner decision is PRE-03 — blocked until confirmed     |
 
 **DoR Status: BLOCKED** — pending D-02 owner decision. Story is ready to enter DESIGN immediately
 upon D-02 confirmation.
 
 ### US-TNE-03
 
-| DoR Item | Status | Evidence |
-|---|---|---|
-| Problem statement clear, domain language | PASS | Page ends on technical footnote not practice content |
-| User/persona with specific characteristics | PASS | Owner as primary stakeholder; full-read visitor |
-| 3+ domain examples with real data | PASS | Recruiter (no impact), Alicia, owner sharing scenario |
-| UAT in Given/When/Then (3–7 scenarios) | PASS | 2 scenarios (right-sized; decision is binary) |
-| AC derived from UAT | PASS | 3 AC items |
-| Right-sized (1–3 days, 3–7 scenarios) | PASS | 0.25 days; smallest possible scope |
-| Technical notes: constraints/dependencies | PASS | Footer relocation scope creep risk noted |
-| Dependencies resolved or tracked | CONDITIONAL | D-03 owner decision is PRE-04 — blocked until confirmed |
+| DoR Item                                   | Status      | Evidence                                                |
+| ------------------------------------------ | ----------- | ------------------------------------------------------- |
+| Problem statement clear, domain language   | PASS        | Page ends on technical footnote not practice content    |
+| User/persona with specific characteristics | PASS        | Owner as primary stakeholder; full-read visitor         |
+| 3+ domain examples with real data          | PASS        | Recruiter (no impact), Alicia, owner sharing scenario   |
+| UAT in Given/When/Then (3–7 scenarios)     | PASS        | 2 scenarios (right-sized; decision is binary)           |
+| AC derived from UAT                        | PASS        | 3 AC items                                              |
+| Right-sized (1–3 days, 3–7 scenarios)      | PASS        | 0.25 days; smallest possible scope                      |
+| Technical notes: constraints/dependencies  | PASS        | Footer relocation scope creep risk noted                |
+| Dependencies resolved or tracked           | CONDITIONAL | D-03 owner decision is PRE-04 — blocked until confirmed |
 
 **DoR Status: BLOCKED** — pending D-03 owner decision.

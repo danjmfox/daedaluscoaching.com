@@ -95,7 +95,8 @@ constraints:
   - Daedalus frame must hold — understood the conditions before committing, not built the thing
   - Developer-tool aesthetic is off-brand and must not appear in copy, tone, or framing
 
-infrastructure_required: none
+infrastructure_required:
+  none
   # Vignette added to existing transformation narrative surface (CN-20 / JOB-TN-001)
   # No new routes, components, or Nuxt configuration
 

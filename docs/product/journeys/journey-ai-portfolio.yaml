@@ -1,0 +1,110 @@
+id: journey-ai-portfolio
+name: AI Fluency Signal — Evaluating Leader Corroboration
+feature_id: ai-portfolio-section
+status: SCOPED ALTERNATIVE (proposed feature killed at G2)
+created: 2026-05-20
+
+description: >
+  An evaluating leader arriving via warm referral needs to know that the coach
+  has genuinely navigated AI-transformation terrain — not as a technical builder,
+  but as a practitioner who has worked inside organisations undergoing AI change.
+  This journey maps the minimum-footprint path to satisfying that need
+  within the existing site structure, without new navigation or portfolio infrastructure.
+
+note: >
+  This journey file is seeded because G1 conditionally passes for the evaluating leader
+  persona only. The journey is narrow in scope — it maps how an AI-transformation
+  vignette (an extension of JOB-TN-001) satisfies the underlying need.
+  The GitHub/portfolio feature as originally proposed does not have a corresponding
+  journey because it was killed at G2 before any solution surface was validated.
+
+personas:
+  - id: persona-prospective-client
+    segment: Evaluating leader, AI-transformation programme sponsor
+    arrival_mode: warm referral
+    time_budget: 60-90 seconds
+    primary_job: >
+      Confirm the coach has navigated AI-transformation terrain as a practitioner,
+      so I can justify engaging them to my organisation for this specific context.
+
+steps:
+  - step: 1
+    name: Arrive with AI-specific context
+    trigger: Referral describes coach as experienced in AI transformation; leader visits site to confirm
+    user_action: Opens site — homepage or About page
+    site_responsibility: Credentials visible without scroll; transformation evidence accessible within one scroll
+    current_state: Transformation vignettes present (CN-20) but no AI-transformation context in any vignette
+    desired_state: One vignette signals AI-transformation context in first line (sector + scale + AI presenting condition)
+    opportunity: OPP-APS-01
+
+  - step: 2
+    name: Scan transformation evidence for AI-transformation signal
+    trigger: Credential scan passed; leader looks for evidence relevant to their context
+    user_action: Scans vignette titles and first lines for relevant context
+    site_responsibility: AI-transformation vignette visible in the standard vignette set; first line signals org type and AI presenting condition
+    current_state: No AI-transformation vignette exists
+    desired_state: >
+      One vignette opens with an org-type + scale + AI presenting condition that a
+      senior leader in an AI-transformation programme would immediately recognise.
+      Example structure: "A professional services firm of [scale] facing [AI-presenting condition]..."
+    opportunity: OPP-APS-01
+    failure_signal: No vignette in the set speaks to AI-transformation context; leader cannot confirm coaching credibility in this domain
+
+  - step: 3
+    name: Expand vignette for approach texture
+    trigger: First line signals relevant context; leader wants to understand how the coach engaged
+    user_action: Expands the AI-transformation vignette (details/summary interaction, per CN-20)
+    site_responsibility: Body text describes structural condition and coaching approach; not technical tool-building
+    current_state: N/A
+    desired_state: >
+      Body text names the structural condition (not the technical stack), the coach's entry point
+      (individual, team, or systemic level), and what shifted. Framed as practitioner engagement,
+      not technical delivery. Anonymised; no named clients or organisations.
+    opportunity: OPP-APS-01
+    failure_signal: Body text reads as technical delivery log rather than coaching engagement account
+
+  - step: 4
+    name: Decide whether to enquire
+    trigger: AI-transformation credibility confirmed
+    user_action: Moves to contact CTA
+    site_responsibility: Single CTA accessible from transformation evidence surface (existing pattern)
+    current_state: CTA exists; no AI-transformation credibility to confirm before reaching it
+    desired_state: Leader has confirmed AI-transformation credibility; proceeds to CTA with confidence
+    opportunity: OPP-APS-01, OPP-04
+
+exit_conditions:
+  success: Leader submits enquiry with AI-transformation context named as a confidence signal
+  abandon_reasons:
+    - No vignette signals AI-transformation context — cannot confirm coaching credibility in this domain
+    - Vignette reads as technical delivery account, not coaching engagement — wrong professional category
+    - AI-transformation content is too generic to distinguish this coach from a methodology consultant
+
+content_requirements:
+  vignette_count: 1 at minimum (part of existing JOB-TN-001 set)
+  vignette_structure:
+    - line_1: org type + scale + AI presenting condition (signals recognisable context without identification)
+    - body: structural condition the coaching engaged with; not technical stack or tool choices
+    - close: what shifted in terms of individual, team, or organisational behaviour — not technical outcomes
+  frame: practitioner engagement (Daedalus — pattern recognition, conditions, incremental) NOT developer/builder
+  anonymisation: No named clients; no named organisations; sector and scale may be included
+  voice: precise, grounded, systemic, restrained — per brand voice guidelines
+
+constraints:
+  - ICF ethics: anonymised; no named clients without explicit opt-in
+  - No technical metrics: no lines of code, no model accuracy, no deployment counts
+  - Daedalus frame must hold — understood the conditions before committing, not built the thing
+  - Developer-tool aesthetic is off-brand and must not appear in copy, tone, or framing
+
+infrastructure_required: none
+  # Vignette added to existing transformation narrative surface (CN-20 / JOB-TN-001)
+  # No new routes, components, or Nuxt configuration
+
+measurement:
+  proxy_metric: Contact form submissions where enquiry names AI-transformation context (Netlify + owner qualitative)
+  baseline: To be established post-launch
+  qualitative_signal: Owner asks early enquirers "what on the site confirmed this was the right fit for your AI programme?"
+
+evidence_source: >
+  ai-portfolio-section DISCOVER wave (2026-05-20);
+  persona-prospective-client.yaml; persona-recruiter-hiring-manager.yaml;
+  brand-voice-guidelines.md; JOB-TN-001; journey-transformation-evidence.yaml

@@ -17,14 +17,14 @@
 <script setup lang="ts">
 const vignettes = [
   {
+    title: 'Before the rollout arrived',
+    lead: 'A technology organisation of several thousand people was mandating AI tooling adoption across thirty-plus teams. The convention was that coaches engage after rollout — after decisions about training, tooling, and ways of working had already been made.',
+    body: 'The work was to enter before the handoff point — using an available opening at a poorly-organised onsite — and earn a seat at the table by building practical scaffolding: a tool that replaced a fragile Google doc and got sixty-six people through installation without a wasted training window, a shared calendar that protected attendance, and a defined AI Champion role that had previously been a job title with no content. The "coaches engage post-rollout" convention was effectively overturned. When the first cohort arrived, the training started on time and the coaches were already in the room.',
+  },
+  {
     title: 'When the data changed the conversation',
     lead: 'A product organisation in consumer technology, around two hundred engineers, had committed to a high-profile mobile revamp: four months to deliver what senior management estimated would take two years.',
     body: 'The team was already carrying BAU, support, and continuous improvement work. Rather than push harder, the work was to make the trade-offs legible. Throughput data and probabilistic forecasting showed a 1.4% chance of success at current load, and 95% if BAU was reduced significantly. The Product Owner used this to stop having the wrong argument with stakeholders. The mobile revamp shipped a month early.',
-  },
-  {
-    title: 'From troubled to exemplar',
-    lead: 'A cross-functional engineering team in a scaling technology organisation had been labelled "troubled" by leadership — failing to deliver, fractured ways of working, high turnover in a short span.',
-    body: 'Rather than push for velocity, the intervention was a pause: two weeks of structured experimentation — story slicing, flow games, Kanban design, collaborative practice — replacing the imposed process with something the team understood and owned. One developer described it afterward as "intensely collaborative, without even realising we\'d changed." Within months, other teams were being directed to learn from them. Management were sending Directors and VPs to observe.',
   },
   {
     title: '135 ideas, one clear direction',
@@ -37,14 +37,14 @@ const vignettes = [
     body: 'Early sessions had gone poorly — low trust, conflicting assumptions, rising tension, no traction. At the CMO\'s request, a two-day offsite was designed and co-facilitated: ground rules, assumption surfacing, shared purpose, planning cadence, and working group formation. The focus was on the group\'s relational system, not just the strategy. People who had been talking past each other were collaborating by the end. One director described it as the best offsite they had attended.',
   },
   {
+    title: 'From troubled to exemplar',
+    lead: 'A cross-functional engineering team in a scaling technology organisation had been labelled "troubled" by leadership — failing to deliver, fractured ways of working, high turnover in a short span.',
+    body: 'Rather than push for velocity, the intervention was a pause: two weeks of structured experimentation — story slicing, flow games, Kanban design, collaborative practice — replacing the imposed process with something the team understood and owned. One developer described it afterward as "intensely collaborative, without even realising we\'d changed." Within months, other teams were being directed to learn from them. Management were sending Directors and VPs to observe.',
+  },
+  {
     title: 'What leadership looks like under pressure',
     lead: 'A software engineering manager, new to a team carrying a high-profile deliverable with director-level sponsorship, had defaulted under pressure to directive control.',
     body: 'The team expected autonomy. Relationships were strained, and someone was at risk of a performance plan. A series of confidential coaching sessions created space for the manager to examine his leadership stance and clarify how he wanted to show up. Relationship alignment work with the team followed. Communication opened, tension dropped, and the manager built tools to navigate similar conditions independently — without the coach in the room.',
-  },
-  {
-    title: 'Before the rollout arrived',
-    lead: 'A technology organisation of several thousand people was mandating AI tooling adoption across thirty-plus teams. The convention was that coaches engage after rollout — after decisions about training, tooling, and ways of working had already been made.',
-    body: 'The work was to enter before the handoff point — using an available opening at a poorly-organised onsite — and earn a seat at the table by building practical scaffolding: a tool that replaced a fragile Google doc and got sixty-six people through installation without a wasted training window, a shared calendar that protected attendance, and a defined AI Champion role that had previously been a job title with no content. The "coaches engage post-rollout" convention was effectively overturned. When the first cohort arrived, the training started on time and the coaches were already in the room.',
   },
 ]
 </script>

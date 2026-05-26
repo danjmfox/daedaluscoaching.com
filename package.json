@@ -35,6 +35,6 @@
     "stylelint-config-recommended-vue": "^1.6.1",
     "stylelint-config-standard": "^40.0.0",
     "stylelint-declaration-strict-value": "^1.11.1",
-    "vitest": "^4.1.6"
+    "vitest": "^4.1.7"
   }
 }

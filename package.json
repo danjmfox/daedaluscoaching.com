@@ -15,9 +15,9 @@
   "dependencies": {
     "@fontsource-variable/fraunces": "^5.2.9",
     "@fontsource-variable/plus-jakarta-sans": "^5.2.8",
-    "@nuxt/content": "^3.5.0",
+    "@nuxt/content": "^3.14.0",
     "better-sqlite3": "^12.5.0",
-    "nuxt": "^3.17.0",
+    "nuxt": "^3.21.6",
     "vue": "^3.5.0",
     "zod": "^4.4.3"
   },

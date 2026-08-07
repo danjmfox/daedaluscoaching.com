@@ -364,6 +364,8 @@ Note: `pages/privacy.vue` and `content/privacy.md` were found already implemente
 | ADR-004 | Contact form: Zod in core, Netlify Forms adapter            | Accepted                     |
 | ADR-005 | Design token enforcement: CSS Custom Properties + Stylelint | Accepted                     |
 | ADR-006 | Testing strategy: Outside-In TDD + Stryker on core          | Accepted                     |
+| ADR-007 | Living maze: fork-ahead engine behind a ThreadPlayback port  | Proposed                     |
+| ADR-008 | Living maze: rotate-into-free-edge primitive + animated walls (extends ADR-007) | Proposed |
 
 ---
 

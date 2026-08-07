@@ -286,7 +286,7 @@ jobs:
       anxiety: Will I notice it on a mobile device? Does it distract from the copy?
       habit: Land → glance at logo → read headline. The maze earns that glance without demanding more.
     status: secondary
-    stories: [S-MZ-005, S-MZ-006]
+    stories: [S-MZ-005, S-MZ-006, US-LM-001, US-LM-002, US-LM-003] # US-LM-* added by living-maze DISCUSS 2026-06-19 (fuller realization of this job)
 
   - id: JOB-TN-001
     name: Credential-surface transformation scope assessment

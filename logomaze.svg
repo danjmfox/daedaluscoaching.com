@@ -1,6 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="440" height="440" viewBox="0 0 440 440">
   <rect width="440" height="440" fill="#fffef4"/>
 
+  <style>
+    /* C-once: draw main path, hold at stopping point, then push two steps further */
+    .maze-thread {
+      stroke-dasharray: 1180;
+      stroke-dashoffset: 1180;
+      animation: draw-maze 100s 1s forwards;
+    }
+    @keyframes draw-maze {
+      0%   { stroke-dashoffset: 1180; animation-timing-function: linear; }
+      65%  { stroke-dashoffset: 80;   }                           /* main path done */
+      78%  { stroke-dashoffset: 80;   animation-timing-function: ease-out; } /* hold */
+      100% { stroke-dashoffset: 0;    }                           /* extension drawn */
+    }
+  </style>
+
   <!-- ── Layer 1a: maze walls ──────────────────────────────────────────── -->
   <g stroke="#d4f0f2" stroke-width="5" stroke-linecap="square" fill="none">
 
@@ -138,6 +153,7 @@
     Stops at r9,c2 — still lost
   -->
   <polyline
+    class="maze-thread"
     points="420,80
             400,80  360,80  320,80  280,80  240,80  200,80
             200,40
@@ -145,7 +161,8 @@
             40,80  40,120
             80,120  120,120  80,120  40,120
             40,160  40,200  40,240  40,280  40,320  40,360  40,400
-            80,400  120,400  120,360  120,400"
+            80,400  120,400  120,360  120,400
+            160,400  200,400"
     fill="none" stroke="#ffaa8c" stroke-width="8"
     stroke-linecap="round" stroke-linejoin="round"/>
 

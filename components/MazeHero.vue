@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { computed } from "vue"
+import { useRoute } from "vue-router"
 import { useMazeSeed } from "../composables/useMazeSeed"
 
 const props = defineProps<{
@@ -8,6 +10,10 @@ const props = defineProps<{
 
 // Shares the same seed as MazeLogo — both read the same URL param
 const { seed } = useMazeSeed(undefined, props.defaultSeed)
+
+// Opt-in living maze (ADR-007) via ?living=1 — static by default
+const route = useRoute()
+const live = computed(() => route.query.living === "1")
 </script>
 
 <template>
@@ -15,6 +21,7 @@ const { seed } = useMazeSeed(undefined, props.defaultSeed)
     <MazeLogo
       v-if="seed"
       :seed="seed"
+      :live="live"
       class="maze-hero__svg"
       style="animation-delay: 0.3s"
     />

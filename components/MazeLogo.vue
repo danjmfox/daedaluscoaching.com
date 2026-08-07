@@ -4,14 +4,22 @@ import { generateMaze } from "../core/maze/generator"
 import { solveMaze } from "../core/maze/solver"
 import { renderPath } from "../core/maze/renderer"
 import { useMazeSeed } from "../composables/useMazeSeed"
+import { useLivingMaze, pathToPoints } from "../composables/useLivingMaze"
 
 const props = defineProps<{
   /** Override URL seed — used for testing and Storybook */
   seed?: string
+  /** When true, the maze evolves over time (ADR-007). Default: static. */
+  live?: boolean
 }>()
 
 // URL seed falls back to generated; prop overrides both
 const { seed: urlSeed } = useMazeSeed(props.seed)
+
+// Living-maze state (ADR-007); null when static, on the server, or pre-mount
+const seedRef = computed(() => props.seed ?? urlSeed.value)
+const liveRef = computed(() => props.live === true)
+const { state: liveState } = useLivingMaze(seedRef, liveRef)
 
 const mazeData = computed(() => {
   const s = props.seed ?? urlSeed.value
@@ -33,8 +41,18 @@ interface WallSegment { x1: number; y1: number; x2: number; y2: number }
 const B = 20   // border
 const S = 40   // cell size
 
+// Walls and thread follow the live graph when evolving, else the static one
+const activeGraph = computed(
+  () => (props.live && liveState.value ? liveState.value.graph : mazeData.value?.graph),
+)
+const activePoints = computed(() =>
+  props.live && liveState.value
+    ? pathToPoints(liveState.value.path)
+    : mazeData.value?.points,
+)
+
 const wallSegments = computed((): WallSegment[] => {
-  const g = mazeData.value?.graph
+  const g = activeGraph.value
   if (!g) return []
 
   const walls: WallSegment[] = []
@@ -97,11 +115,11 @@ const wallSegments = computed((): WallSegment[] => {
       />
     </g>
 
-    <!-- Solution thread — C-once draw animation -->
+    <!-- Solution thread — static: C-once draw animation; live: evolving path -->
     <polyline
-      class="maze-thread"
-      :style="`--dt: ${mazeData.path.strokeDashTotal}`"
-      :points="mazeData.points"
+      :class="{ 'maze-thread': !live }"
+      :style="!live ? `--dt: ${mazeData.path.strokeDashTotal}` : undefined"
+      :points="activePoints"
       fill="none"
       stroke="#ffaa8c"
       stroke-width="8"

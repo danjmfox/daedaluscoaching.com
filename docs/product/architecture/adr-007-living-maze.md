@@ -11,7 +11,7 @@ wave: SPIKE → DESIGN
 
 The homepage maze (`MazeLogo.vue`, derived from the pure `core/maze` pipeline) is a static
 structure computed once from a seed. The goal is for it to **change over time so it
-*demonstrates* complexity and emergence** — the coaching brand themes — rather than merely
+_demonstrates_ complexity and emergence** — the coaching brand themes — rather than merely
 depicting a maze.
 
 The mechanism was validated through an nWave SPIKE: three throwaway probes run over the real
@@ -23,10 +23,10 @@ findings forced the design:
   (random) / **~38%** (frontier, averaged across seeds) — and just **~5%** on the homepage seed
   `23fc3a`.
 - The carrying visual signal is therefore **not** re-routing but **fork-ahead**: a wall
-  *opening* just ahead of the draw-head, visible **~50–68%** of the time. Combined "something
+  _opening_ just ahead of the draw-head, visible **~50–68%** of the time. Combined "something
   visible changes at the frontier" ≈ **89%**.
 - **Closing** a wall ahead disconnects head→exit **~44%** of the time. `solveMaze` already
-  throws (fewer than 2 backtrack excursions) on **~1%** of *unmutated* seeds — a fragility that
+  throws (fewer than 2 backtrack excursions) on **~1%** of _unmutated_ seeds — a fragility that
   live mutation amplifies.
 - Routes that are simultaneously **long and well-composed** (perimeter-framing, full-width, low
   central-occlusion) are rare: **2 of 6000** seeds. Route length and composition are in tension.
@@ -40,8 +40,8 @@ finding that is not recoverable from the code once written.
 Build a "living maze" with five committed choices:
 
 1. **Mechanism — fork-ahead-primary.** Openings appear just ahead of the head; the path
-   re-routes only occasionally (punctuation). Framing: *"the landscape keeps opening ahead of
-   you; occasionally that changes your route."* Honest about complexity — most perturbations do
+   re-routes only occasionally (punctuation). Framing: _"the landscape keeps opening ahead of
+   you; occasionally that changes your route."_ Honest about complexity — most perturbations do
    not change your path.
 2. **Substrate — keep seed `23fc3a`.** Chosen for composition (thread frames the full width,
    perimeter ~73%, central-occlusion 0%, fork-ahead 68%). Liveliness comes from the **engine**,
@@ -60,22 +60,27 @@ Build a "living maze" with five committed choices:
 ## Alternatives Considered
 
 ### Option A: Reseed on a timer (swap the whole seed periodically)
+
 Crude variety, not emergence; an abrupt total change reads as "a different maze," not an evolving
 one. Low brand fit. Rejected.
 
 ### Option B: Random single-wall mutation on a timer
+
 ~82% of random toggles are invisible to the thread; "walls twitch, thread inert" reads as broken.
 Pays the full cost of live mutation for a ~7% payoff. Rejected.
 
 ### Option C (chosen): Frontier×perimeter fork-ahead engine on a fixed composed seed, behind a `ThreadPlayback` port
+
 ~89% of frontier mutations produce a visible change; preserves the owner-chosen composition;
 keeps the draw-model choice reversible; shares one pure policy across adapters.
 
 ### Option D: Pick a long, lively seed instead of an engine
+
 Long + well-composed seeds are rare (2/6000), and a busy seed fights the wings-framing
 composition. Static, not emergent. Rejected.
 
 ### On the draw model: keep both vs pick one
+
 Chose **port + one adapter now** (`jsHeadPlayback`), the rest deferred. The port is justified on
 **separation of concerns** (pure evolution policy vs impure playback mechanism); swappability is a
 bonus, not the justification. The `ThreadPlayback` interface is **not frozen** until the first
@@ -85,7 +90,7 @@ adapter proves it — avoids a premature/speculative abstraction.
 
 **Positive**
 
-- The logo *demonstrates* the brand idea instead of depicting it.
+- The logo _demonstrates_ the brand idea instead of depicting it.
 - Pure core grows testable, mutation-testable policy (`mutateAhead`, `solveFromHead`).
 - The draw-model choice is reversible; reduced-motion is a trivial third adapter, not an `if`.
 - Dependency-cruiser core/shell boundary preserved: types + policy in `core/`, clock in the shell.

@@ -17,9 +17,11 @@ function isVisibleZone(cell: Cell): boolean {
 function orthogonalNeighbours(cell: Cell, rows: number, cols: number): Cell[] {
   const neighbours: Cell[] = [];
   if (cell.row > 0) neighbours.push({ row: cell.row - 1, col: cell.col });
-  if (cell.row < rows - 1) neighbours.push({ row: cell.row + 1, col: cell.col });
+  if (cell.row < rows - 1)
+    neighbours.push({ row: cell.row + 1, col: cell.col });
   if (cell.col > 0) neighbours.push({ row: cell.row, col: cell.col - 1 });
-  if (cell.col < cols - 1) neighbours.push({ row: cell.row, col: cell.col + 1 });
+  if (cell.col < cols - 1)
+    neighbours.push({ row: cell.row, col: cell.col + 1 });
   return neighbours;
 }
 
@@ -50,7 +52,10 @@ function bfsShortestPath(graph: MazeGraph): Cell[] {
   return [];
 }
 
-function reconstructPath(cameFrom: Map<string, Cell | null>, end: Cell): Cell[] {
+function reconstructPath(
+  cameFrom: Map<string, Cell | null>,
+  end: Cell,
+): Cell[] {
   const path: Cell[] = [];
   let current: Cell | null = end;
   while (current !== null) {
@@ -68,7 +73,9 @@ function dfsBranchFromOrigin(
   // DFS to find a dead-end branch from origin that:
   // - stays off the solution path
   // - has at least 2 steps (path.length >= 2)
-  const stack: Array<{ cell: Cell; path: Cell[] }> = [{ cell: origin, path: [] }];
+  const stack: Array<{ cell: Cell; path: Cell[] }> = [
+    { cell: origin, path: [] },
+  ];
   const visited = new Set<string>([cellKey(origin)]);
 
   let longestDeadEnd: Cell[] | null = null;

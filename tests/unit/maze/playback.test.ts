@@ -1,5 +1,9 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { generateMaze, GRID_ROWS, GRID_COLS } from "../../../core/maze/generator";
+import {
+  generateMaze,
+  GRID_ROWS,
+  GRID_COLS,
+} from "../../../core/maze/generator";
 import { solveMaze } from "../../../core/maze/solver";
 import { hashString, mulberry32 } from "../../../core/maze/prng";
 import { advanceThread, solveFromHead } from "../../../core/maze/mutate";
@@ -10,8 +14,16 @@ function countPassages(g: MazeGraph): number {
   let n = 0;
   for (let r = 0; r < GRID_ROWS; r++)
     for (let c = 0; c < GRID_COLS; c++) {
-      if (c < GRID_COLS - 1 && g.hasPassage({ row: r, col: c }, { row: r, col: c + 1 })) n++;
-      if (r < GRID_ROWS - 1 && g.hasPassage({ row: r, col: c }, { row: r + 1, col: c })) n++;
+      if (
+        c < GRID_COLS - 1 &&
+        g.hasPassage({ row: r, col: c }, { row: r, col: c + 1 })
+      )
+        n++;
+      if (
+        r < GRID_ROWS - 1 &&
+        g.hasPassage({ row: r, col: c }, { row: r + 1, col: c })
+      )
+        n++;
     }
   return n;
 }
@@ -22,7 +34,11 @@ describe("jsHeadPlayback — walking skeleton", () => {
 
   it("drives the thread so it evolves over time while the head stays connected to the exit", () => {
     const graph = generateMaze("23fc3a");
-    const initial: ThreadState = { graph, path: solveMaze(graph).solution, headIndex: 0 };
+    const initial: ThreadState = {
+      graph,
+      path: solveMaze(graph).solution,
+      headIndex: 0,
+    };
     const rng = mulberry32(hashString("skeleton"));
     const frames: ThreadState[] = [];
 
@@ -46,8 +62,14 @@ describe("jsHeadPlayback — walking skeleton", () => {
       const flags: boolean[] = [];
       for (let r = 0; r < GRID_ROWS; r++)
         for (let c = 0; c < GRID_COLS; c++) {
-          if (c < GRID_COLS - 1) flags.push(g.hasPassage({ row: r, col: c }, { row: r, col: c + 1 }));
-          if (r < GRID_ROWS - 1) flags.push(g.hasPassage({ row: r, col: c }, { row: r + 1, col: c }));
+          if (c < GRID_COLS - 1)
+            flags.push(
+              g.hasPassage({ row: r, col: c }, { row: r, col: c + 1 }),
+            );
+          if (r < GRID_ROWS - 1)
+            flags.push(
+              g.hasPassage({ row: r, col: c }, { row: r + 1, col: c }),
+            );
         }
       return flags;
     };
@@ -56,7 +78,9 @@ describe("jsHeadPlayback — walking skeleton", () => {
     expect(countPassages(last)).toBe(countPassages(initial.graph));
     // never disconnected: every frame's head can still reach the exit
     for (const f of frames) {
-      expect(solveFromHead(f.graph, f.path[f.headIndex]).length).toBeGreaterThan(0);
+      expect(
+        solveFromHead(f.graph, f.path[f.headIndex]).length,
+      ).toBeGreaterThan(0);
     }
   });
 });

@@ -356,16 +356,16 @@ Note: `pages/privacy.vue` and `content/privacy.md` were found already implemente
 
 ## ADR Index
 
-| ADR     | Decision                                                    | Status                       |
-| ------- | ----------------------------------------------------------- | ---------------------------- |
-| ADR-001 | Architectural style: Pure Core / Imperative Shell           | Accepted                     |
-| ADR-002 | Content architecture: @nuxt/content + adapter isolation     | Accepted (conditional on H3) |
-| ADR-003 | Swoopy integration: Netlify proxy + iframe component        | Accepted                     |
-| ADR-004 | Contact form: Zod in core, Netlify Forms adapter            | Accepted                     |
-| ADR-005 | Design token enforcement: CSS Custom Properties + Stylelint | Accepted                     |
-| ADR-006 | Testing strategy: Outside-In TDD + Stryker on core          | Accepted                     |
-| ADR-007 | Living maze: fork-ahead engine behind a ThreadPlayback port  | Proposed                     |
-| ADR-008 | Living maze: rotate-into-free-edge primitive + animated walls (extends ADR-007) | Proposed |
+| ADR     | Decision                                                                        | Status                       |
+| ------- | ------------------------------------------------------------------------------- | ---------------------------- |
+| ADR-001 | Architectural style: Pure Core / Imperative Shell                               | Accepted                     |
+| ADR-002 | Content architecture: @nuxt/content + adapter isolation                         | Accepted (conditional on H3) |
+| ADR-003 | Swoopy integration: Netlify proxy + iframe component                            | Accepted                     |
+| ADR-004 | Contact form: Zod in core, Netlify Forms adapter                                | Accepted                     |
+| ADR-005 | Design token enforcement: CSS Custom Properties + Stylelint                     | Accepted                     |
+| ADR-006 | Testing strategy: Outside-In TDD + Stryker on core                              | Accepted                     |
+| ADR-007 | Living maze: fork-ahead engine behind a ThreadPlayback port                     | Proposed                     |
+| ADR-008 | Living maze: rotate-into-free-edge primitive + animated walls (extends ADR-007) | Proposed                     |
 
 ---
 

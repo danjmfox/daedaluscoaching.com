@@ -1,15 +1,15 @@
-import { ref, onMounted } from "vue"
-import { useRoute } from "vue-router"
+import { ref, onMounted } from "vue";
+import { useRoute } from "vue-router";
 
-const SEED_PARAM = "maze"
-const SEED_LENGTH = 6
-const SEED_CHARS = "abcdefghijklmnopqrstuvwxyz0123456789"
+const SEED_PARAM = "maze";
+const SEED_LENGTH = 6;
+const SEED_CHARS = "abcdefghijklmnopqrstuvwxyz0123456789";
 
 function randomSeed(): string {
   return Array.from(
     { length: SEED_LENGTH },
     () => SEED_CHARS[Math.floor(Math.random() * SEED_CHARS.length)],
-  ).join("")
+  ).join("");
 }
 
 /**
@@ -24,26 +24,26 @@ function randomSeed(): string {
  * The resolved seed is always written to the URL so the visitor can copy it.
  */
 export function useMazeSeed(seedOverride?: string, defaultSeed?: string) {
-  const route = useRoute()
-  const seed = ref<string>(seedOverride ?? "")
+  const route = useRoute();
+  const seed = ref<string>(seedOverride ?? "");
 
   onMounted(() => {
     if (seedOverride) {
-      seed.value = seedOverride
-      return
+      seed.value = seedOverride;
+      return;
     }
 
-    const existing = route.query[SEED_PARAM]
+    const existing = route.query[SEED_PARAM];
     if (typeof existing === "string" && existing.length > 0) {
-      seed.value = existing
+      seed.value = existing;
     } else {
-      const resolved = defaultSeed ?? randomSeed()
-      seed.value = resolved
-      const url = new URL(window.location.href)
-      url.searchParams.set(SEED_PARAM, resolved)
-      history.replaceState(null, "", url.toString())
+      const resolved = defaultSeed ?? randomSeed();
+      seed.value = resolved;
+      const url = new URL(window.location.href);
+      url.searchParams.set(SEED_PARAM, resolved);
+      history.replaceState(null, "", url.toString());
     }
-  })
+  });
 
-  return { seed }
+  return { seed };
 }

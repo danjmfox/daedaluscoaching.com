@@ -1,2 +1,12 @@
 # Prettier friendly markdownlint config (all formatting rules disabled)
 extends: markdownlint/style/prettier
+
+# Repeated sub-headings under DIFFERENT parents are intentional — e.g. an
+# "Elevator Pitch" / "Acceptance Criteria" pair per user story. Only flag
+# duplicate headings that share the same parent.
+MD024:
+  siblings_only: true
+
+# ADRs use bold emphasis-labels (Positive / Negative / Risks / Follow-ups) as
+# lightweight sub-labels — an intentional house style, not headings-by-emphasis.
+MD036: false

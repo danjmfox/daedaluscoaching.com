@@ -55,10 +55,7 @@ function carvePassages(
   }
 }
 
-function bfsReachable(
-  start: Cell,
-  passages: Set<string>,
-): Set<string> {
+function bfsReachable(start: Cell, passages: Set<string>): Set<string> {
   const reachable = new Set<string>();
   const queue: Cell[] = [start];
   const startKey = `${start.row},${start.col}`;
@@ -68,7 +65,10 @@ function bfsReachable(
     const current = queue.shift()!;
     for (const neighbour of cellNeighbours(current, GRID_ROWS, GRID_COLS)) {
       const neighbourKey = `${neighbour.row},${neighbour.col}`;
-      if (!reachable.has(neighbourKey) && passages.has(passageKey(current, neighbour))) {
+      if (
+        !reachable.has(neighbourKey) &&
+        passages.has(passageKey(current, neighbour))
+      ) {
         reachable.add(neighbourKey);
         queue.push(neighbour);
       }

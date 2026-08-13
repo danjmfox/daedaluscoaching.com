@@ -19,7 +19,7 @@ No splitting required. Feature is an IA and content prominence reorganisation, n
 DISCOVER (CN-20) and DIVERGE artifacts are present and were read.
 All journey work is grounded in JOB-TN-001 (credential-surface transformation scope assessment).
 DIVERGE recommended Option 1 (editorial card + inline expand using `<details>`/`<summary>`).
-That recommendation was for *format*; this DISCUSS wave addresses *placement and IA*.
+That recommendation was for _format_; this DISCUSS wave addresses _placement and IA_.
 
 ---
 
@@ -33,6 +33,7 @@ Collapse or condense the four career narrative blocks (`about-career-start`, `ab
 single accordion/expand below the transformation evidence.
 
 **Persona fit:**
+
 - Recruiter: STRONG. Credentials → transformation evidence in one vertical sweep.
   Career narrative (currently 4 blocks before transformation) is noise at 10-second scan speed.
 - Evaluating Leader: STRONG. Philosophy (approach) → credentials → transformation → working-with-me
@@ -52,6 +53,7 @@ New page at `/work` (or `/transformation`). Nav becomes: About, Work, Services, 
 Vignettes move to this page. About page removes `about-transformation` block.
 
 **Persona fit:**
+
 - Recruiter: WEAK. Recruiters go to About. "Work" is not a recognised navigation label for
   a credential-validation journey. The recruiter fails to find transformation evidence in the
   expected location.
@@ -72,6 +74,7 @@ recruiter still has to know to click "Work" before completing their About-page c
 Transformation vignettes added to `/services` as proof-of-practice for each service offering.
 
 **Persona fit:**
+
 - Recruiter: VERY WEAK. Recruiters do not visit Services; they validate the person, not the
   offering. Transformation evidence on Services is invisible to the dominant persona.
 - Evaluating Leader: WEAK. Leader arrives via referral and reads About. Services page visit
@@ -89,7 +92,7 @@ DISCOVER constraint C-07 is explicit: "no dedicated sub-page at v1."
 
 The commented-out Direction A structure in `content/about.md` replaces the 4-block career
 narrative with 3 image+text era blocks (`about-era-digital`, `about-era-coaching`, `about-era-ai`).
-This is a shorter About page by default. However: Direction A *does not include* `about-transformation`.
+This is a shorter About page by default. However: Direction A _does not include_ `about-transformation`.
 The transformation block would still need to be placed, and its position relative to credentials
 is still the IA question.
 
@@ -153,6 +156,7 @@ transformation narrative. Low urgency; flag for next About page pass.
 ## Scope Boundary
 
 This feature does NOT include:
+
 - Any change to the TransformationNarrative.vue component itself (that is CN-20 DISCUSS scope)
 - New page creation at `/work` or `/transformation` (eliminated by persona analysis)
 - Services page content changes
@@ -163,20 +167,20 @@ This feature does NOT include:
 
 ## Shared Artifacts
 
-| Artifact | Source | Consumers |
-|---|---|---|
-| `about-certifications` block position | `content/about.md` block order | About page render sequence |
-| `about-transformation` block position | `content/about.md` block order | About page render sequence |
-| TransformationNarrative.vue | `components/TransformationNarrative.vue` | `about-transformation` block |
-| Direction A blocks | `content/blocks/about-era-*.md` | Commented out in `content/about.md` |
+| Artifact                              | Source                                   | Consumers                           |
+| ------------------------------------- | ---------------------------------------- | ----------------------------------- |
+| `about-certifications` block position | `content/about.md` block order           | About page render sequence          |
+| `about-transformation` block position | `content/about.md` block order           | About page render sequence          |
+| TransformationNarrative.vue           | `components/TransformationNarrative.vue` | `about-transformation` block        |
+| Direction A blocks                    | `content/blocks/about-era-*.md`          | Commented out in `content/about.md` |
 
 ---
 
 ## Risk Register
 
-| Risk | Probability | Impact | Mitigation |
-|---|---|---|---|
-| Owner prefers "Work" page despite persona evidence | Medium | Medium | Present persona analysis; offer D-01 trial as content edit only |
-| Direction A era blocks are incomplete or need content work | Low | Low | They exist in codebase; check content before committing |
-| Reorder exposes a gap in the `about-working-with-me` block | Low | Low | `about-working-with-me` is standalone; reorder does not affect its content |
-| Career narrative condensation loses content the owner values | Medium | Medium | Keep Direction B as default; D-02 is optional and reversible |
+| Risk                                                         | Probability | Impact | Mitigation                                                                 |
+| ------------------------------------------------------------ | ----------- | ------ | -------------------------------------------------------------------------- |
+| Owner prefers "Work" page despite persona evidence           | Medium      | Medium | Present persona analysis; offer D-01 trial as content edit only            |
+| Direction A era blocks are incomplete or need content work   | Low         | Low    | They exist in codebase; check content before committing                    |
+| Reorder exposes a gap in the `about-working-with-me` block   | Low         | Low    | `about-working-with-me` is standalone; reorder does not affect its content |
+| Career narrative condensation loses content the owner values | Medium      | Medium | Keep Direction B as default; D-02 is optional and reversible               |

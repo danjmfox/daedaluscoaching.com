@@ -2,7 +2,11 @@ import { describe, it, expect } from "vitest";
 import { generateMaze } from "../../../core/maze/generator";
 import { solveMaze } from "../../../core/maze/solver";
 import { hashString, mulberry32 } from "../../../core/maze/prng";
-import { solveFromHead, mutateAhead, advanceThread } from "../../../core/maze/mutate";
+import {
+  solveFromHead,
+  mutateAhead,
+  advanceThread,
+} from "../../../core/maze/mutate";
 import type { ThreadState } from "../../../core/maze/types";
 
 const key = (c: { row: number; col: number }) => `${c.row},${c.col}`;
@@ -24,7 +28,12 @@ describe("mutateAhead", () => {
     const headIndex = 1;
     const rng = mulberry32(hashString("mutate-test"));
 
-    const { graph: next, rotation } = mutateAhead(graph, solution, headIndex, rng);
+    const { graph: next, rotation } = mutateAhead(
+      graph,
+      solution,
+      headIndex,
+      rng,
+    );
 
     expect(rotation).not.toBeNull();
     // the opened edge was a wall, and is a passage after
@@ -34,8 +43,13 @@ describe("mutateAhead", () => {
     expect(graph.hasPassage(rotation!.close.a, rotation!.close.b)).toBe(true);
     expect(next.hasPassage(rotation!.close.a, rotation!.close.b)).toBe(false);
     // the opened wall touches a cell in the 2-5-ahead frontier window
-    const frontier = new Set(solution.slice(headIndex + 2, headIndex + 6).map(key));
-    expect(frontier.has(key(rotation!.open.a)) || frontier.has(key(rotation!.open.b))).toBe(true);
+    const frontier = new Set(
+      solution.slice(headIndex + 2, headIndex + 6).map(key),
+    );
+    expect(
+      frontier.has(key(rotation!.open.a)) ||
+        frontier.has(key(rotation!.open.b)),
+    ).toBe(true);
     // the head can still reach the exit
     expect(solveFromHead(next, solution[headIndex]).length).toBeGreaterThan(0);
   });
@@ -55,15 +69,23 @@ describe("advanceThread", () => {
 
     expect(next.headIndex).toBe(1);
     // keep-behind: the drawn prefix up to the new head is untouched
-    expect(next.path.slice(0, next.headIndex)).toEqual(initial.path.slice(0, next.headIndex));
+    expect(next.path.slice(0, next.headIndex)).toEqual(
+      initial.path.slice(0, next.headIndex),
+    );
     // head still reaches exit, and the path still ends at the exit
-    expect(solveFromHead(next.graph, next.path[next.headIndex]).length).toBeGreaterThan(0);
+    expect(
+      solveFromHead(next.graph, next.path[next.headIndex]).length,
+    ).toBeGreaterThan(0);
     expect(key(next.path[next.path.length - 1])).toBe(key(graph.exit));
   });
 });
 
 describe("living maze — past-route invariant (US-LM-001)", () => {
-  const neighbours = (c: { row: number; col: number }, rows: number, cols: number) => {
+  const neighbours = (
+    c: { row: number; col: number },
+    rows: number,
+    cols: number,
+  ) => {
     const out: { row: number; col: number }[] = [];
     if (c.row > 0) out.push({ row: c.row - 1, col: c.col });
     if (c.row < rows - 1) out.push({ row: c.row + 1, col: c.col });
@@ -97,12 +119,27 @@ describe("living maze — past-route invariant (US-LM-001)", () => {
   });
 
   // counts internal walls (adjacent cell pairs with no passage between them)
-  const countWalls = (g: { rows: number; cols: number; hasPassage: (a: { row: number; col: number }, b: { row: number; col: number }) => boolean }) => {
+  const countWalls = (g: {
+    rows: number;
+    cols: number;
+    hasPassage: (
+      a: { row: number; col: number },
+      b: { row: number; col: number },
+    ) => boolean;
+  }) => {
     let n = 0;
     for (let r = 0; r < g.rows; r++) {
       for (let c = 0; c < g.cols; c++) {
-        if (r + 1 < g.rows && !g.hasPassage({ row: r, col: c }, { row: r + 1, col: c })) n++;
-        if (c + 1 < g.cols && !g.hasPassage({ row: r, col: c }, { row: r, col: c + 1 })) n++;
+        if (
+          r + 1 < g.rows &&
+          !g.hasPassage({ row: r, col: c }, { row: r + 1, col: c })
+        )
+          n++;
+        if (
+          c + 1 < g.cols &&
+          !g.hasPassage({ row: r, col: c }, { row: r, col: c + 1 })
+        )
+          n++;
       }
     }
     return n;
@@ -129,8 +166,8 @@ describe("living maze — past-route invariant (US-LM-001)", () => {
   });
 });
 
-describe("living maze — liveliness (US-LM-002 AC3)", () => {
-  it("produces a visible change on ≥60% of ticks over the run (seed 23fc3a, ≥1000 ticks)", () => {
+describe("living maze — liveliness (US-LM-002 AC3, retargeted)", () => {
+  it("moves a wall on roughly a quarter of ticks (seed 23fc3a, ≥1000 ticks)", () => {
     const seed = "23fc3a";
     const graph0 = generateMaze(seed);
     let state: ThreadState = {
@@ -142,11 +179,17 @@ describe("living maze — liveliness (US-LM-002 AC3)", () => {
 
     let ticks = 0;
     let visibleChanges = 0;
-    // KPI method: measure over ≥1000 ticks of the running engine.
+    // KPI method: measure over ≥1000 ticks of the running engine, restarting on
+    // completion exactly as the shell does (useLivingMaze) — a head that reaches
+    // the exit after ~10 ticks is otherwise far too small a sample.
     for (let tick = 0; tick < 1000; tick++) {
       const prev = state;
       const next = advanceThread(prev, rng);
-      if (next === prev) break; // head reached exit — engine quiesces
+      if (next === prev) {
+        const fresh = generateMaze(seed);
+        state = { graph: fresh, path: solveMaze(fresh).solution, headIndex: 0 };
+        continue;
+      }
       ticks++;
       // a visible change = a wall actually moved this tick (non-null rotation)
       if (next.lastRotation != null) visibleChanges++;
@@ -154,7 +197,9 @@ describe("living maze — liveliness (US-LM-002 AC3)", () => {
     }
 
     const liveliness = visibleChanges / ticks;
-    // ADR-008 US-LM-002 AC3: rotate-only must stay lively (target ≥60%).
-    expect(liveliness).toBeGreaterThanOrEqual(0.6);
+    // Owner retarget 2026-08-07: ADR-008's ≥60% read as frantic on the real logo,
+    // and a wall flipping every tick trapped the head in a two-cell cycle.
+    expect(liveliness).toBeGreaterThan(0.15);
+    expect(liveliness).toBeLessThan(0.35);
   });
 });

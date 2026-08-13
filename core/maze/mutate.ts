@@ -1,10 +1,20 @@
-import type { MazeGraph, Cell, ThreadState, WallEdge, Vertex, WallRotation } from "./types";
+import type {
+  MazeGraph,
+  Cell,
+  ThreadState,
+  WallEdge,
+  Vertex,
+  WallRotation,
+} from "./types";
 
 export interface RotationResult {
   readonly graph: MazeGraph;
   readonly rotation: WallRotation | null;
 }
 
+// A wall moving every tick traps the head in a two-cell cycle: the route flips
+// back before the head can leave it.
+const MUTATION_CHANCE = 0.25;
 const FRONTIER_MIN = 2;
 const FRONTIER_MAX = 5;
 
@@ -52,7 +62,13 @@ function passageSet(graph: MazeGraph): Set<string> {
 }
 
 /** Build a flat MazeGraph closing over a passage Set — O(1) hasPassage. */
-function buildGraph(rows: number, cols: number, entry: Cell, exit: Cell, passages: Set<string>): MazeGraph {
+function buildGraph(
+  rows: number,
+  cols: number,
+  entry: Cell,
+  exit: Cell,
+  passages: Set<string>,
+): MazeGraph {
   return {
     rows,
     cols,
@@ -79,20 +95,31 @@ function applyRotationToSet(base: Set<string>, rot: WallRotation): Set<string> {
 // ── Wall ↔ lattice geometry (ADR-008) ────────────────────────────────────────
 
 /** The two lattice-vertex endpoints of the wall between two adjacent cells. */
-function wallVertices(edge: WallEdge): [Vertex, Vertex] {
+export function wallVertices(edge: WallEdge): [Vertex, Vertex] {
   const { a, b } = edge;
   if (a.row !== b.row) {
     // horizontal wall on vertex-row max(rows), spanning column a.col
     const vr = Math.max(a.row, b.row);
-    return [{ vr, vc: a.col }, { vr, vc: a.col + 1 }];
+    return [
+      { vr, vc: a.col },
+      { vr, vc: a.col + 1 },
+    ];
   }
   // vertical wall on vertex-col max(cols), spanning row a.row
   const vc = Math.max(a.col, b.col);
-  return [{ vr: a.row, vc }, { vr: a.row + 1, vc }];
+  return [
+    { vr: a.row, vc },
+    { vr: a.row + 1, vc },
+  ];
 }
 
 /** The interior wall (cell pair) a unit lattice edge represents; null at the border. */
-function latticeEdgeToWall(p: Vertex, q: Vertex, rows: number, cols: number): WallEdge | null {
+function latticeEdgeToWall(
+  p: Vertex,
+  q: Vertex,
+  rows: number,
+  cols: number,
+): WallEdge | null {
   if (p.vr === q.vr) {
     // horizontal lattice edge on vertex-row vr: separates cell (vr-1,c) and (vr,c)
     const vr = p.vr;
@@ -120,8 +147,14 @@ function rotationTargets(graph: MazeGraph, wall: WallEdge): WallRotation[] {
     const other = pivot === v1 ? v2 : v1;
     const horizontal = pivot.vr === other.vr; // wall runs horizontally
     const perps: Vertex[] = horizontal
-      ? [{ vr: 1, vc: 0 }, { vr: -1, vc: 0 }]
-      : [{ vr: 0, vc: 1 }, { vr: 0, vc: -1 }];
+      ? [
+          { vr: 1, vc: 0 },
+          { vr: -1, vc: 0 },
+        ]
+      : [
+          { vr: 0, vc: 1 },
+          { vr: 0, vc: -1 },
+        ];
 
     for (const d of perps) {
       const tip: Vertex = { vr: pivot.vr + d.vr, vc: pivot.vc + d.vc };
@@ -156,7 +189,11 @@ export function solveFromHead(graph: MazeGraph, head: Cell): Cell[] {
       }
       return path;
     }
-    for (const neighbour of orthogonalNeighbours(current, graph.rows, graph.cols)) {
+    for (const neighbour of orthogonalNeighbours(
+      current,
+      graph.rows,
+      graph.cols,
+    )) {
       const key = cellKey(neighbour);
       if (!cameFrom.has(key) && graph.hasPassage(current, neighbour)) {
         cameFrom.set(key, current);
@@ -181,7 +218,10 @@ export function mutateAhead(
   headIndex: number,
   rng: () => number,
 ): RotationResult {
-  const frontier = path.slice(headIndex + FRONTIER_MIN, headIndex + FRONTIER_MAX + 1);
+  const frontier = path.slice(
+    headIndex + FRONTIER_MIN,
+    headIndex + FRONTIER_MAX + 1,
+  );
   const travelled = new Set(path.slice(0, headIndex + 1).map(cellKey)); // frozen cells
   const head = path[headIndex];
 
@@ -202,8 +242,16 @@ export function mutateAhead(
       seenWalls.add(wallK);
 
       for (const rot of rotationTargets(graph, { a: f, b: n })) {
-        if (travelled.has(cellKey(rot.close.a)) || travelled.has(cellKey(rot.close.b))) continue;
-        if (solveFromHead(rebuild(applyRotationToSet(base, rot)), head).length === 0) continue; // guard
+        if (
+          travelled.has(cellKey(rot.close.a)) ||
+          travelled.has(cellKey(rot.close.b))
+        )
+          continue;
+        if (
+          solveFromHead(rebuild(applyRotationToSet(base, rot)), head).length ===
+          0
+        )
+          continue; // guard
         candidates.push(rot);
       }
     }
@@ -220,17 +268,34 @@ export function mutateAhead(
  * fixed so only the path ahead changes. Returns the same state (by reference)
  * once the head has reached the exit, which lets a driver detect completion.
  */
-export function advanceThread(state: ThreadState, rng: () => number): ThreadState {
+export function advanceThread(
+  state: ThreadState,
+  rng: () => number,
+): ThreadState {
   const { graph, path, headIndex } = state;
   if (headIndex >= path.length - 1) return state;
 
   const nextHead = headIndex + 1;
-  const { graph: nextGraph, rotation } = mutateAhead(graph, path, nextHead, rng);
+  if (rng() >= MUTATION_CHANCE) {
+    return { graph, path, headIndex: nextHead, lastRotation: null };
+  }
+
+  const { graph: nextGraph, rotation } = mutateAhead(
+    graph,
+    path,
+    nextHead,
+    rng,
+  );
   if (rotation === null) {
     return { graph, path, headIndex: nextHead, lastRotation: null };
   }
 
   const ahead = solveFromHead(nextGraph, path[nextHead]);
   const nextPath = path.slice(0, nextHead).concat(ahead);
-  return { graph: nextGraph, path: nextPath, headIndex: nextHead, lastRotation: rotation };
+  return {
+    graph: nextGraph,
+    path: nextPath,
+    headIndex: nextHead,
+    lastRotation: rotation,
+  };
 }

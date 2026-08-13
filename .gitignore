@@ -12,3 +12,6 @@ playwright-report/
 .claude/
 docs/contentful-export-*.json
 docs/feature/**/.develop-progress.json
+# nWave activation marker (keep .nwave/local-config.json trackable)
+.nwave/*
+!.nwave/local-config.json

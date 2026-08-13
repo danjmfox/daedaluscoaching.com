@@ -4,7 +4,7 @@ import { generateMaze } from "../core/maze/generator"
 import { solveMaze } from "../core/maze/solver"
 import { renderPath } from "../core/maze/renderer"
 import { useMazeSeed } from "../composables/useMazeSeed"
-import { useLivingMaze, pathToPoints } from "../composables/useLivingMaze"
+import { useLivingMaze } from "../composables/useLivingMaze"
 
 const props = defineProps<{
   /** Override URL seed — used for testing and Storybook */
@@ -19,7 +19,13 @@ const { seed: urlSeed } = useMazeSeed(props.seed)
 // Living-maze state (ADR-007); null when static, on the server, or pre-mount
 const seedRef = computed(() => props.seed ?? urlSeed.value)
 const liveRef = computed(() => props.live === true)
-const { state: liveState } = useLivingMaze(seedRef, liveRef)
+const {
+  state: liveState,
+  trailPoints,
+  rotation,
+  trailDraw,
+  tick,
+} = useLivingMaze(seedRef, liveRef)
 
 const mazeData = computed(() => {
   const s = props.seed ?? urlSeed.value
@@ -46,10 +52,12 @@ const activeGraph = computed(
   () => (props.live && liveState.value ? liveState.value.graph : mazeData.value?.graph),
 )
 const activePoints = computed(() =>
-  props.live && liveState.value
-    ? pathToPoints(liveState.value.path)
-    : mazeData.value?.points,
+  props.live && liveState.value ? trailPoints.value : mazeData.value?.points,
 )
+
+// Endpoint pair, order-insensitive — the rotating wall is drawn separately
+const segKey = (s: { x1: number; y1: number; x2: number; y2: number }) =>
+  [`${s.x1},${s.y1}`, `${s.x2},${s.y2}`].sort().join("|")
 
 const wallSegments = computed((): WallSegment[] => {
   const g = activeGraph.value
@@ -92,6 +100,14 @@ const wallSegments = computed((): WallSegment[] => {
 
   return walls
 })
+
+// The wall mid-sweep is rendered by its own animated <line>, so drop the static twin
+const staticWalls = computed(() => {
+  const moving = rotation.value
+  if (!moving) return wallSegments.value
+  const movingKey = segKey(moving)
+  return wallSegments.value.filter((w) => segKey(w) !== movingKey)
+})
 </script>
 
 <template>
@@ -108,17 +124,38 @@ const wallSegments = computed((): WallSegment[] => {
     <!-- Maze walls -->
     <g stroke="#d4f0f2" stroke-width="5" stroke-linecap="square" fill="none">
       <line
-        v-for="(w, i) in wallSegments"
+        v-for="(w, i) in staticWalls"
         :key="i"
         :x1="w.x1" :y1="w.y1"
         :x2="w.x2" :y2="w.y2"
+      />
+      <!-- The one wall moving this tick — pivots in from the edge it vacated -->
+      <line
+        v-if="rotation"
+        :key="`rot-${tick}`"
+        class="wall-pivot"
+        :x1="rotation.x1" :y1="rotation.y1"
+        :x2="rotation.x2" :y2="rotation.y2"
+        :style="{
+          '--from': `${rotation.fromDeg}deg`,
+          transformOrigin: `${rotation.pivotX}px ${rotation.pivotY}px`,
+        }"
       />
     </g>
 
     <!-- Solution thread — static: C-once draw animation; live: evolving path -->
     <polyline
-      :class="{ 'maze-thread': !live }"
-      :style="!live ? `--dt: ${mazeData.path.strokeDashTotal}` : undefined"
+      :key="live ? `trail-${tick}` : 'static'"
+      :class="live ? 'maze-trail' : 'maze-thread'"
+      :style="
+        live
+          ? {
+              '--trail-total': trailDraw.total,
+              '--trail-step': trailDraw.step,
+              '--tick-ms': `${trailDraw.durationMs}ms`,
+            }
+          : `--dt: ${mazeData.path.strokeDashTotal}`
+      "
       :points="activePoints"
       fill="none"
       stroke="#ffaa8c"
@@ -145,6 +182,38 @@ const wallSegments = computed((): WallSegment[] => {
 @keyframes draw-maze {
   to {
     stroke-dashoffset: 0;
+  }
+}
+
+.maze-trail {
+  stroke-dasharray: var(--trail-total);
+  animation: trail-step var(--tick-ms) linear;
+}
+
+@keyframes trail-step {
+  from {
+    stroke-dashoffset: var(--trail-step);
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.wall-pivot {
+  transform-box: view-box;
+  animation: wall-pivot 400ms ease-out;
+}
+
+@keyframes wall-pivot {
+  from {
+    transform: rotate(var(--from));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wall-pivot,
+  .maze-trail {
+    animation: none;
   }
 }
 </style>

@@ -1,26 +1,18 @@
-import { ref, watch, onMounted, onUnmounted, type Ref } from "vue";
+import { ref, computed, watch, onMounted, onUnmounted, type Ref } from "vue";
 import { generateMaze } from "../core/maze/generator";
 import { solveMaze } from "../core/maze/solver";
 import { hashString, mulberry32 } from "../core/maze/prng";
 import { advanceThread } from "../core/maze/mutate";
-import type { Cell, PlaybackHandle, ThreadState } from "../core/maze/types";
+import {
+  renderTrail,
+  trailLength,
+  wallRotationGeometry,
+  TRAIL_STEP,
+} from "../core/maze/renderer";
+import type { PlaybackHandle, ThreadState } from "../core/maze/types";
 import { jsHeadPlayback } from "./playback/jsHeadPlayback";
 
 const STEP_INTERVAL_MS = 650;
-const B = 20;
-const S = 40;
-
-/** Polyline points for a raw path: entry wall-point → cell centres → exit wall-point. */
-export function pathToPoints(path: Cell[]): string {
-  if (path.length === 0) return "";
-  const cx = (c: Cell) => B + c.col * S + S / 2;
-  const cy = (c: Cell) => B + c.row * S + S / 2;
-  const pts = [`${cx(path[0]) + S / 2},${cy(path[0])}`];
-  for (const c of path) pts.push(`${cx(c)},${cy(c)}`);
-  const last = path[path.length - 1];
-  pts.push(`${cx(last) + S / 2},${cy(last)}`);
-  return pts.join(" ");
-}
 
 function freshState(seed: string): ThreadState {
   const graph = generateMaze(seed);
@@ -41,9 +33,35 @@ function prefersReducedMotion(): boolean {
  * motion gets a single static frame. Loop policy (restart on completion) lives
  * here in the shell — the engine stays a pure single pass.
  */
-export function useLivingMaze(seed: Ref<string | undefined>, live: Ref<boolean>) {
+export function useLivingMaze(
+  seed: Ref<string | undefined>,
+  live: Ref<boolean>,
+) {
   const state = ref<ThreadState | null>(null);
+  const tick = ref(0);
   let handle: PlaybackHandle | null = null;
+
+  /** Entry → head only. The route ahead is never drawn — exploration, not solution. */
+  const trailPoints = computed(() =>
+    state.value ? renderTrail(state.value.path, state.value.headIndex) : "",
+  );
+
+  /** SVG geometry for the wall moving this frame; null on a no-op tick. */
+  const rotation = computed(() =>
+    state.value?.lastRotation
+      ? wallRotationGeometry(state.value.lastRotation)
+      : null,
+  );
+
+  /** Dash geometry so the newest cell draws in across the tick, not in one jump. */
+  const trailDraw = computed(() => {
+    const total = state.value ? trailLength(state.value.headIndex) : 0;
+    return {
+      total,
+      step: Math.min(TRAIL_STEP, total),
+      durationMs: STEP_INTERVAL_MS,
+    };
+  });
 
   function stop() {
     handle?.stop();
@@ -77,6 +95,7 @@ export function useLivingMaze(seed: Ref<string | undefined>, live: Ref<boolean>)
       },
       onFrame: (frame) => {
         state.value = frame;
+        tick.value += 1;
       },
       stepIntervalMs: STEP_INTERVAL_MS,
     });
@@ -86,5 +105,5 @@ export function useLivingMaze(seed: Ref<string | undefined>, live: Ref<boolean>)
   watch([seed, live], start);
   onUnmounted(stop);
 
-  return { state };
+  return { state, trailPoints, rotation, trailDraw, tick };
 }

@@ -1,7 +1,7 @@
 # Feature: living-maze
 
 Evolving homepage maze (`MazeLogo.vue` / `MazeHero.vue`, pure pipeline in `core/maze/`) that
-changes over time to *demonstrate* complexity and emergence rather than depict a maze. Brownfield
+changes over time to _demonstrate_ complexity and emergence rather than depict a maze. Brownfield
 revisit; DISCOVER skipped — the problem is already validated by a prior nWave SPIKE + ADR-007.
 
 - **Rigor**: Lean. **Density**: lean + ask-intelligent (`~/.nwave/global-config.json`).
@@ -16,7 +16,7 @@ revisit; DISCOVER skipped — the problem is already validated by a prior nWave 
 - **ADR-007** (`docs/product/architecture/adr-007-living-maze.md`, Proposed) — fork-ahead engine
   behind a `ThreadPlayback` port; **past route fixed**; seed `23fc3a`. STANDS, not superseded.
 - **seed-maze-generator** (DELIVERED) — pure `core/maze/` pipeline (generator, solver, renderer)
-  + `MazeLogo.vue`/`MazeHero.vue`. The living maze builds directly on this.
+  - `MazeLogo.vue`/`MazeHero.vue`. The living maze builds directly on this.
 - **Uncommitted WIP** to triage: `core/maze/mutate.ts`, `composables/playback/jsHeadPlayback.ts`,
   `composables/useLivingMaze.ts`, `core/maze/types.ts`, `tests/unit/maze/{mutate,playback}.test.ts`.
   Disposition: **keep & correct** (see [D5]).
@@ -59,13 +59,14 @@ opportunity 6, persona-prospective-client):
 
 ## Wave: DISCUSS / [REF] User stories
 
-### US-LM-001 — Past route stays fixed  (`job_id: JOB-MZ-002`)
+### US-LM-001 — Past route stays fixed (`job_id: JOB-MZ-002`)
 
 As a homepage visitor, when the maze evolves, the part I've already watched the thread travel must
 stay put — only the region ahead of the head may change — so the maze reads as deliberate, not glitchy.
 
 #### Elevator Pitch
-Before: the running maze mutates walls *behind* the head and the thread re-enters cells it already
+
+Before: the running maze mutates walls _behind_ the head and the thread re-enters cells it already
 left, so the past visibly rewrites itself (reads as broken).
 After: load the homepage with the living maze running → no wall on a travelled cell changes, and
 the thread never re-enters a travelled cell; only the region ahead of the head evolves.
@@ -73,32 +74,35 @@ Decision enabled: the owner can ship the living maze knowing it reads as intenti
 not as a rendering glitch.
 
 #### Acceptance Criteria
+
 - **AC1** — Across a simulated run (≥1000 ticks, seed `23fc3a`), **zero** walls incident only to
-  travelled cells (at/behind `headIndex`) change state. *(Currently violated: `mutateAhead`
-  considers neighbours behind the head — `core/maze/mutate.ts:100`.)*
+  travelled cells (at/behind `headIndex`) change state. _(Currently violated: `mutateAhead`
+  considers neighbours behind the head — `core/maze/mutate.ts:100`.)_
 - **AC2** — After any mutation + re-solve, the re-solved path **never re-enters** a travelled cell;
-  `solveFromHead` must exclude the fixed prefix. *(Currently violated: free BFS — `mutate.ts:55`.)*
+  `solveFromHead` must exclude the fixed prefix. _(Currently violated: free BFS — `mutate.ts:55`.)_
 - **AC3** — The drawn-behind prefix of `path` is identical before/after each tick (retain existing
   `advanceThread` assertion).
 - **AC4** — A property-based test (fast-check) asserts AC1+AC2 for arbitrary seeds and head
   positions. **Deletion check**: reverting the fix fails the test (no Testing Theater).
 
-### US-LM-002 — Walls change only by rotating into a free edge  (`job_id: JOB-MZ-002`)
+### US-LM-002 — Walls change only by rotating into a free edge (`job_id: JOB-MZ-002`)
 
-As a homepage visitor, a wall change should look like a wall *pivoting* into an adjacent open slot,
+As a homepage visitor, a wall change should look like a wall _pivoting_ into an adjacent open slot,
 not a wall blinking out of existence — so the motion (next story) is physically legible — and the
 maze must stay solvable on every tick.
 
 #### Elevator Pitch
-Before: the engine mutates by *opening* an existing wall (removing it) — a change that can only
+
+Before: the engine mutates by _opening_ an existing wall (removing it) — a change that can only
 read as a wall vanishing.
 After: load the homepage → every wall change is a single wall segment moving from one cell edge to
 an adjacent edge that currently has no wall (rotate-into-free-edge), and head→exit stays solvable
 on every tick.
 Decision enabled: confirms enough rotatable moves exist at the frontier to keep the maze lively
-under the constrained primitive — *before* investing in animation.
+under the constrained primitive — _before_ investing in animation.
 
 #### Acceptance Criteria
+
 - **AC1** — The mutation primitive selects only moves expressible as one wall segment rotating ~90°
   about a shared endpoint into an edge that currently has **no** wall. No pure open/close toggles.
 - **AC2** — Test-then-commit connectivity guard (reuse the BFS guard in
@@ -110,13 +114,14 @@ under the constrained primitive — *before* investing in animation.
 - **AC4** — Mutations stay confined to the frontier (cells 2–5 ahead) **and** honour US-LM-001
   (no travelled-cell change).
 
-### US-LM-003 — Walls move, not snap  (`job_id: JOB-MZ-002`)
+### US-LM-003 — Walls move, not snap (`job_id: JOB-MZ-002`)
 
-As a homepage visitor, when a wall changes I should see it *move* (pivot around one end) over a
+As a homepage visitor, when a wall changes I should see it _move_ (pivot around one end) over a
 short interval, not teleport — so the evolution reads as living, rewarding the second look
 JOB-MZ-002 describes.
 
 #### Elevator Pitch
+
 Before: walls update instantaneously between frames — the change is a snap, easy to miss or read
 as a flicker.
 After: load the homepage → a changing wall visibly pivots around one endpoint into its new edge
@@ -125,6 +130,7 @@ Decision enabled: the visitor perceives deliberate, living motion (JOB-MZ-002 "d
 intentionality"), not a glitch or a distraction.
 
 #### Acceptance Criteria
+
 - **AC1** — A wall change renders as a continuous rotation about one endpoint (not an
   opacity/position snap).
 - **AC2** — `prefers-reduced-motion: reduce` → no animation; a single static, valid frame (reuse
@@ -169,13 +175,13 @@ already proven by the DELIVERED seed-maze-generator and the running WIP. No new 
 
 ## Wave: DISCUSS / [REF] Outcome KPIs
 
-| KPI | Target | Method |
-|-----|--------|--------|
-| Past-route wall mutations | 0 across ≥1000 ticks (seed `23fc3a`) | engine simulation counter (unit/property) |
-| Thread re-entry into travelled cells | 0 | `solveFromHead` exclusion test |
-| Disconnection events (head→exit) | 0 across ≥1000 ticks | connectivity guard test |
-| Frontier liveliness (visible change / tick) | ≥60% | engine simulation harness |
-| Reduced-motion compliance | 100% static, 0 motion | component test |
+| KPI                                         | Target                               | Method                                    |
+| ------------------------------------------- | ------------------------------------ | ----------------------------------------- |
+| Past-route wall mutations                   | 0 across ≥1000 ticks (seed `23fc3a`) | engine simulation counter (unit/property) |
+| Thread re-entry into travelled cells        | 0                                    | `solveFromHead` exclusion test            |
+| Disconnection events (head→exit)            | 0 across ≥1000 ticks                 | connectivity guard test                   |
+| Frontier liveliness (visible change / tick) | ≥60%                                 | engine simulation harness                 |
+| Reduced-motion compliance                   | 100% static, 0 motion                | component test                            |
 
 ## Wave: DISCUSS / [REF] Definition of Ready: PASS
 
@@ -228,14 +234,14 @@ de-risking order is preserved on one branch.
 
 ## Wave: DESIGN / [REF] Component decomposition
 
-| Component | Path | Layer | Change |
-|-----------|------|-------|--------|
-| Rotation policy | `core/maze/mutate.ts` | core (pure) | EXTEND — candidate enumeration + apply + guard |
-| Prefix-excluding solve | `core/maze/mutate.ts` `solveFromHead` | core (pure) | EXTEND — exclude travelled prefix; reuse as guard |
-| Types | `core/maze/types.ts` | core | EXTEND — `Vertex`, `WallRotation`, `ThreadState.lastRotation?` |
-| Clock wiring | `composables/useLivingMaze.ts` | shell | EXTEND — pass `lastRotation`; reduced-motion branch exists |
-| Playback adapter | `composables/playback/jsHeadPlayback.ts` | shell | UNCHANGED (one-clock) |
-| SVG renderer | `components/MazeLogo.vue`, `MazeHero.vue` | presentation | EXTEND — animate moved wall (transform-origin = pivot) |
+| Component              | Path                                      | Layer        | Change                                                         |
+| ---------------------- | ----------------------------------------- | ------------ | -------------------------------------------------------------- |
+| Rotation policy        | `core/maze/mutate.ts`                     | core (pure)  | EXTEND — candidate enumeration + apply + guard                 |
+| Prefix-excluding solve | `core/maze/mutate.ts` `solveFromHead`     | core (pure)  | EXTEND — exclude travelled prefix; reuse as guard              |
+| Types                  | `core/maze/types.ts`                      | core         | EXTEND — `Vertex`, `WallRotation`, `ThreadState.lastRotation?` |
+| Clock wiring           | `composables/useLivingMaze.ts`            | shell        | EXTEND — pass `lastRotation`; reduced-motion branch exists     |
+| Playback adapter       | `composables/playback/jsHeadPlayback.ts`  | shell        | UNCHANGED (one-clock)                                          |
+| SVG renderer           | `components/MazeLogo.vue`, `MazeHero.vue` | presentation | EXTEND — animate moved wall (transform-origin = pivot)         |
 
 ## Wave: DESIGN / [REF] Driving ports
 
@@ -243,10 +249,10 @@ de-risking order is preserved on one branch.
 
 ## Wave: DESIGN / [REF] Driven ports + adapters
 
-| Port | Location | Adapter | Change |
-|------|----------|---------|--------|
-| `ThreadPlayback` (clock over pure `step`) | `core/maze/types.ts` | `jsHeadPlayback` | port shape UNCHANGED; `lastRotation` rides in `ThreadState` |
-| (deferred) `cssDashPlayback`, `staticPlayback` | — | — | out of scope (ADR-007 defer) |
+| Port                                           | Location             | Adapter          | Change                                                      |
+| ---------------------------------------------- | -------------------- | ---------------- | ----------------------------------------------------------- |
+| `ThreadPlayback` (clock over pure `step`)      | `core/maze/types.ts` | `jsHeadPlayback` | port shape UNCHANGED; `lastRotation` rides in `ThreadState` |
+| (deferred) `cssDashPlayback`, `staticPlayback` | —                    | —                | out of scope (ADR-007 defer)                                |
 
 ## Wave: DESIGN / [REF] Technology choices
 
@@ -256,26 +262,26 @@ declarative transition for the rotation. Vitest + fast-check for the invariant/g
 
 ## Wave: DESIGN / [REF] Decisions table
 
-| ID | Decision |
-|----|----------|
-| DD1 | Past-route invariant in pure core |
-| DD2 | Rotate-into-free-edge primitive |
-| DD3 | Test-then-commit connectivity guard |
+| ID  | Decision                                         |
+| --- | ------------------------------------------------ |
+| DD1 | Past-route invariant in pure core                |
+| DD2 | Rotate-into-free-edge primitive                  |
+| DD3 | Test-then-commit connectivity guard              |
 | DD4 | One clock; ~400 ms ease-out declarative rotation |
-| DD5 | `lastRotation` in `ThreadState`; port unchanged |
-| DD6 | Pure Core / Shell boundary preserved |
+| DD5 | `lastRotation` in `ThreadState`; port unchanged  |
+| DD6 | Pure Core / Shell boundary preserved             |
 
 ## Wave: DESIGN / [REF] Reuse Analysis
 
-| Existing Component | File | Overlap | Decision | Justification |
-|--------------------|------|---------|----------|---------------|
-| `mutateAhead` / `withPassage` | `core/maze/mutate.ts` | mutation select + apply | **EXTEND** | Swap open-only for rotate (open `E_src` + close `E_dst`); same module/shape + candidate enumeration + guard. |
-| `solveFromHead` | `core/maze/mutate.ts` | BFS head→exit | **EXTEND** | (a) add prefix-exclusion (invariant); (b) reuse as the test-then-commit guard. No new BFS. |
-| `bfsReachable` | `core/maze/generator.ts` | connectivity BFS | **REUSE (pattern)** | Guard reuses `solveFromHead`; `bfsReachable` is the generator's own — no duplication. |
-| `ThreadState` / types | `core/maze/types.ts` | frame payload | **EXTEND** | Add `Vertex`/`WallRotation` + optional `lastRotation`. No port reshape. |
-| `jsHeadPlayback` | `composables/playback/jsHeadPlayback.ts` | clock | **UNCHANGED** | One-clock model; animation declarative in renderer. rAF deferred behind same port. |
-| `useLivingMaze` | `composables/useLivingMaze.ts` | shell wiring | **EXTEND** | Pass `lastRotation`; reduced-motion branch already present. |
-| `MazeLogo` / `MazeHero` | `components/` | SVG render | **EXTEND** | Add rotation transition (transform-origin = pivot vertex). |
+| Existing Component            | File                                     | Overlap                 | Decision            | Justification                                                                                                |
+| ----------------------------- | ---------------------------------------- | ----------------------- | ------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `mutateAhead` / `withPassage` | `core/maze/mutate.ts`                    | mutation select + apply | **EXTEND**          | Swap open-only for rotate (open `E_src` + close `E_dst`); same module/shape + candidate enumeration + guard. |
+| `solveFromHead`               | `core/maze/mutate.ts`                    | BFS head→exit           | **EXTEND**          | (a) add prefix-exclusion (invariant); (b) reuse as the test-then-commit guard. No new BFS.                   |
+| `bfsReachable`                | `core/maze/generator.ts`                 | connectivity BFS        | **REUSE (pattern)** | Guard reuses `solveFromHead`; `bfsReachable` is the generator's own — no duplication.                        |
+| `ThreadState` / types         | `core/maze/types.ts`                     | frame payload           | **EXTEND**          | Add `Vertex`/`WallRotation` + optional `lastRotation`. No port reshape.                                      |
+| `jsHeadPlayback`              | `composables/playback/jsHeadPlayback.ts` | clock                   | **UNCHANGED**       | One-clock model; animation declarative in renderer. rAF deferred behind same port.                           |
+| `useLivingMaze`               | `composables/useLivingMaze.ts`           | shell wiring            | **EXTEND**          | Pass `lastRotation`; reduced-motion branch already present.                                                  |
+| `MazeLogo` / `MazeHero`       | `components/`                            | SVG render              | **EXTEND**          | Add rotation transition (transform-origin = pivot vertex).                                                   |
 
 **Zero CREATE NEW.** Outcome Collision Check: `docs/product/outcomes/registry.yaml` is **absent** —
 this project does not maintain an outcomes registry, so the check is **N/A** (not skipped silently).
@@ -316,7 +322,7 @@ C4Component
 ## Wave: DESIGN / [REF] Architecture Summary (wave-decisions)
 
 - **Pattern**: existing modular monolith / Pure Core / Imperative Shell — **unchanged**. This wave
-  designs *deltas* only.
+  designs _deltas_ only.
 - **Paradigm**: Functional (Pure Core/Shell) — already set in project CLAUDE.md + ADR-001; not re-asked.
 - **Key components**: rotation policy (core), connectivity guard (core, via `solveFromHead`),
   declarative rotation render (presentation). Port unchanged.
@@ -324,3 +330,35 @@ C4Component
 - **Constraints**: dependency-cruiser core purity; connectivity guarded per mutation; reduced-motion
   static; no deploy without owner approval.
 - **Upstream changes**: none — ADR-007 stands; DISCUSS stories unchanged.
+
+---
+
+## Wave: DELIVER / [REF] Implementation summary
+
+Shipped on `claude/living-maze` (behind `?living=1`, **not default-on**). ~50 tests green,
+browser-verified. ADR-008 → **Accepted**.
+
+- **Rotate-into-free-edge** (`core/maze/mutate.ts`) — walls move; wall count conserved; flat
+  `Set<string>` for O(1) `hasPassage`; test-then-commit connectivity guard.
+- **Draw-to-head** (`core/maze/renderer.ts:renderTrail`, `composables/useLivingMaze.ts`) — only the
+  travelled trail is drawn; the route ahead is never rendered. Fixes the "past route changes" bug.
+- **Animation** (`components/MazeLogo.vue`) — 400 ms ease-out pivot about the vacated edge; per-tick
+  trail dash; `prefers-reduced-motion` disables both.
+- **Pacing** — `MUTATION_CHANCE = 0.25`.
+
+## Wave: DELIVER / [REF] KPI reconciliation
+
+- **Frontier liveliness**: DISCUSS/DESIGN targeted **≥60%**; **retargeted to 15–35%** in DELIVER —
+  ≥60% read as frantic and trapped the head in a two-cell cycle (owner call, see ADR-008 Amendment).
+  The ≥60% references in the DISCUSS/DESIGN sections above are point-in-time intent, superseded here
+  (truth-trail: recorded, not back-patched).
+- Past-route mutations / re-entry / disconnection: **0** — held across the run (unit-tested).
+
+## Wave: DELIVER / [WHY] Future considerations (owner-raised, deferred)
+
+- **Explore, not solve** — reframe `solve*` / "solution" toward exploration (finding a way through
+  unknowns), not omniscient solving.
+- **Discover blocks by hitting them** — the head should advance into a block ~3 steps ahead and hit
+  the wall, not stop dead pre-emptively.
+
+See ADR-008 Follow-ups for both.

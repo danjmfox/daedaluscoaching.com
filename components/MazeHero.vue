@@ -11,9 +11,10 @@ const props = defineProps<{
 // Shares the same seed as MazeLogo — both read the same URL param
 const { seed } = useMazeSeed(undefined, props.defaultSeed)
 
-// Opt-in living maze (ADR-007) via ?living=1 — static by default
+// Living maze (ADR-007/008) is the default homepage experience.
+// Opt out for debugging/screenshots via ?living=0 — the URL stays clean otherwise.
 const route = useRoute()
-const live = computed(() => route.query.living === "1")
+const live = computed(() => route.query.living !== "0")
 </script>
 
 <template>

@@ -1,7 +1,7 @@
 import {
   contactSchema,
   type ContactFields,
-} from "~/core/contact/contact-schema";
+} from "~~/core/contact/contact-schema";
 
 type FieldErrors = Partial<Record<keyof ContactFields, string>>;
 

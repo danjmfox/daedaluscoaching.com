@@ -4,10 +4,11 @@ module.exports = {
     {
       name: "core-is-pure",
       severity: "error",
-      comment: "core/ must not import from composables/, pages/, vue, or nuxt",
+      comment:
+        "core/ must not import from app/composables/, app/pages/, vue, or nuxt",
       from: { path: "^core/" },
       to: {
-        path: "^(composables|pages)/",
+        path: "^app/(composables|pages)/",
         pathNot: "",
       },
     },

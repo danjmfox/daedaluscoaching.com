@@ -2,6 +2,13 @@ export default defineNuxtConfig({
   modules: ["@nuxt/content"],
   content: {},
   compatibilityDate: "2025-01-01",
+  typescript: {
+    tsConfig: { compilerOptions: { noUncheckedIndexedAccess: false } },
+  },
+  experimental: {
+    // The import map is an inline <script>; the CSP only hashes the __NUXT__ bootstrap.
+    entryImportMap: false,
+  },
   css: ["~/assets/main.css"],
   runtimeConfig: {
     public: {

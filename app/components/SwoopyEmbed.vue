@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import { swoopyUrl } from "~/core/swoopy/swoopy-url";
+import { swoopyUrl } from "~~/core/swoopy/swoopy-url";
 
 const props = defineProps<{
   modelId?: string;

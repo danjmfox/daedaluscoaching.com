@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed } from "vue"
-import { generateMaze } from "../core/maze/generator"
-import { solveMaze } from "../core/maze/solver"
-import { renderPath } from "../core/maze/renderer"
+import { generateMaze } from "../../core/maze/generator"
+import { solveMaze } from "../../core/maze/solver"
+import { renderPath } from "../../core/maze/renderer"
 import { useMazeSeed } from "../composables/useMazeSeed"
 import { useLivingMaze } from "../composables/useLivingMaze"
 

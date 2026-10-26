@@ -7,7 +7,7 @@ import {
 import { solveMaze } from "../../../core/maze/solver";
 import { hashString, mulberry32 } from "../../../core/maze/prng";
 import { advanceThread, solveFromHead } from "../../../core/maze/mutate";
-import { jsHeadPlayback } from "../../../composables/playback/jsHeadPlayback";
+import { jsHeadPlayback } from "../../../app/composables/playback/jsHeadPlayback";
 import type { MazeGraph, ThreadState } from "../../../core/maze/types";
 
 function countPassages(g: MazeGraph): number {

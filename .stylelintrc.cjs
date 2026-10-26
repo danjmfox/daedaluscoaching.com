@@ -30,5 +30,5 @@ module.exports = {
       },
     ],
   },
-  ignoreFiles: ["assets/tokens.css", "node_modules/**", ".output/**"],
+  ignoreFiles: ["app/assets/tokens.css", "node_modules/**", ".output/**"],
 };

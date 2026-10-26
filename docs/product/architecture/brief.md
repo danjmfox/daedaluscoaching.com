@@ -57,7 +57,7 @@ C4Context
   Person(partner, "Referral Partner", "Vets coach before recommending to clients")
   Person(owner, "Owner / Editor", "Updates content, monitors enquiries")
 
-  System(site, "Daedalus Coaching Website", "Nuxt 3 SSG — presents credentials, narrative, contact form, Swoopy embed")
+  System(site, "Daedalus Coaching Website", "Nuxt 4 SSG — presents credentials, narrative, contact form, Swoopy embed")
 
   System_Ext(swoopy, "Swoopy", "React/Vite causal loop diagram simulator (separate Netlify site)")
   System_Ext(netlify_forms, "Netlify Forms", "Receives and stores contact form submissions")
@@ -89,7 +89,7 @@ C4Container
   System_Ext(netlify_forms, "Netlify Forms", "Form submission storage and email notification")
   System_Ext(swoopy_site, "Swoopy Netlify Site", "React/Vite app at swoopy.netlify.app (or custom domain)")
 
-  Container(nuxt_app, "Nuxt 3 SSG Application", "Vue 3 / Vite / TypeScript", "Generates static HTML at build time. Serves pages, components, and Nuxt server routes")
+  Container(nuxt_app, "Nuxt 4 SSG Application", "Vue 3 / Vite / TypeScript", "Generates static HTML at build time. Serves pages, components, and Nuxt server routes")
   Container(core, "Core Layer", "TypeScript (pure functions)", "Domain logic: contact validation schema (Zod), Swoopy URL construction, content port types. No framework dependencies. Mutation-tested.")
   Container(content_store, "Content Store", "@nuxt/content v2 / Markdown files", "Source of truth for page copy: home, about, contact. Edited via git commit (H3 condition open).")
 
@@ -127,30 +127,31 @@ C4Container
 │       ├── solver.ts            # MazeGraph → ThreadPath + visible backtracks
 │       └── renderer.ts          # ThreadPath → polyline points + strokeDashTotal
 │
-├── composables/                 # Shell: Vue reactivity + port adapters (driving)
-│   ├── useContact.ts            # Calls core schema, submits via SubmissionPort adapter
-│   ├── usePageContent.ts        # Calls @nuxt/content, maps to ContentPort shape
-│   └── useMazeSeed.ts           # Reads ?maze= param; generates seed; replaceState; runs core/maze/ pipeline
-│
+├── app/                         # Nuxt 4 srcDir — `~` resolves here; `~~` is the repo root
+│   ├── composables/                 # Shell: Vue reactivity + port adapters (driving)
+│   │   ├── useContact.ts            # Calls core schema, submits via SubmissionPort adapter
+│   │   ├── usePageContent.ts        # Calls @nuxt/content, maps to ContentPort shape
+│   │   └── useMazeSeed.ts           # Reads ?maze= param; generates seed; replaceState; runs core/maze/ pipeline
+│   │
+│   ├── components/
+│   │   ├── TrustSignals.vue         # B-Corp, 1%FTP, accreditations — above fold
+│   │   ├── ContactForm.vue          # Single CTA component — uses useContact composable
+│   │   ├── SwoopyEmbed.vue          # iframe wrapper — src from core/swoopy/swoopy-url.ts
+│   │   ├── MazeLogo.vue             # seed-maze-generator — animated maze SVG (replaces static logo)
+│   │   ├── MazeHero.vue             # seed-maze-generator — responsive homepage hero maze
+│   │   └── ...                      # Remaining layout and presentation components
+│   │
+│   ├── pages/
+│   │   ├── index.vue                # Homepage — trust-first IA, single CTA
+│   │   ├── about.vue                # Narrative about page
+│   │   └── contact.vue              # Contact page with ContactForm
+│   │
+│   ├── assets/
+│   │   └── tokens.css               # CSS Custom Properties — single design token source
+│   │
 ├── server/
 │   └── api/
 │       └── contact.post.ts      # Server route: validates via core schema, forwards to Netlify
-│
-├── components/
-│   ├── TrustSignals.vue         # B-Corp, 1%FTP, accreditations — above fold
-│   ├── ContactForm.vue          # Single CTA component — uses useContact composable
-│   ├── SwoopyEmbed.vue          # iframe wrapper — src from core/swoopy/swoopy-url.ts
-│   ├── MazeLogo.vue             # seed-maze-generator — animated maze SVG (replaces static logo)
-│   ├── MazeHero.vue             # seed-maze-generator — responsive homepage hero maze
-│   └── ...                      # Remaining layout and presentation components
-│
-├── pages/
-│   ├── index.vue                # Homepage — trust-first IA, single CTA
-│   ├── about.vue                # Narrative about page
-│   └── contact.vue              # Contact page with ContactForm
-│
-├── assets/
-│   └── tokens.css               # CSS Custom Properties — single design token source
 │
 └── content/                     # @nuxt/content markdown files
     ├── home.md
@@ -160,11 +161,11 @@ C4Container
 
 ### Dependency Rules (dependency-cruiser, enforced in CI)
 
-| Rule               | Description                                                                                            |
-| ------------------ | ------------------------------------------------------------------------------------------------------ |
-| core-is-pure       | `core/` may not import from `composables/`, `server/`, `components/`, `pages/`, or any Nuxt/Vue module |
-| shell-imports-core | `composables/` and `server/` may import from `core/`                                                   |
-| components-no-core | `components/` and `pages/` import from `composables/`, not directly from `core/`                       |
+| Rule               | Description                                                                                                        |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| core-is-pure       | `core/` may not import from `app/composables/`, `server/`, `app/components/`, `app/pages/`, or any Nuxt/Vue module |
+| shell-imports-core | `app/composables/` and `server/` may import from `core/` (via `~~/core/`)                                          |
+| components-no-core | `app/components/` and `app/pages/` import from `app/composables/`, not directly from `core/`                       |
 
 Violation = build failure. Architecture is load-bearing, not conventional.
 
@@ -181,11 +182,11 @@ Violation = build failure. Architecture is load-bearing, not conventional.
 
 ### Driven Ports + Adapters (outbound — Core defines port, Shell implements adapter)
 
-| Port              | Adapter (v1)                                    | Fallback (SPIKE / H3 fail)                    |
-| ----------------- | ----------------------------------------------- | --------------------------------------------- |
-| `SubmissionPort`  | `server/api/contact.post.ts` → Netlify Forms    | Resend or custom SMTP adapter                 |
-| `ContentPort`     | `composables/usePageContent.ts` → @nuxt/content | Decap CMS or Nuxt Studio adapter              |
-| `SwoopyEmbedPort` | `SwoopyEmbed.vue` → `<iframe>` proxy URL        | Web Component (`<swoopy-diagram>`) — SPIKE-01 |
+| Port              | Adapter (v1)                                        | Fallback (SPIKE / H3 fail)                    |
+| ----------------- | --------------------------------------------------- | --------------------------------------------- |
+| `SubmissionPort`  | `server/api/contact.post.ts` → Netlify Forms        | Resend or custom SMTP adapter                 |
+| `ContentPort`     | `app/composables/usePageContent.ts` → @nuxt/content | Decap CMS or Nuxt Studio adapter              |
+| `SwoopyEmbedPort` | `SwoopyEmbed.vue` → `<iframe>` proxy URL            | Web Component (`<swoopy-diagram>`) — SPIKE-01 |
 
 ---
 
@@ -193,7 +194,7 @@ Violation = build failure. Architecture is load-bearing, not conventional.
 
 | Component              | Technology                         | Version   | Licence               | Rationale                                                                      |
 | ---------------------- | ---------------------------------- | --------- | --------------------- | ------------------------------------------------------------------------------ |
-| Framework              | Nuxt 3                             | ^3.x      | MIT                   | Pre-decided; Vue learning harness; SSG for static hosting                      |
+| Framework              | Nuxt 4                             | ^4.6      | MIT                   | Pre-decided; Vue learning harness; SSG for static hosting                      |
 | Runtime language       | TypeScript (type-stripped)         | ^5.x      | Apache 2.0            | Owner preference; ESM; no build overhead                                       |
 | Validation             | Zod                                | ^3.x      | MIT                   | Pre-decided; central to contact schema in core/                                |
 | Content                | @nuxt/content v3                   | ^3.x      | MIT                   | Pre-decided; markdown-in-repo; v3.13.0 confirmed by spike                      |
@@ -333,13 +334,13 @@ because there is no server process to manage.
 
 Three presentation-layer additions. No new architectural layers, no new ports, no core/ changes.
 
-| Item                | Implementation                                                                       | Pattern                                                                                                            |
-| ------------------- | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
-| Custom 404 page     | `error.vue` (project root) + Netlify `[[redirects]]` `status = 404`                  | Nuxt standard error hook; `error.vue` must explicitly include `<SiteHeader>` + `<SiteFooter>` (bypasses `app.vue`) |
-| Privacy policy page | `pages/privacy.vue` + `content/privacy.md`                                           | Already complete — custom GDPR policy.                                                                             |
-| OG social card      | Static `public/images/og-card.png` + 4 meta tags in `nuxt.config.ts` `app.head.meta` | Extends existing head config; global propagation to all SSG pages                                                  |
+| Item                | Implementation                                                                       | Pattern                                                                                                                |
+| ------------------- | ------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- |
+| Custom 404 page     | `app/error.vue` + Netlify `[[redirects]]` `status = 404`                             | Nuxt standard error hook; `app/error.vue` must explicitly include `<SiteHeader>` + `<SiteFooter>` (bypasses `app.vue`) |
+| Privacy policy page | `app/pages/privacy.vue` + `content/privacy.md`                                       | Already complete — custom GDPR policy.                                                                                 |
+| OG social card      | Static `public/images/og-card.png` + 4 meta tags in `nuxt.config.ts` `app.head.meta` | Extends existing head config; global propagation to all SSG pages                                                      |
 
-Note: `pages/privacy.vue` and `content/privacy.md` were found already implemented. iubenda removed from stack — replaced by `CookieNotice.vue`.
+Note: `app/pages/privacy.vue` and `content/privacy.md` were found already implemented. iubenda removed from stack — replaced by `CookieNotice.vue`.
 
 ---
 

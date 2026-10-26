@@ -13,28 +13,30 @@
     "lint:css": "stylelint '**/*.{css,vue}' --ignore-path .gitignore"
   },
   "dependencies": {
-    "@fontsource-variable/fraunces": "^5.2.9",
-    "@fontsource-variable/plus-jakarta-sans": "^5.2.8",
-    "@nuxt/content": "^3.5.0",
-    "better-sqlite3": "^12.5.0",
-    "nuxt": "^3.17.0",
-    "vue": "^3.5.0",
-    "zod": "^4.4.3"
+    "@fontsource-variable/fraunces": "^5.3.0",
+    "@fontsource-variable/plus-jakarta-sans": "^5.3.0",
+    "@nuxt/content": "^3.16.2",
+    "better-sqlite3": "^12.11.1",
+    "nuxt": "^4.6.2",
+    "vue": "^3.5.44",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
-    "@nuxt/eslint": "^1.0.0",
-    "@nuxt/test-utils": "^4.0.3",
-    "@playwright/test": "^1.52.0",
-    "@types/better-sqlite3": "^7.6.0",
-    "dependency-cruiser": "^17.4.0",
-    "eslint": "^10.3.0",
-    "eslint-plugin-no-unsanitized": "^4.1.0",
-    "lefthook": "^2.1.6",
-    "playwright": "^1.52.0",
-    "stylelint": "^17.11.0",
+    "@nuxt/eslint": "^1.17.0",
+    "@nuxt/test-utils": "^4.3.4",
+    "@playwright/test": "^1.64.1",
+    "@types/better-sqlite3": "^7.6.13",
+    "dependency-cruiser": "^17.4.3",
+    "eslint": "^10.13.0",
+    "eslint-plugin-no-unsanitized": "^4.1.5",
+    "lefthook": "^2.2.2",
+    "playwright": "^1.64.1",
+    "stylelint": "^17.16.0",
     "stylelint-config-recommended-vue": "^1.6.1",
     "stylelint-config-standard": "^40.0.0",
-    "stylelint-declaration-strict-value": "^1.11.1",
-    "vitest": "^4.1.6"
+    "stylelint-declaration-strict-value": "^1.12.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.12",
+    "vue-tsc": "^3.3.13"
   }
 }

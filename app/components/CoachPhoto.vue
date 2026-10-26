@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import { identityConfig } from "~/core/identity/config";
+import { identityConfig } from "~~/core/identity/config";
 
 const config = identityConfig;
 </script>

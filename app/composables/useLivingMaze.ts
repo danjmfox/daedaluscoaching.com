@@ -1,15 +1,15 @@
 import { ref, computed, watch, onMounted, onUnmounted, type Ref } from "vue";
-import { generateMaze } from "../core/maze/generator";
-import { solveMaze } from "../core/maze/solver";
-import { hashString, mulberry32 } from "../core/maze/prng";
-import { advanceThread } from "../core/maze/mutate";
+import { generateMaze } from "../../core/maze/generator";
+import { solveMaze } from "../../core/maze/solver";
+import { hashString, mulberry32 } from "../../core/maze/prng";
+import { advanceThread } from "../../core/maze/mutate";
 import {
   renderTrail,
   trailLength,
   wallRotationGeometry,
   TRAIL_STEP,
-} from "../core/maze/renderer";
-import type { PlaybackHandle, ThreadState } from "../core/maze/types";
+} from "../../core/maze/renderer";
+import type { PlaybackHandle, ThreadState } from "../../core/maze/types";
 import { jsHeadPlayback } from "./playback/jsHeadPlayback";
 
 const STEP_INTERVAL_MS = 650;

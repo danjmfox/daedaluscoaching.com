@@ -12,7 +12,7 @@
 import {
   trustSignalsConfig,
   enabledSignals,
-} from "~/core/trust-signals/config";
+} from "~~/core/trust-signals/config";
 
 const signals = enabledSignals(trustSignalsConfig);
 </script>

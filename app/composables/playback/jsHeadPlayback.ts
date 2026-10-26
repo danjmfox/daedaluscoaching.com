@@ -2,7 +2,7 @@ import type {
   PlaybackConfig,
   PlaybackHandle,
   ThreadPlayback,
-} from "../../core/maze/types";
+} from "../../../core/maze/types";
 
 /**
  * JS-driven head adapter for the `ThreadPlayback` port (ADR-007).

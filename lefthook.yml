@@ -13,4 +13,4 @@ pre-commit:
     dep-cruiser:
       name: Dependency boundary check
       # server/ not yet created — add once first server route is written
-      run: pnpm dependency-cruiser core composables pages --config .dependency-cruiser.cjs --ts-config .nuxt/tsconfig.json
+      run: pnpm dependency-cruiser core app/composables app/pages --config .dependency-cruiser.cjs --ts-config .nuxt/tsconfig.json

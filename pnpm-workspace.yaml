@@ -6,3 +6,10 @@ allowBuilds:
   esbuild: true
   lefthook: true
   unrs-resolver: true
+# Advisories with no usable fix, both build-time only (see ADR-009). Remove when upstream ships a fix.
+auditConfig:
+  ignoreGhsas:
+    # node-forge RSA signature check: no patched version exists
+    - GHSA-86w9-cpqp-85rv
+    # zod 3.x inside @nuxt/content: fixed only in zod 4.6.6+, which Content 3.x does not use
+    - GHSA-mrhx-c7xc-m3w5
